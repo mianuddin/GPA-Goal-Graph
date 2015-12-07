@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang='en'>
+    <head>
+        <meta charset='UTF-8' />
+        <meta name='viewport' content='width=device-width, initial-scale=1'> 
+        <title>GPA Goal Graph</title>
+        <link rel='stylesheet' href='css/stylesheet.css'>
+        <link rel='stylesheet' href='css/normalize.css'>
+        <link rel='stylesheet' href='https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.css'>
+        <link href='https://fonts.googleapis.com/css?family=Oswald:700|Roboto+Condensed' rel='stylesheet' type='text/css'>
+        <link rel='stylesheet' href='css/normalize.css'>
+        <link rel='stylesheet' href='css/demo.css'>
+        <link rel='stylesheet' href='css/component.css'>
+    </head>
+    <body>
+        <div>
+            <section>
+                <form id='theForm' class='simform' autocomplete='off'>
+                    <div class='simform-inner'>
+                        <ol class='questions'>
+                            <li>
+                                <span><label for='q1'>What's your GPA?</label></span>
+                                <input id='q1' name='q1' type='number'/>
+                            </li>
+                            <li>
+                                <span><label for='q2'>How many credits do you have?</label></span>
+                                <input id='q2' name='q2' type='number'/>
+                            </li>
+                            <li>
+                                <span><label for='q3'>What GPA do you want to achieve?</label></span>
+                                <input id='q3' name='q3' type='number'/>
+                            </li>
+                        </ol><!-- /questions -->
+                        <button class='submit' type='submit'>Send answers</button>
+                        <div class='controls'>
+                            <button class='next'></button>
+                            <div class='progress'></div>
+                            <span class='number'>
+                                <span class='number-current'></span>
+                                <span class='number-total'></span>
+                            </span>
+                            <span class='error-message'></span>
+                        </div><!-- / controls -->
+                    </div><!-- /simform-inner -->
+                    <span class='final-message'></span>
+                </form><!-- /simform -->            
+            </section>
+        </div>
+        <div class='container'>
+            <div id='resultBox'><p id='result'></p></div>
+            <div class='ct-chart ct-square'></div>
+            <p id='key'>
+                <strong>Key:</strong></br>
+                <span id='avg'>&bull;</span> Average GPA </br>
+                <span id='goal'>&bull;</span> Goal GPA
+            </p>
+        </div><!-- /container -->
+        
+        <script src='js/modernizr.custom.js'></script>
+        <script src='js/classie.js'></script>
+        <script src='js/stepsForm.js'></script>
+        <script src='https://code.jquery.com/jquery-2.1.4.min.js'></script>
+        <script src='js/jquery.history.js'></script>
+        <script src='https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.js'></script>
+        <script src='js/chart.js'></script>
+    </body>
+</html>
