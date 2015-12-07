@@ -142,7 +142,7 @@ function calculate() {
     var credits = parseInt(decodeURIComponent(getURLParameter('credits')));
     var creditsRemaining = 220-credits;
     var targetGPA = roundTwoPlaces(((goal*220)-(gpa*credits))/(220-credits));
-    $('#result').html('GPA to achieve (to avg. ' + goal +'): <strong id="target">' + targetGPA + '</strong>; Credits Remaining: <strong>' + creditsRemaining + '</strong>');
+    $('#result').html('GPA to achieve (to avg. ' + goal +'): <strong id="target">' + targetGPA + '</strong></br> Credits Remaining: <strong>' + creditsRemaining + '</strong>');
     // if(targetGPA>4) {
     //     $('#target').css('color', '#F44336');
     // } else {
