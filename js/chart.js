@@ -143,19 +143,25 @@ function calculate() {
     var creditsRemaining = 220-credits;
     var targetGPA = roundTwoPlaces(((goal*220)-(gpa*credits))/(220-credits));
 <<<<<<< HEAD
+<<<<<<< HEAD
     if(targetGPA < 5.0) {
         $('#result').html('GPA to achieve (to avg. ' + goal +'): <strong id="target">' + targetGPA + '</strong></br> Credits Remaining: <strong>' + creditsRemaining + '</strong>');
     } else {
         $('#result').html('This goal is unachieveable.');
     }
 =======
+=======
+>>>>>>> eab19903715d521889a6c6d4af268799ca77365b
     $('#result').html('GPA to achieve (to avg. ' + goal +'): <strong id="target">' + targetGPA + '</strong></br> Credits Remaining: <strong>' + creditsRemaining + '</strong>');
     // if(targetGPA>4) {
     //     $('#target').css('color', '#F44336');
     // } else {
     //     $('#target').css('color', '#FFF');
     // }
+<<<<<<< HEAD
 >>>>>>> gh-pages
+=======
+>>>>>>> eab19903715d521889a6c6d4af268799ca77365b
     graph.fill(gpa, credits, goal, targetGPA);
     $('.ct-chart').css('animation','result_fadeIn 0.6s ease-in');
     $('.ct-chart').css('height', '70vh');
@@ -224,7 +230,11 @@ function getURLParameter(sParam)
         calculate();
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
 }());
 =======
 }());
 >>>>>>> gh-pages
+=======
+}());
+>>>>>>> eab19903715d521889a6c6d4af268799ca77365b

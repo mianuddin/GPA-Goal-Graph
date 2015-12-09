@@ -24,11 +24,16 @@ gulp.task('sass', function() {
 gulp.task('browserSync', function() {
     browserSync({
 <<<<<<< HEAD
+<<<<<<< HEAD
         server: { },
 =======
         server: {
         },
 >>>>>>> gh-pages
+=======
+        server: {
+        },
+>>>>>>> eab19903715d521889a6c6d4af268799ca77365b
     });
 });
 
@@ -91,7 +96,11 @@ gulp.task('build', function (callback) {
         callback
     );
 <<<<<<< HEAD
+<<<<<<< HEAD
 });
 =======
 });
 >>>>>>> gh-pages
+=======
+});
+>>>>>>> eab19903715d521889a6c6d4af268799ca77365b
