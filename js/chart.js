@@ -1,6 +1,6 @@
 var graph = (function () {
-	var          my = {},
-		     maxGPA = 2.2,
+    var          my = {},
+             maxGPA = 2.2,
          maxCredits = 220,
        gpaIncrement = 0.1,
     creditIncrement = 5;
@@ -129,7 +129,7 @@ var graph = (function () {
         });  
     };
 
-	return my;
+    return my;
 }());
 
 function roundTwoPlaces(num) {
