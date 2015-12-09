@@ -23,7 +23,12 @@ gulp.task('sass', function() {
 
 gulp.task('browserSync', function() {
     browserSync({
+<<<<<<< HEAD
         server: { },
+=======
+        server: {
+        },
+>>>>>>> gh-pages
     });
 });
 
@@ -85,4 +90,8 @@ gulp.task('build', function (callback) {
         ['sass', 'useref', 'images', 'icons', 'videos'],
         callback
     );
+<<<<<<< HEAD
 });
+=======
+});
+>>>>>>> gh-pages
