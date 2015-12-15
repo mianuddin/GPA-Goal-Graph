@@ -1,14 +1,11 @@
-Minimal Form Interface
+GPA Goal Graph
 =========
+Project for my school's counselors.
 
-A simplistic form with inputs shown one at a time. Inspired by the form seen on the end of the [PageLanes website](http://www.pagelanes.com/).
 
-[Article on Codrops](http://tympanus.net/codrops/?p=18780)
+## Open Source Technologies Used:
+Minimal Form Interface - [License](http://tympanus.net/codrops/licensing/) | [Codrops](http://www.codrops.com)
 
-[Demo](http://tympanus.net/Development/MinimalForm/)
+Chartist.js - [License](https://github.com/gionkunz/chartist-js/blob/develop/LICENSE) | [chartist-js](https://github.com/gionkunz/chartist-js)
 
-Integrate or build upon it for free in your personal or commercial projects. Don't republish, redistribute or sell "as-is". 
-
-Read more here: [License](http://tympanus.net/codrops/licensing/)
-
-[© Codrops 2013](http://www.codrops.com)
+Bootstrap-Grid-Only - [License](https://github.com/twbs/bootstrap/blob/master/LICENSE) | [bootstrap-grid-only (3.2.0)](https://github.com/zirafa/bootstrap-grid-only)
