@@ -34,7 +34,7 @@ new stepsForm( theForm, {
 
 function display(gradeObject) {
 
-    if(gradeObject.getTargetGPA < 5.0) {
+    if(gradeObject.isAchieveable()) {
         $('#result').html('GPA to achieve (to avg. ' + gradeObject.goalGPA + '): <strong id="target">' + gradeObject.getTargetGPA() + '</strong></br> Credits Remaining: <strong>' + gradeObject.getCreditsRemaining() + '</strong>');
     } else {
         $('#result').html('This goal is unachieveable.');

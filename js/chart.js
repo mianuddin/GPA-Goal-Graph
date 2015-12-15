@@ -32,11 +32,13 @@ var graph = (function () {
     }
 
     function generateDataSets(gradeObject, xAxisBounds) {
-        var dataArray = Array(arrayLength).fill(null),
-            averageArray = Array(arrayLength).fill(null),
-            xTicks = (xAxisBounds[1]-xAxisBounds[0])/CREDIT_INCREMENT,
+        var xTicks = (xAxisBounds[1]-xAxisBounds[0])/CREDIT_INCREMENT,
             nullTicks = (gradeObject.credits-xAxisBounds[0])/CREDIT_INCREMENT,
-            arrayLength = xTicks+nullTicks;
+            arrayLength = xTicks+nullTicks,
+            dataArray = Array(arrayLength).fill(null),
+            averageArray = Array(arrayLength).fill(null),
+            apArray = Array(arrayLength).fill(4),
+            unachieveableArray = Array(arrayLength).fill(5);
 
         dataArray[nullTicks] = parseFloat(gradeObject.currentGPA);
         averageArray[nullTicks] = null;
@@ -44,7 +46,7 @@ var graph = (function () {
         dataArray[nullTicks+1] = parseFloat(gradeObject.getTargetGPA());
         averageArray[nullTicks+1] = gradeObject.goalGPA;
 
-        return {data: dataArray, average: averageArray};
+        return {data: dataArray, average: averageArray, ap: apArray, unachieveable: unachieveableArray};
     }
 
     function orderedGPAArray(x, y) {
@@ -65,10 +67,16 @@ var graph = (function () {
         var buffer = 2*increment;
 
         for(var z=(smallerGPA-buffer); z<=(largerGPA+buffer); z+=increment) {
-            ticksArray.push(Math.round(10*z)/10);
+            ticksArray.push(z.round(3));
         }
 
         return {array: ticksArray, increment: increment, buffer: buffer, largerGPA: largerGPA, smallerGPA: smallerGPA};
+    }
+
+    function toggleUnachieveableArea(yAxisValues) {
+        if(yAxisValues.array[yAxisValues.array.length-1] < 5.0)
+            return false;
+        return true;
     }
 
     my.fill = function(gradeObject) {
@@ -76,17 +84,26 @@ var graph = (function () {
             xStart = xAxisValues[0],
             xMax = xAxisValues[1],
             yAxisValues = generateYAxisValues(gradeObject);
-
+            
         var data = {
           labels: generateXAxisLabels(xAxisValues),
-          series: [ {
-              name: 'Current GPA',
-              data: generateDataSets(gradeObject, xAxisValues).data
+          series: [ 
+            {
+                name: 'unachieveableLine',
+                data: generateDataSets(gradeObject, xAxisValues).unachieveable
             },
             {
-              name: 'Average GPA',
-              data: generateDataSets(gradeObject, xAxisValues).average
-            }
+                name: 'apLine',
+                data: generateDataSets(gradeObject, xAxisValues).ap
+            },
+            {
+                name: 'currentGPA',
+                data: generateDataSets(gradeObject, xAxisValues).data,
+            },
+            {
+                name: 'averageGPA',
+                data: generateDataSets(gradeObject, xAxisValues).average
+            },
             ]
         };
         
@@ -96,10 +113,22 @@ var graph = (function () {
                 type: Chartist.FixedScaleAxis,
                 ticks: yAxisValues.array,
                 high: yAxisValues.largerGPA+yAxisValues.buffer,
-                low: yAxisValues.smallerGPA-yAxisValues.buffer
+                low: yAxisValues.smallerGPA-yAxisValues.buffer,
             },
             axisX: {
                 position: 'start'
+            },
+            series: {
+                'apLine': {
+                    showArea: true,
+                    areaBase: 5,
+                    showPoint: false
+                },
+                'unachieveableLine': {
+                    showArea: toggleUnachieveableArea(yAxisValues),
+                    areaBase: yAxisValues.array[yAxisValues.array.length-1],
+                    showPoint: false
+                }
             }
         });  
     };

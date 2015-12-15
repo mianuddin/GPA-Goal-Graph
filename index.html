@@ -10,6 +10,7 @@
 
         <!--build:css css/styles.min.css-->
         <link rel='stylesheet' href='css/normalize.css'>
+        <link rel='stylesheet' href='css/bootstrap3-grid.css'>
         <link rel='stylesheet' href='css/demo.css'>
         <link rel='stylesheet' href='css/component.css'>
         <!--endbuild-->
@@ -51,11 +52,16 @@
         <div class='container'>
             <div id='resultBox'><p id='result'></p></div>
             <div class='ct-chart ct-square'></div>
-            <p id='key'>
-                <strong>Key:</strong></br>
-                <span id='avg'>&bull;</span> Average GPA </br>
-                <span id='goal'>&bull;</span> Goal GPA
-            </p>
+            <div class='container' id='key'>
+                <div class='col-sm-3'>
+                    <strong>Key:</strong></br>
+                    <span id='avg'>&#9679;</span> Average GPA </br>
+                    <span id='goal'>&#9679;</span> Goal GPA
+                </div>
+                <div class='col-sm-8'>
+                    <span id='ap'>&#9670;</span> Your Goal Requires Enrollment in <strong>AP Classes</strong></br>
+                </div>
+            </div>
         </div><!-- /container -->
         
         <script src='https://code.jquery.com/jquery-2.1.4.min.js'></script>

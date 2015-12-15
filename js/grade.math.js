@@ -19,7 +19,7 @@ function gradeObject(currentGPA, goalGPA, credits) {
     };
 
     this.isAchieveable = function isThisAchieveable() {
-        return (this.getTargetGPA > 5);
+        return (this.getTargetGPA() < 5);
     };
 }
 
