@@ -11,7 +11,8 @@ function hideForm() {
     classie.addClass( theForm.querySelector( '.simform-inner' ), 'hide' );
     $('section').css('animation','fadeOut 0.6s ease-out');
     $('section').css('display', 'none');
-    $('.container').css('padding', '0 0 24px 0');
+    $('body>.container').css('margin', '0 auto 36px auto');
+    $('body>.container').css('padding', '0 0 28px 0');
 }
 
 var theForm = document.getElementById( 'theForm' );
@@ -34,17 +35,19 @@ new stepsForm( theForm, {
 
 function display(gradeObject) {
 
-    if(gradeObject.getTargetGPA < 5.0) {
+    if(gradeObject.isAchieveable()) {
         $('#result').html('GPA to achieve (to avg. ' + gradeObject.goalGPA + '): <strong id="target">' + gradeObject.getTargetGPA() + '</strong></br> Credits Remaining: <strong>' + gradeObject.getCreditsRemaining() + '</strong>');
     } else {
         $('#result').html('This goal is unachieveable.');
     }
 
+    if(gradeObject.getTargetGPA() > 4) {
+        $('#ap').css('display', 'block');
+    }
+
     graph.fill(gradeObject);
 
-    $('.ct-chart').css('animation','result_fadeIn 0.6s ease-in');
     $('.ct-chart').css('height', '70vh');
-    $('#resultBox').css('animation','result_fadeIn 0.6s ease-in');
     $('#resultBox').css('height', 'auto');
-    $('#key').css('display', 'block');
+    $('.hidden').css('display', 'block');
 }

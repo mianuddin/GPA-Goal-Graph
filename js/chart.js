@@ -1,16 +1,13 @@
 var graph = (function () {
-    var          my = {},
-             maxGPA = 2.2,
-         maxCredits = 220,
-       gpaIncrement = 0.1,
-    creditIncrement = 5;
+    var my = {};
+    var CREDIT_INCREMENT = 5,
+        X_AXIS_LENGTH = 12,
+        Y_AXIS_LENGTH = 12;
 
-    function generateXAxis(credits) {
+    function generateXAxisBounds(credits, xLength) {
         var xValues = [],
-            xLength = 60,
             halfXLength = xLength/2;
 
-        // Find find start.
         if ( (credits - halfXLength) < 0 ) {
             xValues.push( 0 );
         } else if ( (credits + halfXLength) > 220 ) {
@@ -19,199 +16,134 @@ var graph = (function () {
             xValues.push( credits - halfXLength );
         }
 
-        // Find max.
         xValues.push( xValues[0] + xLength );
 
-        console.log("Input: " + credits + "; xValues: " + xValues);
         return xValues;
     }
 
-    function generateYAxis(gpa) {
-        var xValues = [],
-            xLength = 60,
-            halfXLength = xLength/2;
+    function generateXAxisLabels(xAxisBounds) {
+        var labelArray = [];
 
-        // Find find start.
-        if ( (credits - halfXLength) < 0 ) {
-            xValues.push( 0 );
-        } else if ( (credits + halfXLength) > 220 ) {
-            xValues.push( 220 - xLength );
-        } else {
-            xValues.push( credits - halfXLength );
-        }
-
-        // Find max.
-        xValues.push( xValues[0] + xLength );
-
-        console.log("Input: " + credits + "; xValues: " + xValues);
-        return xValues;
-    }
-
-    my.fill = function (gpaInput, credits, goal, targetGPA) {
-        var labelArray = [],
-            xAxisValues = generateXAxis(credits),
-            xStart = xAxisValues[0],
-            xMax = xAxisValues[1];
-
-        for(var i=xStart; i<=xMax; i+=creditIncrement) {
+        for(var i=xAxisBounds[0]; i<=xAxisBounds[1]; i+=CREDIT_INCREMENT) {
             labelArray.push(i);
         }
-        
-        var dataArray = [],
-            averageArray = [];
-        var xTicks = (xMax-xStart)/creditIncrement;
-        var nullTicks = (credits-xStart)/creditIncrement;
-        for(var x=0; x<nullTicks; x++) {
-            dataArray.push(null);
-            averageArray.push(null);
-        }
-        dataArray.push(parseFloat(gpaInput));
-        averageArray.push(null);
-        dataArray.push(parseFloat(targetGPA));
-        averageArray.push(parseFloat(goal));
-        for(var y=nullTicks; y<=xTicks-1; y++) {
-            dataArray.push(null);
-            averageArray.push(null);
-        }
-        console.log(dataArray);
 
-        var largerGPA = 0,
-            smallerGPA = 0;
+        return labelArray;
+    }
 
-        if (gpaInput > targetGPA) {
-            largerGPA = gpaInput;
-            smallerGPA = targetGPA;
-        } else {
-            largerGPA = targetGPA;
-            smallerGPA = gpaInput;
+    function generateDataSets(gradeObject, xAxisBounds) {
+        var xTicks = (xAxisBounds[1]-xAxisBounds[0])/CREDIT_INCREMENT,
+            nullTicks = (gradeObject.credits-xAxisBounds[0])/CREDIT_INCREMENT,
+            arrayLength = xTicks+nullTicks,
+            dataArray = Array(arrayLength).fill(null),
+            averageArray = Array(arrayLength).fill(null),
+            apArray = Array(arrayLength+5).fill(4),
+            unachieveableArray = Array(arrayLength+5).fill(5);
+
+        dataArray[nullTicks] = parseFloat(gradeObject.currentGPA);
+        averageArray[nullTicks] = null;
+
+        dataArray[nullTicks+1] = parseFloat(gradeObject.getTargetGPA());
+        averageArray[nullTicks+1] = gradeObject.goalGPA;
+
+        return {data: dataArray, average: averageArray, ap: apArray, unachieveable: unachieveableArray};
+    }
+
+    function orderedGPAArray(x, y) {
+        if (x > y)
+            return [x, y];
+        return [y, x];
+    }
+
+    function generateYAxisValues(gradeObject) {
+        var largerGPA = orderedGPAArray(gradeObject.currentGPA, gradeObject.getTargetGPA())[0],
+            smallerGPA = orderedGPAArray(gradeObject.currentGPA, gradeObject.getTargetGPA())[1],
+            increment = 0.1,
+            ticksArray = [];
+
+        if((largerGPA-smallerGPA) !== 0)
+            increment = (largerGPA-smallerGPA)/8;
+
+        var buffer = 2*increment;
+
+        for(var z=(smallerGPA-buffer); z<=(largerGPA+buffer); z+=increment) {
+            ticksArray.push(z.round(3));
         }
-        
-        var ticksArray = [];
 
-        console.log(((largerGPA+0.2)-(smallerGPA-0.2))/gpaIncrement );
+        return {array: ticksArray, increment: increment, buffer: buffer, largerGPA: largerGPA, smallerGPA: smallerGPA};
+    }
 
-        if (((largerGPA+0.2)-(smallerGPA-0.2))/gpaIncrement > 12) {
-            gpaIncrement = 0.2;
-        }
+    function toggleArea(yAxisValues) {
+        return {unachieveable: (yAxisValues.array[yAxisValues.array.length-1] > 5),
+                ap: (yAxisValues.array[yAxisValues.array.length-1] > 4) };
+    }
 
-        for(var z=(smallerGPA-0.2); z<=(largerGPA+0.2); z+=gpaIncrement) {
-            ticksArray.push(Math.round(10*z)/10);
-        }
-        console.log(ticksArray);
-        console.log(labelArray.length + ' ' + dataArray.length);
-        // Data for the chart library.
+    my.fill = function(gradeObject) {
+        var xAxisValues = generateXAxisBounds(gradeObject.credits, (X_AXIS_LENGTH * 5)),
+            xStart = xAxisValues[0],
+            xMax = xAxisValues[1],
+            yAxisValues = generateYAxisValues(gradeObject);
+
         var data = {
-          labels: labelArray,
-          series: [ {
-              name: 'Current GPA',
-              data: dataArray
+          labels: generateXAxisLabels(xAxisValues),
+          series: [ 
+            {
+                name: 'unachieveableLine',
+                data: generateDataSets(gradeObject, xAxisValues).unachieveable
             },
             {
-              name: 'Average GPA',
-              data: averageArray
-            }
+                name: 'apLine',
+                data: generateDataSets(gradeObject, xAxisValues).ap
+            },
+            {
+                name: 'currentGPA',
+                data: generateDataSets(gradeObject, xAxisValues).data,
+            },
+            {
+                name: 'averageGPA',
+                data: generateDataSets(gradeObject, xAxisValues).average
+            },
             ]
         };
+
         
-        // Create the chart using the data.
+        var responsiveOptions = [
+            ['screen and (max-width: 768px)', {
+                axisX: {
+                    labelInterpolationFnc: function(value, index) {
+                        return index % 3 === 0 ?  value : null;
+                    }
+                }
+            }]
+        ];
+        
         /* global Chartist */
         new Chartist.Line('.ct-chart', data, {
             axisY: {
                 type: Chartist.FixedScaleAxis,
-                ticks: ticksArray,
-                high: largerGPA+0.2,
-                low: smallerGPA-0.2
+                ticks: yAxisValues.array,
+                high: yAxisValues.largerGPA+yAxisValues.buffer,
+                low: yAxisValues.smallerGPA-yAxisValues.buffer,
             },
             axisX: {
-                // On the x-axis start means top and end means bottom
                 position: 'start'
-            }
-        });  
+            },
+            series: {
+                'apLine': {
+                    showArea: toggleArea(yAxisValues).ap,
+                    areaBase: 5,
+                    showLine: toggleArea(yAxisValues).ap,
+                    showPoint: false
+                },
+                'unachieveableLine': {
+                    showArea: toggleArea(yAxisValues).unachieveable,
+                    areaBase: yAxisValues.array[yAxisValues.array.length-1],
+                    showLine: toggleArea(yAxisValues).unachieveable,
+                    showPoint: false
+                }
+            },
+        }, responsiveOptions);  
     };
 
     return my;
-}());
-
-function roundTwoPlaces(num) {
-    return Math.round(num * 100) / 100;
-}
-
-function calculate() {
-    var gpa = parseFloat(decodeURIComponent(getURLParameter('currentGPA')));
-    var goal = parseFloat(decodeURIComponent(getURLParameter('goalGPA')));
-    var credits = parseInt(decodeURIComponent(getURLParameter('credits')));
-    var creditsRemaining = 220-credits;
-    var targetGPA = roundTwoPlaces(((goal*220)-(gpa*credits))/(220-credits));
-    if(targetGPA < 5.0) {
-        $('#result').html('GPA to achieve (to avg. ' + goal +'): <strong id="target">' + targetGPA + '</strong></br> Credits Remaining: <strong>' + creditsRemaining + '</strong>');
-    } else {
-        $('#result').html('This goal is unachieveable.');
-    }
-    graph.fill(gpa, credits, goal, targetGPA);
-    $('.ct-chart').css('animation','result_fadeIn 0.6s ease-in');
-    $('.ct-chart').css('height', '70vh');
-    $('#resultBox').css('animation','result_fadeIn 0.6s ease-in');
-    $('#resultBox').css('height', 'auto');
-    $('#key').css('display', 'block');
-}
-
-function getFormAnswers() {
-    var numOfQuestions = [].slice.call( theForm.querySelectorAll( 'ol.questions > li' ) ).length;
-    var answers = [];
-    for(var x=1; x<=numOfQuestions; x++) {
-        answers.push($('#q' + x).val());
-    }
-    return answers;
-}
-
-function hideForm() {
-    classie.addClass( theForm.querySelector( '.simform-inner' ), 'hide' );
-    $('section').css('animation','fadeOut 0.6s ease-out');
-    $('section').css('display', 'none');
-    $('.container').css('padding', '0 0 24px 0');
-}
-
-var theForm = document.getElementById( 'theForm' );
-
-new stepsForm( theForm, {
-    onSubmit : function( form ) {
-        var formAnswers = getFormAnswers();
-        // update state
-        // Bind to StateChange Event
-        History.Adapter.bind(window,'statechange',function(){ // Note: We are using statechange instead of popstate
-            var State = History.getState(); // Note: We are using History.getState() instead of event.state
-        });
-        History.pushState(null, null, '?currentGPA=' + formAnswers[0] + '&credits=' + formAnswers[1] + '&goalGPA=' + formAnswers[2]);
-
-        hideForm();
-
-        calculate();
-    }
-});
-
-function getURLParameter(sParam)
-{
-    var sPageURL = window.location.search.substring(1);
-    var sURLVariables = sPageURL.split('&');
-    for (var i = 0; i < sURLVariables.length; i++) 
-    {
-        var sParameterName = sURLVariables[i].split('=');
-        if (sParameterName[0] == sParam) 
-        {
-            return sParameterName[1];
-        }
-    }
-}
-
-
-// On Page Load
-(function () {
-    var urlParameters = window.location.search.substring(1);
-    if(urlParameters !== '' && 
-        getURLParameter('currentGPA') !== undefined && 
-        getURLParameter('credits') !== undefined && 
-        getURLParameter('goalGPA') !== undefined) {
-        hideForm();
-        calculate();
-    }
 }());
