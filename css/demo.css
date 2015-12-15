@@ -245,12 +245,23 @@ form {
 	text-decoration: none;
 }
 
+#unach {
+	display: none;
+}
+
+#unach span {
+	color: #D32F2F;
+	font-family: sans-serif;
+	font-weight: 700;
+}
+
 #info {
 	color: #111;
 }
 
 @media (max-width: 768px) {
-	#ap .invisible {
+	#ap .invisible,
+	#unach .invisible {
 		display: none;
 	}
 

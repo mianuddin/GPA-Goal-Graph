@@ -41,8 +41,10 @@ function display(gradeObject) {
         $('#result').html('This goal is unachieveable.');
     }
 
-    if(gradeObject.getTargetGPA() > 4) {
+    if(gradeObject.getTargetGPA() > 4 && gradeObject.getTargetGPA() <= 5) {
         $('#ap').css('display', 'block');
+    } else if(gradeObject.getTargetGPA() > 5) {
+        $('#unach').css('display', 'block');
     }
 
     graph.fill(gradeObject);
