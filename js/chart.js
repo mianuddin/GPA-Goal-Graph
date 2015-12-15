@@ -46,6 +46,8 @@ var graph = (function () {
         dataArray[nullTicks+1] = parseFloat(gradeObject.getTargetGPA());
         averageArray[nullTicks+1] = gradeObject.goalGPA;
 
+        console.log(dataArray);
+
         return {data: dataArray, average: averageArray, ap: apArray, unachieveable: unachieveableArray};
     }
 
@@ -85,25 +87,25 @@ var graph = (function () {
             yAxisValues = generateYAxisValues(gradeObject);
 
         var data = {
-          labels: generateXAxisLabels(xAxisValues),
-          series: [ 
-            {
-                name: 'unachieveableLine',
-                data: generateDataSets(gradeObject, xAxisValues).unachieveable
-            },
-            {
-                name: 'apLine',
-                data: generateDataSets(gradeObject, xAxisValues).ap
-            },
-            {
-                name: 'currentGPA',
-                data: generateDataSets(gradeObject, xAxisValues).data,
-            },
-            {
-                name: 'averageGPA',
-                data: generateDataSets(gradeObject, xAxisValues).average
-            },
-            ]
+            labels: generateXAxisLabels(xAxisValues),
+            series: [ 
+                {
+                    name: 'unachieveableLine',
+                    data: generateDataSets(gradeObject, xAxisValues).unachieveable
+                },
+                {
+                    name: 'apLine',
+                    data: generateDataSets(gradeObject, xAxisValues).ap
+                },
+                {
+                    name: 'currentGPA',
+                    data: generateDataSets(gradeObject, xAxisValues).data,
+                },
+                {
+                    name: 'averageGPA',
+                    data: generateDataSets(gradeObject, xAxisValues).average
+                },
+            ],
         };
 
         
@@ -119,6 +121,7 @@ var graph = (function () {
         
         /* global Chartist */
         new Chartist.Line('.ct-chart', data, {
+            lineSmooth: false,
             axisY: {
                 type: Chartist.FixedScaleAxis,
                 ticks: yAxisValues.array,
