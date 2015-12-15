@@ -37,8 +37,8 @@ var graph = (function () {
             arrayLength = xTicks+nullTicks,
             dataArray = Array(arrayLength).fill(null),
             averageArray = Array(arrayLength).fill(null),
-            apArray = Array(arrayLength).fill(4),
-            unachieveableArray = Array(arrayLength).fill(5);
+            apArray = Array(arrayLength+5).fill(4),
+            unachieveableArray = Array(arrayLength+5).fill(5);
 
         dataArray[nullTicks] = parseFloat(gradeObject.currentGPA);
         averageArray[nullTicks] = null;
@@ -105,6 +105,17 @@ var graph = (function () {
             },
             ]
         };
+
+        
+        var responsiveOptions = [
+            ['screen and (max-width: 768px)', {
+                axisX: {
+                    labelInterpolationFnc: function(value, index) {
+                        return index % 3 === 0 ?  value : null;
+                    }
+                }
+            }]
+        ];
         
         /* global Chartist */
         new Chartist.Line('.ct-chart', data, {
@@ -128,8 +139,8 @@ var graph = (function () {
                     areaBase: yAxisValues.array[yAxisValues.array.length-1],
                     showPoint: false
                 }
-            }
-        });  
+            },
+        }, responsiveOptions);  
     };
 
 	return my;

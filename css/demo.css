@@ -9,6 +9,20 @@
 	background: #fff;
 }
 
+#title {
+	padding: 24px 12px 6px 12px;
+	margin: 0 0 24px 0;
+	width: 100%;
+	color: #EF5350;
+	background-color: #fff;
+}
+
+h1 {
+	width: 90%;
+	margin: 0 auto;
+	padding: 0;
+}
+
 body>.container>.container {
 	margin: 12px auto;
 	padding: 16px 0;
@@ -115,7 +129,7 @@ form {
     font-weight: 400;
     font-size: 2.25em;
     font-family: 'Roboto Condensed', sans-serif;
-    padding: 36px 0 24px 0;
+    padding: 12px 0 24px 0;
     margin: 0 auto;
     display: inline-block;
     text-align: left;
@@ -214,6 +228,10 @@ form {
 	display: none;
 }
 
+.invisible {
+	color: #fff !important;
+}
+
 #key {
 	color: #000;
 	font-size: 20px;
@@ -255,6 +273,16 @@ form {
 
 #info {
 	color: #111;
+}
+
+@media (max-width: 768px) {
+	#ap .invisible {
+		display: none;
+	}
+
+	#result {
+		font-size: 1.5em;
+	}
 }
 
 strong {
