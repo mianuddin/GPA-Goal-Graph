@@ -73,10 +73,9 @@ var graph = (function () {
         return {array: ticksArray, increment: increment, buffer: buffer, largerGPA: largerGPA, smallerGPA: smallerGPA};
     }
 
-    function toggleUnachieveableArea(yAxisValues) {
-        if(yAxisValues.array[yAxisValues.array.length-1] < 5.0)
-            return false;
-        return true;
+    function toggleArea(yAxisValues) {
+        return {unachieveable: (yAxisValues.array[yAxisValues.array.length-1] > 5),
+                ap: (yAxisValues.array[yAxisValues.array.length-1] > 4) };
     }
 
     my.fill = function(gradeObject) {
@@ -84,7 +83,7 @@ var graph = (function () {
             xStart = xAxisValues[0],
             xMax = xAxisValues[1],
             yAxisValues = generateYAxisValues(gradeObject);
-            
+
         var data = {
           labels: generateXAxisLabels(xAxisValues),
           series: [ 
@@ -120,12 +119,12 @@ var graph = (function () {
             },
             series: {
                 'apLine': {
-                    showArea: true,
+                    showArea: toggleArea(yAxisValues).ap,
                     areaBase: 5,
                     showPoint: false
                 },
                 'unachieveableLine': {
-                    showArea: toggleUnachieveableArea(yAxisValues),
+                    showArea: toggleArea(yAxisValues).unachieveable,
                     areaBase: yAxisValues.array[yAxisValues.array.length-1],
                     showPoint: false
                 }

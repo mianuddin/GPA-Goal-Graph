@@ -3,17 +3,29 @@
 .clearfix:after { clear: both; }
 
 .container {
-	width: 80%;
-	margin: 0 auto;
+	width: 90%;
+	margin: 10px auto;
 	border-radius: 2px;
 	background: #fff;
 }
 
+body>.container>.container {
+	margin: 12px auto;
+	padding: 16px 0;
+}
+
 body {
+	color: #111;
 	background: #EF5350;
 	color: rgba(254,254,254,0.8);
 	font-size: 100%;
 	line-height: 1.25;
+	font-family: 'Roboto', sans-serif;
+}
+
+h2 {
+	margin: 0 0 6px 0;
+	font-size: 24px;
 	font-family: 'Roboto Condensed', sans-serif;
 }
 
@@ -103,7 +115,7 @@ form {
     font-weight: 400;
     font-size: 2.25em;
     font-family: 'Roboto Condensed', sans-serif;
-    padding: 24px 0;
+    padding: 36px 0 24px 0;
     margin: 0 auto;
     display: inline-block;
     text-align: left;
@@ -198,8 +210,11 @@ form {
     fill-rule: nonzero;
 }
 
-#key {
+.hidden {
 	display: none;
+}
+
+#key {
 	color: #000;
 	font-size: 20px;
 }
@@ -219,9 +234,27 @@ form {
 }
 
 #ap {
+	display: none;
+}
+
+#ap span {
 	color: #FF9800;
 	font-family: sans-serif;
 	font-weight: 700;
+}
+
+#ap a {
+	font-weight: 700;
+	color: #2196F3;
+}
+
+#ap a:hover {
+	color: #1976D2;
+	text-decoration: none;
+}
+
+#info {
+	color: #111;
 }
 
 strong {
