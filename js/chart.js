@@ -132,11 +132,13 @@ var graph = (function () {
                 'apLine': {
                     showArea: toggleArea(yAxisValues).ap,
                     areaBase: 5,
+                    showLine: toggleArea(yAxisValues).ap,
                     showPoint: false
                 },
                 'unachieveableLine': {
                     showArea: toggleArea(yAxisValues).unachieveable,
                     areaBase: yAxisValues.array[yAxisValues.array.length-1],
+                    showLine: toggleArea(yAxisValues).unachieveable,
                     showPoint: false
                 }
             },

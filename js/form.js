@@ -47,9 +47,7 @@ function display(gradeObject) {
 
     graph.fill(gradeObject);
 
-    $('.ct-chart').css('animation','result_fadeIn 0.6s ease-in');
     $('.ct-chart').css('height', '70vh');
-    $('#resultBox').css('animation','result_fadeIn 0.6s ease-in');
     $('#resultBox').css('height', 'auto');
     $('.hidden').css('display', 'block');
 }
