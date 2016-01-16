@@ -6,7 +6,6 @@
         getURLParameter('currentGPA') !== undefined && 
         getURLParameter('credits') !== undefined && 
         getURLParameter('goalGPA') !== undefined) {
-        hideForm();
         passInput();
     }
 }());
