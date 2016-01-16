@@ -1,14 +1,8 @@
 // Run on page load.
 
-// (function () {
-//     var urlParameters = window.location.search.substring(1);
-//     if(urlParameters !== '' && 
-//         getURLParameter('currentGPA') !== undefined && 
-//         getURLParameter('credits') !== undefined && 
-//         getURLParameter('goalGPA') !== undefined) {
-//         passInput();
-//     }
-// }());
+(function () {
+    console.log("Main script loaded.");
+}());
 
 // Helper functions.
 
