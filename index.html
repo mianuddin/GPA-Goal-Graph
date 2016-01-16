@@ -12,26 +12,32 @@
         <!--build:css css/styles.min.css-->
         <link rel='stylesheet' href='css/normalize.css'>
         <link rel='stylesheet' href='css/materialize.min.css'>
+        <link rel='stylesheet' href='css/stylesheet.css'
         <!--endbuild-->
     </head>
     <body>
         <div id='title'>
             <h1>Logan GPA Goal Calculator</h1>
         </div>
-
-        <form class='col s12'>
-            <div class='row'>
-                <div class='input-field col s12'>
-                    <input id='current_credits' type='number'>
-                    <label for='current_credits'>Current Credits</label>
+        <div class='container'>
+            <form class='col s12'>
+                <div class='row'>
+                    <div class='input-field col s12 m6'>
+                        <input id='current_credits' type='number'>
+                        <label for='current_credits'>Current Credits</label>
+                    </div>
                 </div>
-                <div class='input-field col s12'>
-                    <input id='current_gpa' type='number'>
-                    <label for='current_gpa'>Current GPA</label>
+                <div class='row'>
+                    <div class='input-field col s12 m6'>
+                        <input id='current_gpa' type='number'>
+                        <label for='current_gpa'>Current GPA</label>
+                    </div>
                 </div>
-                <div class='input-field col s12'>
-                    <input id='goal_gpa' type='number'>
-                    <label for='goal_gpa'>Goal GPA</label>
+                <div class='row'>
+                    <div class='input-field col s12 m6'>
+                        <input id='goal_gpa' type='number'>
+                        <label for='goal_gpa'>Goal GPA</label>
+                    </div>
                 </div>
                 <div class='switch'>
                     <label>
@@ -43,8 +49,8 @@
                 <div class='row'>
                     <a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>
                     <div class='col s12 m6'>
-                        <div class='card blue-grey darken-1' style='overflow:auto;'>
-                            <div class='card-content white-text'>
+                        <div class='card white'>
+                            <div class='card-content black-text'>
                                 <span class='card-title'>Class 1</span>
                                 <div class='row'>
                                     <div class='input-field col s6'>
@@ -63,8 +69,9 @@
                 <button class="btn waves-effect waves-light" type="submit" name="action">Calculate
                     <i class="material-icons right">send</i>
                 </button>
-            </div>
-        </form>
+            </form>
+            <div class='s6'></div>
+        </div>
 
         <div class='container hidden'>
             <div id='resultBox'><p id='result'></p></div>
