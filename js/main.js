@@ -1,7 +1,9 @@
 // Run on page load.
 
 (function () {
+
     console.log("Main script loaded.");
+
 }());
 
 // Helper functions.
