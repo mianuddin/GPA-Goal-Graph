@@ -1,8 +1,15 @@
+var sidebar = false;
+
 function addClass(clone) {
     if(clone !== true) {
         var template = $('#class_card_template').html();
         var html = Mustache.to_html(template, { number: $('#classlist>li').length+1 });
         $('#classlist').append(html);
+    }
+    if(sidebar) {
+        $('#classlist li').removeClass('m6');
+        $('.card .input-field').removeClass('s6');
+        $('.card .input-field').addClass('s12');
     }
 }
 
@@ -48,6 +55,7 @@ $(document).ready(function() {
     });
 
     $(document).on('click','form button',function() {
+        if(!sidebar) sidebar = true;
         passInput($('form').serializeArray());
     });
 

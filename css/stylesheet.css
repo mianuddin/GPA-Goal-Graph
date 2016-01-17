@@ -12,6 +12,11 @@ body {
 #formContainer {
 	background: #fff;
 	padding: 24px;
+	overflow-y: hidden;
+}
+
+#formContainer:hover {
+	overflow-y: scroll;
 }
 
 .container {
