@@ -1,6 +1,6 @@
 function addClass(clone) {
     if(clone !== true) {
-        var template = $("#class_card_template").html();
+        var template = $('#class_card_template').html();
         var html = Mustache.to_html(template, { number: $('#classlist>li').length+1 });
         $('#classlist').append(html);
     }
@@ -12,10 +12,14 @@ function renameClassCards() {
         $('.card-title', this).text('Class ' + place);
         var iPlace = 1;
         $('input', this).each(function () {
-            if(iPlace == 1)
+            if(iPlace == 1) {
                 $(this).prop('id', 'class' + place + '_units');
-            else
+                $(this).prop('name', 'class' + place + '_units');
+            }
+            else{
                 $(this).prop('id', 'class' + place + '_gpa');
+                $(this).prop('name', 'class' + place + '_gpa');
+            }
             iPlace++;
         });
         iPlace = 1;
@@ -41,6 +45,10 @@ $(document).ready(function() {
         $(this).closest('li').remove();
         renameClassCards();
         Materialize.showStaggeredList('#classlist');
+    });
+
+    $(document).on('click','form button',function() {
+        passInput($('form').serializeArray());
     });
 
     $('#current_semester_checkbox').change(function() {
