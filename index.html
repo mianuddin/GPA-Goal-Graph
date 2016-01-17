@@ -17,7 +17,7 @@
     </head>
     <body class='grey lighten-3'>
         <div id='flexible-toolbar' class='red'></div>
-        <div id='formContainer' class='container'>
+        <div id='formContainer' class='container z-depth-2'>
             <h1>JLHS GPA Calculator</h1>
             <form class='col s12'>
                 <div class='row'>
@@ -47,7 +47,7 @@
                 </div>
                 <div class='row hidden' id='classes'>
                     <ul id='classlist'>
-                        <script type="text/x-mustache" id='class_card_template'>
+                        <script type='text/x-mustache' id='class_card_template'>
                             <li class='col s12 m6' style='opacity:0'>
                                 <div class='card white'>
                                     <div class='card-content black-text'>
@@ -63,7 +63,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="card-action">
+                                    <div class='card-action teal-text'>
                                         <a class='add'>Add another class</a>
                                         <a class='remove'>Remove this class</a>
                                     </div>
@@ -72,8 +72,8 @@
                         </script>
                     </ul>
                 </div>
-                <button class="btn waves-effect waves-light" type="submit" name="action">Calculate
-                    <i class="material-icons right">send</i>
+                <button class='btn waves-effect waves-light' type='submit' name='action'>Calculate
+                    <i class='material-icons right'>send</i>
                 </button>
             </form>
             <div class='s6'></div>

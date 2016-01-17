@@ -11,6 +11,14 @@
 	border-radius: 4px;
 }
 
+.sidebar {
+    position: absolute;
+    border-radius: 0;
+    margin-top: -72px;
+    position: fixed;
+    height: 100vh;
+}
+
 h1 {
 	font-weight: 700;
 	font-size: 2rem;
@@ -51,6 +59,17 @@ form .switch {
 	display: none;
 }
 
+.card-action a {
+	color: #009688 !important;
+}
+
 .card-action a:hover {
+	color: #4db6ac !important;
 	cursor: pointer;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
 }
