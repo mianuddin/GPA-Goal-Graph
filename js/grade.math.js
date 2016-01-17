@@ -34,6 +34,15 @@ function passInput(input) {
 
 function display(gradeObject) {
 
+    $('#formContainer').removeClass('container');
+    $('#formContainer').addClass('sidebar');
+    $('#formContainer').addClass('col');
+    $('#formContainer').addClass('s3');
+    $('form>.row>.input-field').removeClass('m6');
+    $('#classlist li').removeClass('m6');
+    $('.card .input-field').removeClass('s6');
+    $('.card .input-field').addClass('s12');
+
     if(gradeObject.isAchieveable()) {
         $('#result').html('GPA to achieve (to avg. ' + gradeObject.goalGPA + '): <strong id="target">' + gradeObject.getTargetGPA() + '</strong></br> Credits Remaining: <strong>' + gradeObject.getCreditsRemaining() + '</strong>');
     } else {
@@ -50,5 +59,5 @@ function display(gradeObject) {
 
     $('.ct-chart').css('height', '70vh');
     $('#resultBox').css('height', 'auto');
-    $('.hidden').css('display', 'block');
+    $('.hide').removeClass('hide');
 }

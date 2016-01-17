@@ -1,3 +1,7 @@
+body {
+	position: relative;
+}
+
 #flexible-toolbar {
 	height: 144px;
 	width: 100%;
@@ -8,7 +12,30 @@
 #formContainer {
 	background: #fff;
 	padding: 24px;
+}
+
+.container {
+	background: #fff;
+	padding: 24px;
 	border-radius: 4px;
+}
+
+.col.s3 {
+  width: 25%;
+  margin-left: auto;
+  left: auto;
+  right: auto;
+}
+
+.col.s7 {
+  width: 58.3333333333%;
+  margin-left: auto;
+  left: auto;
+  right: auto;
+}
+
+.col.offset-s4 {
+  margin-left: 33.3333333333%;
 }
 
 .sidebar {
@@ -53,10 +80,6 @@ form div.row:nth-of-type(3) {
 form .switch {
 	margin-top: 20px;
 	margin-bottom: 20px;
-}
-
-.hidden {
-	display: none;
 }
 
 .card-action a {
