@@ -10,10 +10,22 @@ function renameClassCards() {
     var place = 1;
     $('#classlist > li').each(function () {
         $('.card-title', this).text('Class ' + place);
-        $('input:first-of-type', this).prop('id', 'class' + place + '_units');
-        $('label:first-of-type', this).prop('for', 'class' + place + '_units');
-        $('input:nth-of-type(2)', this).prop('id', 'class' + place + '_gpa');
-        $('label:nth-of-type(2)', this).prop('for', 'class' + place + '_gpa');
+        var iPlace = 1;
+        $('input', this).each(function () {
+            if(iPlace == 1)
+                $(this).prop('id', 'class' + place + '_units');
+            else
+                $(this).prop('id', 'class' + place + '_gpa');
+            iPlace++;
+        });
+        iPlace = 1;
+        $('label', this).each(function () {
+            if(iPlace == 1)
+                $(this).prop('for', 'class' + place + '_units');
+            else
+                $(this).prop('for', 'class' + place + '_gpa');
+            iPlace++;
+        });
         place++;
     });
 }
