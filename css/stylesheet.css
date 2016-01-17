@@ -1,3 +1,22 @@
+#flexible-toolbar {
+	height: 144px;
+	width: 100%;
+	z-index: -1;
+	margin-bottom: -72px;
+}
+
+#formContainer {
+	background: #fff;
+	padding: 24px;
+	border-radius: 4px;
+}
+
+h1 {
+	font-weight: 700;
+	font-size: 2rem;
+	margin: 0 0 24px 0;
+}
+
 #classlist ul {
 	opacity: 0;
 }
