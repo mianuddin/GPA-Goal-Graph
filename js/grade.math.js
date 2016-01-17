@@ -45,8 +45,11 @@ function display(gradeObject) {
 
     if(gradeObject.isAchieveable()) {
         $('#result').html('GPA to achieve (to avg. ' + gradeObject.goalGPA + '): <strong id="target">' + gradeObject.getTargetGPA() + '</strong></br> Credits Remaining: <strong>' + gradeObject.getCreditsRemaining() + '</strong>');
+        $('#gpa_goal').html(gradeObject.goalGPA);
+        $('#gpa_achieve').html(gradeObject.getTargetGPA());
+        $('#credits_remaining').html(gradeObject.getCreditsRemaining());
     } else {
-        $('#result').html('This goal is unachieveable.');
+        $('#resultBox>span').html('<h2>This goal is unachieveable.</h2>');
     }
 
     if(gradeObject.getTargetGPA() > 4 && gradeObject.getTargetGPA() <= 5) {

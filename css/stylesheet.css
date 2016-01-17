@@ -20,6 +20,10 @@ body {
 	border-radius: 4px;
 }
 
+#infoCard>div {
+	padding: 0;
+}
+
 .col.s3 {
   width: 25%;
   margin-left: auto;
@@ -95,4 +99,14 @@ input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
+}
+
+#resultBox h2 {
+	font-size: 2em;
+	margin: 12px;
+}
+
+#gpa_achieve,
+#credits_remaining {
+	font-weight: 700;
 }

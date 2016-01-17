@@ -17,7 +17,7 @@
     </head>
     <body class='grey lighten-3'>
         <div id='flexible-toolbar' class='red'></div>
-        <div id='formContainer' class='container z-depth-2'>
+        <div id='formContainer' class='container z-depth-1'>
             <h1>JLHS GPA Calculator</h1>
             <form class='col s12'>
                 <div class='row'>
@@ -79,8 +79,22 @@
             <div class='s6'></div>
         </div>
 
-        <div class='container z-depth-2 hide col s7 offset-s4'>
-            <div id='resultBox'><p id='result'></p></div>
+        <div class='row hide' id='infoCard'>
+            <div class='col s7 offset-s4'>
+                <div class='card-panel teal z-depth-1' id='resultBox'>
+                    <span class='white-text row'>
+                        <div class='col s6'>
+                            <h2>GPA to achieve (to avg. <span id='gpa_goal'></span>): <span id='gpa_achieve'></span></h2>
+                        </div>
+                        <div class='col s6'>
+                            <h2>Credits Remaining: <span id='credits_remaining'></span></h2>
+                        </div>
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <div class='container z-depth-1 hide col s7 offset-s4'>
             <div class='ct-chart ct-square'></div>
             <div class='container hide' id='key'>
                 <div class='col-sm-3'>
@@ -98,39 +112,7 @@
                     <span>&#9670;</span> Your Goal is <strong>unachieveable</strong>.</br>
                 </div>
             </div>
-            <div class='container hide' id='info'>
-                <div class='col-md-6'>
-                    <h2>Grade Point Average (GPA)</h2>
-
-                    <p>Grade Point Average is calculated using student’s semester grades, as following:</br>
-                    A = 4.0 (Honors/AP Weighted GPA: A = 5.0)</br>
-                    B = 3.0 (Honors/AP Weighted GPA: B = 4.0)</br>
-                    C = 2.0 (Honors/AP Weighted GPA: C = 3.0)</br>
-                    D = 1.0 (Honors/AP Weighted GPA: D = 1.0)</br>
-                    F = 0.0
-                    </p>
-
-                    <p>Logan transcripts list four types of GPAs used for different purposes:</p>
-
-                    <p><strong>Overall GPA</strong>: calculated using grades earned in all courses from grade 9 to 12. It is not weighted. This GPA is used to determine eligibility for graduation and athletic eligibility.</p>
-
-                    <p><strong>Weighted GPA</strong>: calculated using grades earned in all courses from grade 9 to 12, with extra grade points given for honors and AP courses. This GPA is used to calculate honor rolls.</p>
-
-                    <p><strong>UC / CSU A-G Weighted GPA</strong>: calculated using grades in only “a - g” courses during grades 10 to 12. This GPA is used to determine college eligibility, and graduation honors at JLHS. It is often called “college GPA.”</p>
-
-                    <p><strong>State GPA</strong>: calculated using grades earned in all courses from grade 10 to 12, except PE and non academic courses (such as Teacher Assistant). It is not weighted. This GPA is used to determine eligibility for Cal grants.</p>
-                </div>
-                <div class='col-md-6'>
-                    <h2>Graduation Requirements</h2>
-                    <ul>
-                        <li>An overall grade point average (GPA) of 2.0</li>
-                        <li>Successful passage of the California High School Exit Examination (CAHSEE)</li>
-                        <li>20 Hours of Community Service</li>
-                        <li>All students must take Life Skills in grade nine</li>
-                    </ul>
-                </div>
-            </div>
-        </div><!-- /container -->
+        </div>
         
         <script src='https://code.jquery.com/jquery-2.1.4.min.js'></script>
         <script src='https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.js'></script>
