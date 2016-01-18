@@ -1,11 +1,9 @@
 var sidebar = false;
 
-function addClass(clone) {
-    if(clone !== true) {
-        var template = $('#class_card_template').html();
-        var html = Mustache.to_html(template, { number: $('#classlist>li').length+1 });
-        $('#classlist').append(html);
-    }
+function addClass() {
+    var template = $('#class_card_template').html();
+    var html = Mustache.to_html(template, { number: $('#classlist>li').length+1 });
+    $('#classlist').append(html);
     if(sidebar) {
         $('#classlist li').removeClass('m6');
         $('.card .input-field').removeClass('s6');
@@ -45,6 +43,14 @@ $(document).ready(function() {
 
     $(document).on('click','a.add',function() {
         addClass();
+
+        // Clone
+        $('#class' + $('#classlist>li').length + '_units').val($('#class' + $(this).closest('li').index() + '_units').val());
+        $('#class' + $('#classlist>li').length + '_units').next().addClass('active');
+        $('#class' + $('#classlist>li').length + '_gpa').val($('#class' + $(this).closest('li').index() + '_gpa').val());
+        $('#class' + $('#classlist>li').length + '_gpa').next().addClass('active');
+
+
         Materialize.showStaggeredList('#classlist');
     });
 
