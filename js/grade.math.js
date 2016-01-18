@@ -102,6 +102,7 @@ function display(gradeObject) {
     $('.card .input-field').addClass('s12');
 
     if(gradeObject.isAchieveable()) {
+        $('#resultBox>span').html("<div class='col s6'> <h2>GPA to achieve (to avg. <span id='gpa_goal'></span>): <span id='gpa_achieve'></span></h2> </div> <div class='col s6'> <h2>Credits Remaining: <span id='credits_remaining'></span></h2> </div>");
         $('#result').html('GPA to achieve (to avg. ' + gradeObject.goalGPA + '): <strong id="target">' + gradeObject.getTargetGPA() + '</strong></br> Credits Remaining: <strong>' + gradeObject.getCreditsRemaining() + '</strong>');
         $('#gpa_goal').html(gradeObject.goalGPA);
         $('#gpa_achieve').html(gradeObject.getTargetGPA());

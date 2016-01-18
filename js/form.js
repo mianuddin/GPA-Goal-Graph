@@ -39,6 +39,13 @@ function renameClassCards() {
     });
 }
 
+function inputsValid() {
+    return !($('form>div .input-field input.invalid').length !== 0 ||
+                ($('#current_semester_checkbox').is(':checked') && $('#classes input.invalid').length !== 0) || 
+                ($('form>div:first-of-type input').val() === undefined || $('form>div:nth-of-type(2) input').val() === undefined || $('form>div:nth-of-type(3) input').val() === undefined) ||
+                ($('form>div:first-of-type input').val() === "" || $('form>div:nth-of-type(2) input').val() === "" || $('form>div:nth-of-type(3) input').val() === ""));
+}
+
 $(document).ready(function() {
 
     $(document).on('click','a.add',function() {
@@ -54,16 +61,11 @@ $(document).ready(function() {
         Materialize.showStaggeredList('#classlist');
     });
 
-    $(document).on('focusout','input',function() {
-        if($('form>div.input-field input.invalid').length !== 0 ||
-            ($('#current_semester_checkbox').is(':checked') && $('#classes input.invalid').length !== 0) || 
-            ($('form>div:first-of-type input').val() === undefined || $('form>div:nth-of-type(2) input').val() === undefined || $('form>div:nth-of-type(3) input').val() === undefined) ||
-            ($('form>div:first-of-type input').val() === "" || $('form>div:nth-of-type(2) input').val() === "" || $('form>div:nth-of-type(3) input').val() === "")) {
+    $(document).on('propertychange change click keyup input paste focusout','input',function() {
+        if(!inputsValid()) {
             $('button').addClass('disabled');
-            $('button').prop('disabled', true);
         } else {
             $('button').removeClass('disabled');
-            $('button').prop('disabled', false);
         }
     });
 
@@ -75,7 +77,11 @@ $(document).ready(function() {
 
     $(document).on('click','form button',function() {
         if(!sidebar) sidebar = true;
-        passInput($('form').serializeArray());
+        if(inputsValid()) {
+            passInput($('form').serializeArray());
+        } else {
+            $('button').addClass('disabled');
+        }
     });
 
     $('#current_semester_checkbox').change(function() {
@@ -88,10 +94,8 @@ $(document).ready(function() {
         }
         if(this.checked && $('#classes input.invalid').length !== 0) {
             $('button').addClass('disabled');
-            $('button').prop('disabled', true);
         } else {
             $('button').removeClass('disabled');
-            $('button').prop('disabled', false);
         }
     });
 
