@@ -67,12 +67,12 @@ $(document).ready(function() {
 
     $('#current_semester_checkbox').change(function() {
         if(this.checked) {
-            $('#classes').removeClass('hide');
+            $('#classes').removeClass('hidden');
             if($('#classlist>li').length === 0) { addClass(); }
             Materialize.showStaggeredList('#classlist');
 
         } else {
-            $('#classes').addClass('hide');
+            $('#classes').addClass('hidden');
         }
     });
 
