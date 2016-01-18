@@ -53,9 +53,9 @@ $(document).ready(function() {
 
         // Clone
         $('#class' + $('#classlist>li').length + '_units').val($('#class' + $(this).closest('li').index() + '_units').val());
-        $('#class' + $('#classlist>li').length + '_units').next().addClass('active');
+        if($('#class' + $('#classlist>li').length + '_units').val() !== '') $('#class' + $('#classlist>li').length + '_units').next().addClass('active');
         $('#class' + $('#classlist>li').length + '_gpa').val($('#class' + $(this).closest('li').index() + '_gpa').val());
-        $('#class' + $('#classlist>li').length + '_gpa').next().addClass('active');
+        if($('#class' + $('#classlist>li').length + '_gpa').val() !== '') $('#class' + $('#classlist>li').length + '_gpa').next().addClass('active');
 
 
         Materialize.showStaggeredList('#classlist');
