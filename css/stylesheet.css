@@ -12,10 +12,18 @@ body {
 #formContainer {
 	background: #fff;
 	padding: 24px;
-	overflow-y: hidden;
 }
 
-#formContainer:hover {
+.sidebar {
+    position: absolute;
+    border-radius: 0;
+    margin-top: -72px;
+    position: fixed;
+    height: 100vh;
+    overflow-y: hidden;
+}
+
+.sidebar:hover {
 	overflow-y: scroll;
 }
 
@@ -45,14 +53,6 @@ body {
 
 .col.offset-s4 {
   margin-left: 33.3333333333%;
-}
-
-.sidebar {
-    position: absolute;
-    border-radius: 0;
-    margin-top: -72px;
-    position: fixed;
-    height: 100vh;
 }
 
 h1 {
@@ -87,8 +87,8 @@ form div.row:nth-of-type(3) {
 }
 
 form .switch {
-	margin-top: 20px;
-	margin-bottom: 20px;
+	margin-top: 12px;
+	margin-bottom: 12px;
 }
 
 .card-action a {
@@ -104,6 +104,10 @@ input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
+}
+
+button {
+	margin: 20px 0;
 }
 
 #resultBox h2 {
