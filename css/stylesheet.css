@@ -73,6 +73,14 @@ h1 {
 	border-bottom: 1px solid #555;
 }
 
+input.invalid+label:after {
+	width: 30em;
+}
+
+input.invalid {
+	margin-bottom: 24px;
+}
+
 .switch>label,
 .input-field>label {
 	color: #555;

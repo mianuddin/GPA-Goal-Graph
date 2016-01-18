@@ -54,6 +54,19 @@ $(document).ready(function() {
         Materialize.showStaggeredList('#classlist');
     });
 
+    $(document).on('focusout','input',function() {
+        if($('form>div.input-field input.invalid').length !== 0 ||
+            ($('#current_semester_checkbox').is(':checked') && $('#classes input.invalid').length !== 0) || 
+            ($('form>div:first-of-type input').val() === undefined || $('form>div:nth-of-type(2) input').val() === undefined || $('form>div:nth-of-type(3) input').val() === undefined) ||
+            ($('form>div:first-of-type input').val() === "" || $('form>div:nth-of-type(2) input').val() === "" || $('form>div:nth-of-type(3) input').val() === "")) {
+            $('button').addClass('disabled');
+            $('button').prop('disabled', true);
+        } else {
+            $('button').removeClass('disabled');
+            $('button').prop('disabled', false);
+        }
+    });
+
     $(document).on('click','a.remove',function() {
         $(this).closest('li').remove();
         renameClassCards();
@@ -70,9 +83,15 @@ $(document).ready(function() {
             $('#classes').removeClass('hidden');
             if($('#classlist>li').length === 0) { addClass(); }
             Materialize.showStaggeredList('#classlist');
-
         } else {
             $('#classes').addClass('hidden');
+        }
+        if(this.checked && $('#classes input.invalid').length !== 0) {
+            $('button').addClass('disabled');
+            $('button').prop('disabled', true);
+        } else {
+            $('button').removeClass('disabled');
+            $('button').prop('disabled', false);
         }
     });
 
