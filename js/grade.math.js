@@ -23,11 +23,69 @@ function gradeObject(currentGPA, goalGPA, credits) {
     };
 }
 
+function computeGradenum(input) {
+    var gradenum = 0;
+    var thegrade = input;
+    if (thegrade == "A" || thegrade == "a") gradenum = 4.0000000;
+    else if (thegrade == "A-" || thegrade == "a-") gradenum = 3.6666666;
+    else if (thegrade == "B+" || thegrade == "b+") gradenum = 3.3333333;
+    else if (thegrade == "B" || thegrade == "b") gradenum = 3.0000000;
+    else if (thegrade == "B-" || thegrade == "b-") gradenum = 2.6666666;
+    else if (thegrade == "C+" || thegrade == "c+") gradenum = 2.3333333;
+    else if (thegrade == "C" || thegrade == "c") gradenum = 2.0000000;
+    else if (thegrade == "C-" || thegrade == "c-") gradenum = 1.6666666;
+    else if (thegrade == "D+" || thegrade == "d+") gradenum = 1.3333333;
+    else if (thegrade == "D" || thegrade == "d") gradenum = 1.0000000;
+    else if (thegrade == "D-" || thegrade == "d-") gradenum = 0.6666666;
+    else if (thegrade == "F" || thegrade == "f") gradenum = 0.0000000;
+    else gradenum = parseFloat(thegrade);
+    return gradenum;
+}
+
+function totalCredits(classes) {
+    var total = 0;
+    for(var i=0; i<classes.length; i++) {
+        total += classes[i].units;
+    }
+    return total;
+}
+
+function totalGradePoints(classes) {
+    var total = 0;
+    for(var i=0; i<classes.length; i++) {
+        total += classes[i].grade_points;
+    }
+    return total;
+}
+
+function totalGPA(classes) {
+    return totalGradePoints(classes)/totalCredits(classes);
+}
+
 function passInput(input) {
     var gpa = parseFloat(input[1].value),
         goal = parseFloat(input[2].value),
-        credits = parseFloat(input[0].value),
-        obj = new gradeObject(gpa, goal, credits);
+        credits = parseFloat(input[0].value);
+
+    if(input[3] !== undefined) {
+        if(input[3].name === 'current_semester_checkbox' && input[3].value === 'on') {
+            var classes = [];
+
+            classes.push({units: credits, grade: gpa, grade_points: credits*gpa});
+
+            for(var i=4; i<input.length; i+=2) {
+                if(input[i].value !== null || parseFloat(input[i].value) !== 0) {
+                    var classObj = { units: parseFloat(input[i].value), grade: computeGradenum(input[i+1].value), grade_points: parseFloat(input[i].value)*computeGradenum(input[i+1].value) };
+                    classes.push(classObj);
+                }
+            }
+
+            gpa = totalGPA(classes);
+            credits = totalCredits(classes);
+        }
+    }
+
+    var obj = new gradeObject(gpa, goal, credits);
     console.log(obj);
     display(obj);
 }
