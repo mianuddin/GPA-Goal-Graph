@@ -119,3 +119,127 @@ button {
 #credits_remaining {
 	font-weight: 700;
 }
+
+#graph {
+	padding: 24px;
+}
+
+.ct-chart {
+    height: 0;
+    width: 90%;
+    margin: 0 auto 15px auto;
+    overflow: hidden;
+}
+
+.ct-chart .ct-series.ct-series-a .ct-line {
+  stroke: #D32F2F;
+  stroke-width: 3px;
+  stroke-linecap: round;
+  stroke-dasharray: 30px 5px;
+}
+
+.ct-chart .ct-series-a .ct-area {
+	fill: #D32F2F;
+}
+
+.ct-chart .ct-series.ct-series-b .ct-line {
+  stroke: #FF9800;
+  stroke-width: 2px;
+  stroke-dasharray: 5px 2px;
+}
+
+.ct-chart .ct-series-b .ct-area {
+	fill: #FF9800;
+}
+
+.ct-chart .ct-series.ct-series-c .ct-line,
+.ct-chart .ct-series.ct-series-c .ct-point {
+  stroke: #009688;
+  stroke-width: 10px;
+}
+
+.ct-chart .ct-series.ct-series-c .ct-point {
+  stroke-width: 15px;
+}
+
+.ct-chart .ct-series.ct-series-d .ct-point,
+.ct-chart .ct-series.ct-series-d .ct-line {
+  stroke: #9C27B0;
+  stroke-width: 10px;
+  stroke-linecap: round;
+}
+
+.ct-chart .ct-series.ct-series-d .ct-point {
+  stroke-width: 15px;
+}
+
+.ct-chart .ct-label {
+    font-size: 1em !important;
+    color: #111;
+    padding: 6px 0px 6px 6px;
+}
+
+.ct-chart .ct-area {
+    fill-rule: nonzero;
+}
+
+.invisible {
+	color: #fff !important;
+}
+
+#graphKey h2 {
+	font-size: 1.5em;
+	margin: 0 0 12px 0;
+}
+
+#graphKey>div:first-child {
+	padding: 0;
+}
+
+#graphKey>div:nth-child(2) {
+	padding: 0 0 0 20px;
+}
+
+#avg {
+	color: #009688;
+	font-family: sans-serif;
+	font-weight: 700;
+	font-size: 1.5em;
+	line-height: initial;
+}
+
+#goal {
+	color: #9C27B0;
+	font-family: sans-serif;
+	font-weight: 700;
+	font-size: 1.5em;
+	line-height: initial;
+}
+
+#conditional,
+#ap,
+#unach {
+	display: none;
+}
+
+#ap span {
+	color: #FF9800;
+	font-family: sans-serif;
+	font-weight: 700;
+}
+
+#ap a {
+	font-weight: 700;
+	color: #2196F3;
+}
+
+#ap a:hover {
+	color: #1976D2;
+	text-decoration: none;
+}
+
+#unach span {
+	color: #D32F2F;
+	font-family: sans-serif;
+	font-weight: 700;
+}

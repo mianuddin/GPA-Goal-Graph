@@ -53,9 +53,26 @@ function display(gradeObject) {
     }
 
     if(gradeObject.getTargetGPA() > 4 && gradeObject.getTargetGPA() <= 5) {
+        $('#graphKey>div:first-child').removeClass('s7');
+        $('#graphKey>div:first-child').addClass('s3');
+        $('#graphKey>div:first-child').css('padding', '0 20px 0 0');
+        $('#conditional').css('display', 'block');
         $('#ap').css('display', 'block');
+        $('#unach').css('display', 'none');
     } else if(gradeObject.getTargetGPA() > 5) {
+        $('#graphKey>div:first-child').removeClass('s7');
+        $('#graphKey>div:first-child').addClass('s3');
+        $('#graphKey>div:first-child').css('padding', '0 20px 0 0');
+        $('#conditional').css('display', 'block');
         $('#unach').css('display', 'block');
+        $('#ap').css('display', 'none');
+    } else {
+        $('#graphKey>div:first-child').addClass('s7');
+        $('#graphKey>div:first-child').removeClass('s3');
+        $('#graphKey>div:first-child').css('padding', '0');
+        $('#conditional').css('display', 'none');
+        $('#unach').css('display', 'none');
+        $('#ap').css('display', 'none');
     }
 
     graph.fill(gradeObject);

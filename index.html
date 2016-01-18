@@ -94,22 +94,37 @@
             </div>
         </div>
 
-        <div class='container z-depth-1 hide col s7 offset-s4'>
-            <div class='ct-chart ct-square'></div>
-            <div class='container hide' id='key'>
-                <div class='col-sm-3'>
-                    <h2>Key</h2>
-                    <span id='avg'>&#9679;</span> Required GPA </br>
-                    <span id='goal'>&#9679;</span> Goal GPA
+        <div class='row'>
+            <div class='container z-depth-1 hide col s7 offset-s4 valign-wrapper' id='graph'>
+                <div class='ct-chart ct-square valign'></div>
+            </div>
+        </div>
+
+        <div class='row hide' id='graphKey'>
+            <div class='col s7 offset-s4'>
+                <div class='card-panel white z-depth-1'>
+                    <span class='black-text row'>
+                        <div id='key'>
+                            <h2>Key</h2>
+                            <span id='avg'>&#9679;</span> Required GPA </br>
+                            <span id='goal'>&#9679;</span> Goal GPA
+                        </div>
+                    </span>
                 </div>
-                <div class='col-sm-8' id='ap'>
-                    <h2 class='invisible'>AP/Honors</h2>
-                    <span id='apIcon'>&#9670;</span> Your Goal Requires Enrollment in <strong>AP/Honors Classes</strong></br>
-                    <span class='invisible'>&#9670;</span> <a id='apLink' href='http://www.jameslogan.org/ap-honors/'>Learn more about Logan AP and honors classes...</a>
-                </div>
-                <div class='col-sm-8' id='unach'>
-                    <h2 class='invisible'>Unachieveable</h2>
-                    <span>&#9670;</span> Your Goal is <strong>unachieveable</strong>.</br>
+            </div>
+            <div class='col s4' id='conditional'>
+                <div class='card-panel white z-depth-1'>
+                    <span class='black-text row'>
+                        <div id='ap'>
+                            <h2>AP/Honors</h2>
+                            <span id='apIcon'>&#9670;</span> Your Goal Requires Enrollment in <strong>AP/Honors Classes</strong></br>
+                            <span class='invisible'>&#9670;</span> <a id='apLink' href='http://www.jameslogan.org/ap-honors/'>Learn more about Logan AP and honors classes...</a>
+                        </div>
+                        <div id='unach'>
+                            <h2>Unachieveable</h2>
+                            <span>&#9670;</span> Your Goal is <strong>unachieveable</strong>.</br>
+                        </div>
+                    </span>
                 </div>
             </div>
         </div>
