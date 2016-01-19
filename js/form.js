@@ -43,7 +43,7 @@ function inputsValid() {
     return !($('form>div .input-field input.invalid').length !== 0 ||
                 ($('#current_semester_checkbox').is(':checked') && $('#classes input.invalid').length !== 0) || 
                 ($('form>div:first-of-type input').val() === undefined || $('form>div:nth-of-type(2) input').val() === undefined || $('form>div:nth-of-type(3) input').val() === undefined) ||
-                ($('form>div:first-of-type input').val() === "" || $('form>div:nth-of-type(2) input').val() === "" || $('form>div:nth-of-type(3) input').val() === ""));
+                ($('form>div:first-of-type input').val() === '' || $('form>div:nth-of-type(2) input').val() === '' || $('form>div:nth-of-type(3) input').val() === ''));
 }
 
 $(document).ready(function() {
@@ -58,8 +58,8 @@ $(document).ready(function() {
         if($('#class' + $('#classlist>li').length + '_gpa').val() !== '') $('#class' + $('#classlist>li').length + '_gpa').next().addClass('active');
 
 
-        $('#classlist li').last().velocity( { translateX: "-100px"}, { duration: 0 });
-        $('#classlist li').last().velocity( { opacity: "1", translateX: "0"}, { duration: 800, delay: 0, easing: [60, 10] });
+        $('#classlist li').last().velocity( { translateX: '-100px'}, { duration: 0 });
+        $('#classlist li').last().velocity( { opacity: '1', translateX: '0'}, { duration: 800, delay: 0, easing: [60, 10] });
     });
 
     $(document).on('propertychange change click keyup input paste focusout','input',function() {

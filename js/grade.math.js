@@ -1,5 +1,5 @@
 Number.prototype.round = function(places) {
-  return +(Math.round(this + "e+" + places)  + "e-" + places);
+  return +(Math.round(this + 'e+' + places)  + 'e-' + places);
 };
 
 function gradeObject(currentGPA, goalGPA, credits) {
@@ -26,18 +26,18 @@ function gradeObject(currentGPA, goalGPA, credits) {
 function computeGradenum(input) {
     var gradenum = 0;
     var thegrade = input;
-    if (thegrade == "A" || thegrade == "a") gradenum = 4.0000000;
-    else if (thegrade == "A-" || thegrade == "a-") gradenum = 3.6666666;
-    else if (thegrade == "B+" || thegrade == "b+") gradenum = 3.3333333;
-    else if (thegrade == "B" || thegrade == "b") gradenum = 3.0000000;
-    else if (thegrade == "B-" || thegrade == "b-") gradenum = 2.6666666;
-    else if (thegrade == "C+" || thegrade == "c+") gradenum = 2.3333333;
-    else if (thegrade == "C" || thegrade == "c") gradenum = 2.0000000;
-    else if (thegrade == "C-" || thegrade == "c-") gradenum = 1.6666666;
-    else if (thegrade == "D+" || thegrade == "d+") gradenum = 1.3333333;
-    else if (thegrade == "D" || thegrade == "d") gradenum = 1.0000000;
-    else if (thegrade == "D-" || thegrade == "d-") gradenum = 0.6666666;
-    else if (thegrade == "F" || thegrade == "f") gradenum = 0.0000000;
+    if (thegrade == 'A' || thegrade == 'a') gradenum = 4.0000000;
+    else if (thegrade == 'A-' || thegrade == 'a-') gradenum = 3.6666666;
+    else if (thegrade == 'B+' || thegrade == 'b+') gradenum = 3.3333333;
+    else if (thegrade == 'B' || thegrade == 'b') gradenum = 3.0000000;
+    else if (thegrade == 'B-' || thegrade == 'b-') gradenum = 2.6666666;
+    else if (thegrade == 'C+' || thegrade == 'c+') gradenum = 2.3333333;
+    else if (thegrade == 'C' || thegrade == 'c') gradenum = 2.0000000;
+    else if (thegrade == 'C-' || thegrade == 'c-') gradenum = 1.6666666;
+    else if (thegrade == 'D+' || thegrade == 'd+') gradenum = 1.3333333;
+    else if (thegrade == 'D' || thegrade == 'd') gradenum = 1.0000000;
+    else if (thegrade == 'D-' || thegrade == 'd-') gradenum = 0.6666666;
+    else if (thegrade == 'F' || thegrade == 'f') gradenum = 0.0000000;
     else gradenum = parseFloat(thegrade);
     return gradenum;
 }
@@ -90,13 +90,33 @@ function passInput(input, sidebar) {
     display(obj, sidebar);
 }
 
+function showStaggered(selector, sidebar) {
+    $(selector).css('opacity', '0');
+    var time = 0;
+    if(sidebar == 1) time = 400;
+    $(selector).velocity(
+        { translateX: "-100px"},
+        { duration: 0 });
+
+    $(selector).each(function() {
+        $(this).velocity(
+            { opacity: "1", translateX: "0"},
+            { duration: 800, delay: time, easing: [60, 10] });
+        time += 120;
+    });
+}
+
 function display(gradeObject, sidebar) {
 
     if(sidebar == 1) {
+
+        $('#formContainer').velocity( { width: '70%', position: 'absolute', marginLeft: 'auto', marginRight: 'auto', left: '0', right: '0'}, { duration: 0 });
+        $('#formContainer').velocity( { width: '25%', position: 'absolute', marginLeft: '0', marginRight: '0', right: '100%', height: '100vh' }, { duration: 800, delay: 0, easing: [60, 10] });
         $('#formContainer').removeClass('container');
         $('#formContainer').addClass('sidebar');
         $('#formContainer').addClass('col');
         $('#formContainer').addClass('s3');
+
         $('form>.row>.input-field').removeClass('m6');
         $('#classlist li').removeClass('m6');
         $('.card .input-field').removeClass('s6');
@@ -139,6 +159,6 @@ function display(gradeObject, sidebar) {
     graph.fill(gradeObject);
 
     $('.ct-chart').css('height', '70vh');
-    $('#resultBox').css('height', 'auto');
     $('.hide').removeClass('hide');
+    showStaggered('body>.row>div', sidebar);
 }
