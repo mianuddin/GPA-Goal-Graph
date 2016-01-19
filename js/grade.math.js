@@ -62,7 +62,7 @@ function totalGPA(classes) {
     return totalGradePoints(classes)/totalCredits(classes);
 }
 
-function passInput(input) {
+function passInput(input, sidebar) {
     var gpa = parseFloat(input[1].value),
         goal = parseFloat(input[2].value),
         credits = parseFloat(input[0].value);
@@ -87,19 +87,21 @@ function passInput(input) {
 
     var obj = new gradeObject(gpa, goal, credits);
     console.log(obj);
-    display(obj);
+    display(obj, sidebar);
 }
 
-function display(gradeObject) {
+function display(gradeObject, sidebar) {
 
-    $('#formContainer').removeClass('container');
-    $('#formContainer').addClass('sidebar');
-    $('#formContainer').addClass('col');
-    $('#formContainer').addClass('s3');
-    $('form>.row>.input-field').removeClass('m6');
-    $('#classlist li').removeClass('m6');
-    $('.card .input-field').removeClass('s6');
-    $('.card .input-field').addClass('s12');
+    if(sidebar == 1) {
+        $('#formContainer').removeClass('container');
+        $('#formContainer').addClass('sidebar');
+        $('#formContainer').addClass('col');
+        $('#formContainer').addClass('s3');
+        $('form>.row>.input-field').removeClass('m6');
+        $('#classlist li').removeClass('m6');
+        $('.card .input-field').removeClass('s6');
+        $('.card .input-field').addClass('s12');
+    }
 
     if(gradeObject.isAchieveable()) {
         $('#resultBox>span').html("<div class='col s6'> <h2>GPA to achieve (to avg. <span id='gpa_goal'></span>): <span id='gpa_achieve'></span></h2> </div> <div class='col s6'> <h2>Credits Remaining: <span id='credits_remaining'></span></h2> </div>");

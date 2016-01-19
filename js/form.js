@@ -1,4 +1,4 @@
-var sidebar = false;
+var sidebar = 0;
 
 function addClass() {
     var template = $('#class_card_template').html();
@@ -58,7 +58,8 @@ $(document).ready(function() {
         if($('#class' + $('#classlist>li').length + '_gpa').val() !== '') $('#class' + $('#classlist>li').length + '_gpa').next().addClass('active');
 
 
-        Materialize.showStaggeredList('#classlist');
+        $('#classlist li').last().velocity( { translateX: "-100px"}, { duration: 0 });
+        $('#classlist li').last().velocity( { opacity: "1", translateX: "0"}, { duration: 800, delay: 0, easing: [60, 10] });
     });
 
     $(document).on('propertychange change click keyup input paste focusout','input',function() {
@@ -76,9 +77,9 @@ $(document).ready(function() {
     });
 
     $(document).on('click','form button',function() {
-        if(!sidebar) sidebar = true;
+        sidebar++;
         if(inputsValid()) {
-            passInput($('form').serializeArray());
+            passInput($('form').serializeArray(), sidebar);
         } else {
             $('button').addClass('disabled');
         }
