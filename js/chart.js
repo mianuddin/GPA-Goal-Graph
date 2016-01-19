@@ -46,8 +46,6 @@ var graph = (function () {
         dataArray[nullTicks+1] = parseFloat(gradeObject.getTargetGPA());
         averageArray[nullTicks+1] = gradeObject.goalGPA;
 
-        console.log(dataArray);
-
         return {data: dataArray, average: averageArray, ap: apArray, unachieveable: unachieveableArray};
     }
 

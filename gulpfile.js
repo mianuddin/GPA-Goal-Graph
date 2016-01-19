@@ -13,9 +13,9 @@ var runSequence = require('run-sequence');
 // Watch Tasks
 
 gulp.task('sass', function() {
-  return gulp.src('site/scss/**/*.scss') // Gets all files ending with .scss in site/scss
+  return gulp.src('scss/**/*.scss') // Gets all files ending with .scss in scss
     .pipe(sass())
-    .pipe(gulp.dest('site/css'))
+    .pipe(gulp.dest('css'))
     .pipe(browserSync.reload({
       stream: true
     }));
@@ -28,10 +28,10 @@ gulp.task('browserSync', function() {
 });
 
 gulp.task('watch', ['browserSync', 'sass'], function(){
-    gulp.watch('site/scss/**/*.scss', ['sass']);
-    gulp.watch('site/css/**/*.css', browserSync.reload);  
-    gulp.watch('site/*.html', browserSync.reload); 
-    // gulp.watch('site/js/**/*.js', browserSync.reload);
+    gulp.watch('scss/**/*.scss', ['sass']);
+    gulp.watch('css/**/*.css', browserSync.reload);  
+    gulp.watch('*.html', browserSync.reload); 
+    // gulp.watch('js/**/*.js', browserSync.reload);
 });
 
 gulp.task('default', function (callback) {
@@ -44,24 +44,24 @@ gulp.task('default', function (callback) {
 // Build Tasks
 
 gulp.task('images', function(){
-  return gulp.src('site/images/**/*.+(png|jpg|jpeg|gif|svg)')
+  return gulp.src('images/**/*.+(png|jpg|jpeg|gif|svg)')
   .pipe(gulp.dest('dist/images'));
 });
 
 gulp.task('icons', function(){
-  return gulp.src('site/favicon*.+(png|ico)')
+  return gulp.src('favicon*.+(png|ico)')
   .pipe(gulp.dest('dist/'));
 });
 
 gulp.task('videos', function(){
-  return gulp.src('site/videos/**/*.+(mp4|webm)')
+  return gulp.src('videos/**/*.+(mp4|webm)')
   .pipe(gulp.dest('dist/videos'));
 });
 
 gulp.task('useref', function(){
     var assets = useref.assets();
 
-    return gulp.src('site/*.html')
+    return gulp.src('*.html')
     .pipe(assets)
     // Minifies only if it's a CSS file
     .pipe(gulpIf('*.css', minifyCSS()))

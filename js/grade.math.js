@@ -86,7 +86,6 @@ function passInput(input, sidebar) {
     }
 
     var obj = new gradeObject(gpa, goal, credits);
-    console.log(obj);
     display(obj, sidebar);
 }
 
