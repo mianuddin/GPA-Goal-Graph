@@ -8,7 +8,12 @@
         <link href='https://fonts.googleapis.com/css?family=Oswald:700|Roboto+Condensed|Roboto' rel='stylesheet' type='text/css'>
         <link href='http://fonts.googleapis.com/icon?family=Material+Icons' rel='stylesheet'>
 
-        <link rel="stylesheet" href="css/styles.min.css">
+        <!--build:css css/styles.min.css-->
+        <link rel='stylesheet' href='css/normalize.css'>
+        <link rel='stylesheet' href='css/materialize.min.css'>
+        <link rel='stylesheet' href='css/chartist.min.css'>
+        <link rel='stylesheet' href='css/stylesheet.css'>
+        <!--endbuild-->
     </head>
     <body class='grey lighten-3'>
         <div id='flexible-toolbar' class='red'></div>
@@ -165,6 +170,15 @@
             </div>
         </div>
 
-        <script src="js/main.min.js"></script>
+        <!--build:js js/main.min.js -->
+        <script src='js/libs/jquery-2.1.4.min.js'></script>
+        <script src='js/libs/chartist.min.js'></script>
+        <script src='js/libs/materialize.min.js'></script>
+        <script src='js/libs/mustache.min.js'></script>
+        <script src='js/libs/velocity.min.js'></script>
+        <script src='js/grade.math.js'></script>
+        <script src='js/chart.js'></script>
+        <script src='js/form.js'></script>
+        <!-- endbuild -->
     </body>
 </html>
