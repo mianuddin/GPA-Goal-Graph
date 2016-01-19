@@ -22,7 +22,7 @@ body {
 }
 
 .sidebar:hover {
-	overflow-y: scroll;
+	overflow-y: auto;
 }
 
 .container {
