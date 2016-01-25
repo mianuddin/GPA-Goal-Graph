@@ -2,19 +2,20 @@ Number.prototype.round = function(places) {
   return +(Math.round(this + 'e+' + places)  + 'e-' + places);
 };
 
-function gradeObject(currentGPA, goalGPA, credits) {
+function gradeObject(currentGPA, goalGPA, credits, target_credits) {
     this.maxCredits = 220;
 
     this.currentGPA = currentGPA;
     this.goalGPA = goalGPA;
     this.credits = credits;
+    this.target_credits = target_credits;
 
     this.getCreditsRemaining = function getCreditsRemaining() {
         return this.maxCredits - this.credits;
     };
 
     this.getTargetGPA = function calculateTargetGPA() {
-        var targetGPA = ((this.goalGPA * this.maxCredits) - (this.currentGPA * this.credits)) / (this.maxCredits - this.credits);
+        var targetGPA = ((this.goalGPA * this.target_credits) - (this.currentGPA * this.credits)) / (this.target_credits - this.credits);
         return targetGPA.round(2);
     };
 
@@ -63,17 +64,18 @@ function totalGPA(classes) {
 }
 
 function passInput(input, sidebar) {
-    var gpa = parseFloat(input[1].value),
-        goal = parseFloat(input[2].value),
-        credits = parseFloat(input[0].value);
+    var gpa = parseFloat(input[2].value),
+        goal = parseFloat(input[3].value),
+        credits = parseFloat(input[0].value),
+        target_credits = parseFloat(input[1].value);
 
-    if(input[3] !== undefined) {
-        if(input[3].name === 'current_semester_checkbox' && input[3].value === 'on') {
+    if(input[4] !== undefined) {
+        if(input[4].name === 'current_semester_checkbox' && input[4].value === 'on') {
             var classes = [];
 
             classes.push({units: credits, grade: gpa, grade_points: credits*gpa});
 
-            for(var i=4; i<input.length; i+=2) {
+            for(var i=5; i<input.length; i+=2) {
                 if(input[i].value !== null || parseFloat(input[i].value) !== 0) {
                     var classObj = { units: parseFloat(input[i].value), grade: computeGradenum(input[i+1].value), grade_points: parseFloat(input[i].value)*computeGradenum(input[i+1].value) };
                     classes.push(classObj);
@@ -85,7 +87,7 @@ function passInput(input, sidebar) {
         }
     }
 
-    var obj = new gradeObject(gpa, goal, credits);
+    var obj = new gradeObject(gpa, goal, credits, target_credits);
     display(obj, sidebar);
 }
 
