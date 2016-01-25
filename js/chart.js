@@ -4,19 +4,17 @@ var graph = (function () {
         X_AXIS_LENGTH = 12,
         Y_AXIS_LENGTH = 12;
 
-    function generateXAxisBounds(credits, xLength) {
+    function generateXAxisBounds(gradeObject, xLength) {
         var xValues = [],
             halfXLength = xLength/2;
 
-        if ( (credits - halfXLength) < 0 ) {
+        if ( (gradeObject.credits - halfXLength) < 0 ) {
             xValues.push( 0 );
-        } else if ( (credits + halfXLength) > 220 ) {
-            xValues.push( 220 - xLength );
         } else {
-            xValues.push( credits - halfXLength );
+            xValues.push( gradeObject.credits - 20 );
         }
 
-        xValues.push( xValues[0] + xLength );
+        xValues.push( gradeObject.target_credits + 20 );
 
         return xValues;
     }
@@ -40,11 +38,19 @@ var graph = (function () {
             apArray = Array(arrayLength+5).fill(4),
             unachieveableArray = Array(arrayLength+5).fill(5);
 
-        dataArray[nullTicks] = parseFloat(gradeObject.currentGPA);
-        averageArray[nullTicks] = null;
+        var place = 0;
+        for(var i=nullTicks; i<=nullTicks+((gradeObject.target_credits-gradeObject.credits)/CREDIT_INCREMENT); i++) {
+            var yPos = (((gradeObject.getTargetGPA()-gradeObject.currentGPA)/(gradeObject.target_credits-gradeObject.credits))*place) + gradeObject.currentGPA;
+            console.log(gradeObject.getTargetGPA() + ' ' + gradeObject.currentGPA + ' ' + place);
+            place += 5;
+            dataArray[i] = yPos;
 
-        dataArray[nullTicks+1] = parseFloat(gradeObject.getTargetGPA());
-        averageArray[nullTicks+1] = gradeObject.goalGPA;
+            if(nullTicks+((gradeObject.target_credits-gradeObject.credits)/CREDIT_INCREMENT) == i) {
+                averageArray[i] = gradeObject.goalGPA;
+            } else {
+                averageArray[i] = null;
+            }
+        }
 
         return {data: dataArray, average: averageArray, ap: apArray, unachieveable: unachieveableArray};
     }
@@ -79,7 +85,7 @@ var graph = (function () {
     }
 
     my.fill = function(gradeObject) {
-        var xAxisValues = generateXAxisBounds(gradeObject.credits, (X_AXIS_LENGTH * 5)),
+        var xAxisValues = generateXAxisBounds(gradeObject, (X_AXIS_LENGTH * 5)),
             xStart = xAxisValues[0],
             xMax = xAxisValues[1],
             yAxisValues = generateYAxisValues(gradeObject);
