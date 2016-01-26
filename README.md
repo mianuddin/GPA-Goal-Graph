@@ -1,9 +1,3 @@
-GPA Goal Graph
-=========
-Project for my school's counselors. Allows user to input their grade information and see how they can achieve their goal gpa at JLHS.
-
-Written with Javascript.
-
 # GPA Goal Graph
 
 This material designed webapp allows students to see how they can achieve their gpa goals. It is written mainly in JavaScript.
