@@ -22,14 +22,14 @@
             <form class='col s12'>
                 <div class='row'>
                     <div class='input-field col s12 m6 '>
-                        <input id='current_credits' name='current_credits' type='number' step='any' class='validate' min='0' max='220'>
-                        <label for='current_credits' data-error='Value must be between 0 and 220.'>Current Credits</label>
+                        <input id='current_credits' name='current_credits' type='number' step='any' class='validate' min='0'>
+                        <label for='current_credits' data-error='Value must be greater than 0.'>Current Credits</label>
                     </div>
                 </div>
                 <div class='row'>
                     <div class='input-field col s12 m6 '>
-                        <input id='target_credits' name='target_credits' type='number' step='any' class='validate' min='0' max='220'>
-                        <label for='target_credits' data-error='Value must be between 0 and 220.'>Target Credits</label>
+                        <input id='target_credits' name='target_credits' type='number' step='any' class='validate' min='0'>
+                        <label for='target_credits' data-error='Value must be greater than 0.'>Target Credits</label>
                     </div>
                 </div>
                 <div class='row'>
@@ -93,7 +93,7 @@
                             <h2>GPA to achieve (to avg. <span id='gpa_goal'></span>): <span id='gpa_achieve'></span></h2>
                         </div>
                         <div class='col s6'>
-                            <h2>Credits Remaining: <span id='credits_remaining'></span></h2>
+                            <h2>Required Credits Left: <span id='credits_remaining'></span></h2>
                         </div>
                     </span>
                 </div>
