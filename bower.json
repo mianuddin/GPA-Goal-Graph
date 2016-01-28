@@ -1,0 +1,26 @@
+{
+  "name": "gpa_project",
+  "description": "",
+  "main": "script.js",
+  "authors": [
+    "Mian Uddin <mianuddin@gmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/mianuddin/GPA-Goal-Graph",
+  "moduleType": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "chartist": "^0.9.5",
+    "Materialize": "materialize#^0.97.5",
+    "jquery": "^2.2.0",
+    "mustache.js": "^2.2.1",
+    "normalize-css": "necolas/normalize.css#^3.0.3",
+    "velocity": "julianshapiro/velocity#^1.2.3"
+  }
+}

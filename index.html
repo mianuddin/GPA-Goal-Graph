@@ -7,11 +7,14 @@
 
         <link href='https://fonts.googleapis.com/css?family=Oswald:700|Roboto+Condensed|Roboto' rel='stylesheet' type='text/css'>
         <link href='https://fonts.googleapis.com/icon?family=Material+Icons' rel='stylesheet'>
+        
+        <!--build:css css/dependencies.min.css-->
+        <link rel='stylesheet' href='bower_components/Materialize/dist/css/materialize.css'>
+        <link rel='stylesheet' href='bower_components/chartist/dist/chartist.min.css'>
+        <!--endbuild-->
 
         <!--build:css css/styles.min.css-->
         <link rel='stylesheet' href='css/normalize.css'>
-        <link rel='stylesheet' href='css/materialize.min.css'>
-        <link rel='stylesheet' href='css/chartist.min.css'>
         <link rel='stylesheet' href='css/stylesheet.css'>
         <!--endbuild-->
     </head>
@@ -175,12 +178,15 @@
                 </div>
             </div>
         </div>
+        
+        <!--build:js js/dependencies.min.js -->
+        <script src='bower_components/jquery/dist/jquery.js'></script>
+        <script src='bower_components/chartist/dist/chartist.js'></script>
+        <script src='bower_components/Materialize/dist/js/materialize.js'></script>
+        <script src='bower_components/mustache.js/mustache.js'></script>
+        <script src='bower_components/mustache.js/mustache.js'></script>
+        <!-- endbuild -->
 
-        <script src='js/libs/jquery-2.1.4.min.js'></script>
-        <script src='js/libs/chartist.min.js'></script>
-        <script src='js/libs/materialize.min.js'></script>
-        <script src='js/libs/mustache.min.js'></script>
-        <script src='js/libs/velocity.min.js'></script>
         <!--build:js js/main.min.js -->
         <script src='js/grade.math.js'></script>
         <script src='js/chart.js'></script>
