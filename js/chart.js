@@ -1,4 +1,8 @@
-var graph = (function () {
+var displayModule = (function () {
+
+})();
+
+var graphModule = (function () {
 	var my = {};
     var CREDIT_INCREMENT = 5,
         X_AXIS_LENGTH = 12,
