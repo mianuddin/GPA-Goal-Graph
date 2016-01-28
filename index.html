@@ -7,13 +7,10 @@
 
         <link href='https://fonts.googleapis.com/css?family=Oswald:700|Roboto+Condensed|Roboto' rel='stylesheet' type='text/css'>
         <link href='https://fonts.googleapis.com/icon?family=Material+Icons' rel='stylesheet'>
+        
+        <link rel="stylesheet" href="css/dependencies.min.css">
 
-        <!--build:css css/styles.min.css-->
-        <link rel='stylesheet' href='css/normalize.css'>
-        <link rel='stylesheet' href='css/materialize.min.css'>
-        <link rel='stylesheet' href='css/chartist.min.css'>
-        <link rel='stylesheet' href='css/stylesheet.css'>
-        <!--endbuild-->
+        <link rel="stylesheet" href="css/styles.min.css">
     </head>
     <body class='grey lighten-3'>
         <div id='flexible-toolbar' class='red'></div>
@@ -22,14 +19,14 @@
             <form class='col s12'>
                 <div class='row'>
                     <div class='input-field col s12 m6 '>
-                        <input id='current_credits' name='current_credits' type='number' step='any' class='validate' min='0' max='220'>
-                        <label for='current_credits' data-error='Value must be between 0 and 220.'>Current Credits</label>
+                        <input id='current_credits' name='current_credits' type='number' step='any' class='validate' min='0'>
+                        <label for='current_credits' data-error='Value must be greater than 0.'>Current Credits</label>
                     </div>
                 </div>
                 <div class='row'>
                     <div class='input-field col s12 m6 '>
-                        <input id='target_credits' name='target_credits' type='number' step='any' class='validate' min='0' max='220'>
-                        <label for='target_credits' data-error='Value must be between 0 and 220.'>Target Credits</label>
+                        <input id='target_credits' name='target_credits' type='number' step='any' class='validate' min='0'>
+                        <label for='target_credits' data-error='Value must be greater than 0.'>Target Credits</label>
                     </div>
                 </div>
                 <div class='row'>
@@ -93,7 +90,7 @@
                             <h2>GPA to achieve (to avg. <span id='gpa_goal'></span>): <span id='gpa_achieve'></span></h2>
                         </div>
                         <div class='col s6'>
-                            <h2>Credits Remaining: <span id='credits_remaining'></span></h2>
+                            <h2>Required Credits Left: <span id='credits_remaining'></span></h2>
                         </div>
                     </span>
                 </div>
@@ -175,16 +172,9 @@
                 </div>
             </div>
         </div>
+        
+        <script src="js/dependencies.min.js"></script>
 
-        <!--build:js js/main.min.js -->
-        <script src='js/libs/jquery-2.1.4.min.js'></script>
-        <script src='js/libs/chartist.min.js'></script>
-        <script src='js/libs/materialize.min.js'></script>
-        <script src='js/libs/mustache.min.js'></script>
-        <script src='js/libs/velocity.min.js'></script>
-        <script src='js/grade.math.js'></script>
-        <script src='js/chart.js'></script>
-        <script src='js/form.js'></script>
-        <!-- endbuild -->
+        <script src="js/main.min.js"></script>
     </body>
 </html>
