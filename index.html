@@ -24,25 +24,25 @@
             <form class='col s12'>
                 <div class='row'>
                     <div class='input-field col s12 m6 '>
-                        <input id='current_credits' name='current_credits' type='number' step='any' class='validate' min='0'>
+                        <input id='current_credits' name='current_credits' type='number' step='any' class='validate' min='0' required>
                         <label for='current_credits' data-error='Value must be greater than 0.'>Current Credits</label>
                     </div>
                 </div>
                 <div class='row'>
-                    <div class='input-field col s12 m6 '>
-                        <input id='target_credits' name='target_credits' type='number' step='any' class='validate' min='0'>
+                    <div class='input-field col s12 m6'>
+                        <input id='target_credits' name='target_credits' type='number' step='any' class='validate' min='0' required>
                         <label for='target_credits' data-error='Value must be greater than 0.'>Target Credits</label>
                     </div>
                 </div>
                 <div class='row'>
                     <div class='input-field col s12 m6'>
-                        <input id='current_gpa' name='current_gpa' type='number' step='any' class='validate' min='0' max='5'>
+                        <input id='current_gpa' name='current_gpa' type='number' step='any' class='validate' min='0' max='5' required>
                         <label for='current_gpa' data-error='Value must be between 0 and 5.'>Current GPA</label>
                     </div>
                 </div>
                 <div class='row'>
                     <div class='input-field col s12 m6'>
-                        <input id='goal_gpa' name='goal_gpa' type='number' step='any' class='validate' min='0' max='5'>
+                        <input id='goal_gpa' name='goal_gpa' type='number' step='any' class='validate' min='0' max='5' required>
                         <label for='goal_gpa' data-error='Value must be between 0 and 5.'>Goal GPA</label>
                     </div>
                 </div>
@@ -80,7 +80,7 @@
                         </script>
                     </ul>
                 </div>
-                <button class='btn waves-effect waves-light disabled' type='button' name='action'>Calculate 
+                <button class='btn waves-effect waves-light' type='submit' name='action'>Calculate 
                     <i class='material-icons right'>send</i>
                 </button>
             </form>
@@ -183,7 +183,7 @@
         <script src='bower_components/chartist/dist/chartist.js'></script>
         <script src='bower_components/Materialize/dist/js/materialize.js'></script>
         <script src='bower_components/mustache.js/mustache.js'></script>
-        <script src='bower_components/mustache.js/mustache.js'></script>
+        <script src='bower_components/jquery-validation/dist/jquery.validate.js'></script>
         <!-- endbuild -->
 
         <!--build:js js/main.min.js -->

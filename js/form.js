@@ -41,13 +41,6 @@ var formModule = (function () {
         });
     }
 
-    function inputsValid() {
-        return !($('form>div .input-field input.invalid').length !== 0 ||
-                    ($('#current_semester_checkbox').is(':checked') && $('#classes input.invalid').length !== 0) || 
-                    ($('form>div:first-of-type input').val() === undefined || $('form>div:nth-of-type(2) input').val() === undefined || $('form>div:nth-of-type(3) input').val() === undefined) ||
-                    ($('form>div:first-of-type input').val() === '' || $('form>div:nth-of-type(2) input').val() === '' || $('form>div:nth-of-type(3) input').val() === ''));
-    }
-
     function bindUIActions() {
 
         $(document).on('click','a.add',function() {
@@ -64,27 +57,10 @@ var formModule = (function () {
             $('#classlist li').last().velocity( { opacity: '1', translateX: '0'}, { duration: 800, delay: 0, easing: [60, 10] });
         });
 
-        $(document).on('propertychange change click keyup input paste focusout','input',function() {
-            if(!inputsValid()) {
-                $('button').addClass('disabled');
-            } else {
-                $('button').removeClass('disabled');
-            }
-        });
-
         $(document).on('click','a.remove',function() {
             $(this).closest('li').remove();
             renameClassCards();
             Materialize.showStaggeredList('#classlist');
-        });
-
-        $(document).on('click','form button',function() {
-            sidebar++;
-            if(inputsValid()) {
-                mathModule.passInput($('form').serializeArray(), sidebar);
-            } else {
-                $('button').addClass('disabled');
-            }
         });
 
         $('#current_semester_checkbox').change(function() {
@@ -95,10 +71,20 @@ var formModule = (function () {
             } else {
                 $('#classes').addClass('hidden');
             }
-            if(this.checked && $('#classes input.invalid').length !== 0) {
-                $('button').addClass('disabled');
-            } else {
-                $('button').removeClass('disabled');
+        });
+
+        $('form').validate({
+            submitHandler: function(form) {
+                sidebar++;
+                mathModule.passInput($('form').serializeArray(), sidebar);
+            },
+            invalidHandler: function(event, validator) {
+                console.log(event + ' ' + validator);
+            },
+            errorPlacement: function(error, element) {
+                error.appendTo( element.parent("td").next("td") );
+                element.prop('data-error', error);
+                console.log("Error: " + error);
             }
         });
 
