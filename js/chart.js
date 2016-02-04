@@ -20,6 +20,9 @@ var graphModule = (function () {
 
         xValues.push( gradeObject.target_credits + 20 );
 
+        console.log('== generated x bounds ==');
+        console.log(xValues);
+
         return xValues;
     }
 
@@ -29,6 +32,9 @@ var graphModule = (function () {
         for(var i=xAxisBounds[0]; i<=xAxisBounds[1]; i+=CREDIT_INCREMENT) {
             labelArray.push(i);
         }
+
+        console.log('== generated x labels ==');
+        console.log(labelArray);
 
         return labelArray;
     }

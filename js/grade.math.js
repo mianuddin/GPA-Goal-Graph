@@ -14,7 +14,7 @@ var mathModule = (function () {
         this.target_credits = target_credits;
 
         this.getCreditsRemaining = function getCreditsRemaining() {
-            return this.maxCredits - this.credits;
+            return this.maxCredits - this.target_credits;
         };
 
         this.getTargetGPA = function calculateTargetGPA() {

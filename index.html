@@ -24,25 +24,25 @@
             <form class='col s12'>
                 <div class='row'>
                     <div class='input-field col s12 m6 '>
-                        <input id='current_credits' name='current_credits' type='number' step='any' class='validate' min='0' required>
-                        <label for='current_credits' data-error='Value must be greater than 0.'>Current Credits</label>
+                        <input id='current_credits' name='current_credits' type='number' step='any' min='0' max='999' required>
+                        <label for='current_credits' data-error='Value must be greater than 0 and less than 999.'>Current Credits</label>
                     </div>
                 </div>
                 <div class='row'>
                     <div class='input-field col s12 m6'>
-                        <input id='target_credits' name='target_credits' type='number' step='any' class='validate' min='0' required>
-                        <label for='target_credits' data-error='Value must be greater than 0.'>Target Credits</label>
+                        <input id='target_credits' name='target_credits' type='number' step='any' min='0' max='999' required>
+                        <label for='target_credits' data-error='Value must be greater than 0 and less than 999.'>Target Credits</label>
                     </div>
                 </div>
                 <div class='row'>
                     <div class='input-field col s12 m6'>
-                        <input id='current_gpa' name='current_gpa' type='number' step='any' class='validate' min='0' max='5' required>
+                        <input id='current_gpa' name='current_gpa' type='number' step='any' min='0' max='5' required>
                         <label for='current_gpa' data-error='Value must be between 0 and 5.'>Current GPA</label>
                     </div>
                 </div>
                 <div class='row'>
                     <div class='input-field col s12 m6'>
-                        <input id='goal_gpa' name='goal_gpa' type='number' step='any' class='validate' min='0' max='5' required>
+                        <input id='goal_gpa' name='goal_gpa' type='number' step='any' min='0' max='5' required>
                         <label for='goal_gpa' data-error='Value must be between 0 and 5.'>Goal GPA</label>
                     </div>
                 </div>
@@ -62,11 +62,11 @@
                                         <span class='card-title'>Class {{number}}</span>
                                         <div class='row'>
                                             <div class='input-field col s6'>
-                                                <input id='class{{number}}_units' name='class{{number}}_units' type='number' step='any' class='validate' min='0' max='220'>
+                                                <input id='class{{number}}_units' name='class{{number}}_units' type='number' step='any' class='validate' min='0' max='220' required>
                                                 <label for='class{{number}}_units' data-error='Value must be between 0 and 5.'>Units</label>
                                             </div>
                                             <div class='input-field col s6'>
-                                                <input id='class{{number}}_gpa' name='class{{number}}_gpa' type='text' step='any'>
+                                                <input id='class{{number}}_gpa' name='class{{number}}_gpa' type='text' step='any' required>
                                                 <label for='class{{number}}_gpa'>Grade or GPA</label>
                                             </div>
                                         </div>
