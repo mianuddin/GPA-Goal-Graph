@@ -59,8 +59,6 @@ var formModule = (function () {
             $('#class' + $('#classlist>li').length + '_gpa').val($('#class' + $(this).closest('li').index() + '_gpa').val());
             if($('#class' + $('#classlist>li').length + '_gpa').val() !== '') $('#class' + $('#classlist>li').length + '_gpa').next().addClass('active');
 
-            updateTargetCreditRule();
-
             $('#classlist li').last().velocity( { translateX: '-100px'}, { duration: 0 });
             $('#classlist li').last().velocity( { opacity: '1', translateX: '0'}, { duration: 800, delay: 0, easing: [60, 10] });
         });
