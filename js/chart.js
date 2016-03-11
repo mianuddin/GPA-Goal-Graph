@@ -72,6 +72,10 @@ var displayModule = (function () {
         showStaggered('body>.row>div', sidebar);
     };
 
+    my.showErrors = function(errors) {
+
+    };
+
     return my;
 })();
 
