@@ -30,7 +30,7 @@ var mathModule = (function () {
     function computeGradenum(input) {
         var gradenum = 0;
         var thegrade = input;
-        if(/([a-fA-f][+-]?|[0-4][.]?[0-9]*)/.test(thegrade)) {
+        if(/^([a-fA-f][+-]?|[0-4][.]?[0-9]?)/.test(thegrade)) {
             if (thegrade == 'A' || thegrade == 'a') gradenum = 4.0000000;
             else if (thegrade == 'A-' || thegrade == 'a-') gradenum = 3.6666666;
             else if (thegrade == 'B+' || thegrade == 'b+') gradenum = 3.3333333;
@@ -75,11 +75,10 @@ var mathModule = (function () {
             target_credits = parseFloat(input[1].value),
             classes = [];
 
+        classes.push({units: credits, grade: gpa, grade_points: credits*gpa});
+
         if(input[4] !== undefined) {
             if(input[4].name === 'current_semester_checkbox' && input[4].value === 'on') {
-
-                classes.push({units: credits, grade: gpa, grade_points: credits*gpa});
-
                 for(var i=5; i<input.length; i+=2) {
                     if(input[i].value !== null || parseFloat(input[i].value) !== 0) {
                         var classObj = { units: parseFloat(input[i].value), gradeInput: input[i+1].value, grade: computeGradenum(input[i+1].value), grade_points: parseFloat(input[i].value)*computeGradenum(input[i+1].value) };
@@ -99,20 +98,24 @@ var mathModule = (function () {
     };
 
     function checkForErrors(input, sidebar) {
-        var errors = [];
+        console.log('== checkForErrors() ==');
+        var errorMessages = [];
 
-        if(!input.classes.length && target_credits < credits) {
-            errors.push('Target credits is less than current credits.');
-        } else if(input.classes.length && target_credits < totalCredits(classes)) {
-            errors.push('Current credits plus current semester classes amount to more credits than your target.');
+        if(input.classes.length === 1 && input.target_credits < input.credits) {
+            errorMessages.push('Target credits is less than current credits.');
+        } else if(input.classes.length > 1 && input.target_credits <= totalCredits(input.classes)) {
+            errorMessages.push('Your credit target is less than your current credit count with your classes.');
         }
 
-        for(var c in classes) {
-            if(!/([a-fA-f][+-]?|[0-4][.]?[0-9]*)/.test(c.gradeInput))
-                errors.push('A grade is invalid; must be a to f with or without + or -. Ex: B+');
+        console.log(input.classes);
+        console.log('Length: ' + input.classes.length);
+        for(var i; i<input.classes.length; i++) {
+            var c = input.classes[i];
+            if(!/^([a-fA-f][+-]?|[0-4][.]?[0-9]?)/.test(c.grade))
+                errorMessages.push('A grade is invalid; must be a to f or numerical. Ex: B+, 3');
         }
 
-        if(!errors.length) {
+        if(!errorMessages.length) {
             var newGPA = input.gpa,
                 newCredits = input.credits;
             if(!input.classes.length) {
@@ -122,7 +125,7 @@ var mathModule = (function () {
             var obj = new gradeObject(newGPA, input.goal, newCredits, input.target_credits);
             displayModule.display(obj, sidebar);
         } else {
-            displayModule.showErrors(errors, sidebar);
+            displayModule.showErrors(errorMessages, sidebar);
         }
     }
 

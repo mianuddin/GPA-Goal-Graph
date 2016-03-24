@@ -72,8 +72,39 @@ var displayModule = (function () {
         showStaggered('body>.row>div', sidebar);
     };
 
-    my.showErrors = function(errors) {
+    my.showErrors = function(errorMessages, sidebar) {
+        if(sidebar == 1) {
+            $('#formContainer').velocity( { width: '70%', position: 'absolute', marginLeft: 'auto', marginRight: 'auto', left: '0', right: '0'}, { duration: 0 });
+            $('#formContainer').velocity( { width: '25%', position: 'absolute', marginLeft: '0', marginRight: '0', right: '100%', height: '100vh' }, { duration: 800, delay: 0, easing: [60, 10] });
+            $('#formContainer').removeClass('container');
+            $('#formContainer').addClass('sidebar');
+            $('#formContainer').addClass('col');
+            $('#formContainer').addClass('s3');
 
+            $('form>.row>.input-field').removeClass('m6');
+            $('#classlist li').removeClass('m6');
+            $('.card .input-field').removeClass('s6');
+            $('.card .input-field').addClass('s12');
+        }
+
+        var html = "<h2>Check your input!</h2><ul>";
+        for(var i=0; i<errorMessages.length; i++) {
+            html += '<li>' + errorMessages[i] + '</li>';
+        }
+        html +='</ul>';
+
+        $('#resultBox>span').html(html);
+
+        $('#graphKey>div:first-child').addClass('s7');
+        $('#graphKey>div:first-child').removeClass('s3');
+        $('#graphKey>div:first-child').css('padding', '0');
+        $('#conditional').css('display', 'none');
+        $('#unach').css('display', 'none');
+        $('#ap').css('display', 'none');
+
+        $('.ct-chart').css('height', '70vh');
+        $('#infoCard').removeClass('hide');
+        showStaggered('body>.row>div', sidebar);
     };
 
     return my;
