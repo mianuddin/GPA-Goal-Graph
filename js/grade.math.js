@@ -101,6 +101,11 @@ var mathModule = (function () {
         console.log('== checkForErrors() ==');
         var errorMessages = [];
 
+        if(input.gpa > 5 || input.gpa < 0)
+            errorMessages.push('GPA must be greater than 0 and less than 5.');
+        if(input.goal > 5 || input.goal < 0)
+            errorMessages.push('Goal GPA must be greater than 0 and less than 5.');
+
         if(input.classes.length === 1 && input.target_credits < input.credits) {
             errorMessages.push('Target credits is less than current credits.');
         } else if(input.classes.length > 1 && input.target_credits <= totalCredits(input.classes)) {

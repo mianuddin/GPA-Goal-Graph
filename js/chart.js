@@ -103,6 +103,9 @@ var displayModule = (function () {
         $('#ap').css('display', 'none');
 
         $('.ct-chart').css('height', '70vh');
+        $('#graph').addClass('hide');
+        $('#graphKey').addClass('hide');
+        $('#gradRequirements').addClass('hide');
         $('#infoCard').removeClass('hide');
         showStaggered('body>.row>div', sidebar);
     };
