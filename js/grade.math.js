@@ -30,19 +30,21 @@ var mathModule = (function () {
     function computeGradenum(input) {
         var gradenum = 0;
         var thegrade = input;
-        if (thegrade == 'A' || thegrade == 'a') gradenum = 4.0000000;
-        else if (thegrade == 'A-' || thegrade == 'a-') gradenum = 3.6666666;
-        else if (thegrade == 'B+' || thegrade == 'b+') gradenum = 3.3333333;
-        else if (thegrade == 'B' || thegrade == 'b') gradenum = 3.0000000;
-        else if (thegrade == 'B-' || thegrade == 'b-') gradenum = 2.6666666;
-        else if (thegrade == 'C+' || thegrade == 'c+') gradenum = 2.3333333;
-        else if (thegrade == 'C' || thegrade == 'c') gradenum = 2.0000000;
-        else if (thegrade == 'C-' || thegrade == 'c-') gradenum = 1.6666666;
-        else if (thegrade == 'D+' || thegrade == 'd+') gradenum = 1.3333333;
-        else if (thegrade == 'D' || thegrade == 'd') gradenum = 1.0000000;
-        else if (thegrade == 'D-' || thegrade == 'd-') gradenum = 0.6666666;
-        else if (thegrade == 'F' || thegrade == 'f') gradenum = 0.0000000;
-        else gradenum = parseFloat(thegrade);
+        if(/^([a-fA-f][+-]?|[0-4][.]?[0-9]?)/.test(thegrade)) {
+            if (thegrade == 'A' || thegrade == 'a') gradenum = 4.0000000;
+            else if (thegrade == 'A-' || thegrade == 'a-') gradenum = 3.6666666;
+            else if (thegrade == 'B+' || thegrade == 'b+') gradenum = 3.3333333;
+            else if (thegrade == 'B' || thegrade == 'b') gradenum = 3.0000000;
+            else if (thegrade == 'B-' || thegrade == 'b-') gradenum = 2.6666666;
+            else if (thegrade == 'C+' || thegrade == 'c+') gradenum = 2.3333333;
+            else if (thegrade == 'C' || thegrade == 'c') gradenum = 2.0000000;
+            else if (thegrade == 'C-' || thegrade == 'c-') gradenum = 1.6666666;
+            else if (thegrade == 'D+' || thegrade == 'd+') gradenum = 1.3333333;
+            else if (thegrade == 'D' || thegrade == 'd') gradenum = 1.0000000;
+            else if (thegrade == 'D-' || thegrade == 'd-') gradenum = 0.6666666;
+            else if (thegrade == 'F' || thegrade == 'f') gradenum = 0.0000000;
+            else gradenum = parseFloat(thegrade);
+        }
         return gradenum;
     }
 
@@ -70,101 +72,66 @@ var mathModule = (function () {
         var gpa = parseFloat(input[2].value),
             goal = parseFloat(input[3].value),
             credits = parseFloat(input[0].value),
-            target_credits = parseFloat(input[1].value);
+            target_credits = parseFloat(input[1].value),
+            classes = [];
+
+        classes.push({units: credits, grade: gpa, grade_points: credits*gpa});
 
         if(input[4] !== undefined) {
             if(input[4].name === 'current_semester_checkbox' && input[4].value === 'on') {
-                var classes = [];
-
-                classes.push({units: credits, grade: gpa, grade_points: credits*gpa});
-
                 for(var i=5; i<input.length; i+=2) {
                     if(input[i].value !== null || parseFloat(input[i].value) !== 0) {
-                        var classObj = { units: parseFloat(input[i].value), grade: computeGradenum(input[i+1].value), grade_points: parseFloat(input[i].value)*computeGradenum(input[i+1].value) };
+                        var classObj = { units: parseFloat(input[i].value), gradeInput: input[i+1].value, grade: computeGradenum(input[i+1].value), grade_points: parseFloat(input[i].value)*computeGradenum(input[i+1].value) };
                         classes.push(classObj);
                     }
                 }
-
-                gpa = totalGPA(classes);
-                credits = totalCredits(classes);
             }
         }
 
-        var obj = new gradeObject(gpa, goal, credits, target_credits);
-        display(obj, sidebar);
+        checkForErrors({
+            gpa: gpa,
+            goal: goal,
+            credits: credits,
+            target_credits: target_credits,
+            classes: classes
+        }, sidebar);
     };
 
-    function showStaggered(selector, sidebar) {
-        $(selector).css('opacity', '0');
-        var time = 0;
-        if(sidebar == 1) time = 400;
-        $(selector).velocity(
-            { translateX: "-100px"},
-            { duration: 0 });
+    function checkForErrors(input, sidebar) {
+        console.log('== checkForErrors() ==');
+        var errorMessages = [];
 
-        $(selector).each(function() {
-            $(this).velocity(
-                { opacity: "1", translateX: "0"},
-                { duration: 800, delay: time, easing: [60, 10] });
-            time += 120;
-        });
-    }
+        if(input.gpa > 5 || input.gpa < 0)
+            errorMessages.push('GPA must be greater than 0 and less than 5.');
+        if(input.goal > 5 || input.goal < 0)
+            errorMessages.push('Goal GPA must be greater than 0 and less than 5.');
 
-    function display(gradeObject, sidebar) {
-
-        if(sidebar == 1) {
-
-            $('#formContainer').velocity( { width: '70%', position: 'absolute', marginLeft: 'auto', marginRight: 'auto', left: '0', right: '0'}, { duration: 0 });
-            $('#formContainer').velocity( { width: '25%', position: 'absolute', marginLeft: '0', marginRight: '0', right: '100%', height: '100vh' }, { duration: 800, delay: 0, easing: [60, 10] });
-            $('#formContainer').removeClass('container');
-            $('#formContainer').addClass('sidebar');
-            $('#formContainer').addClass('col');
-            $('#formContainer').addClass('s3');
-
-            $('form>.row>.input-field').removeClass('m6');
-            $('#classlist li').removeClass('m6');
-            $('.card .input-field').removeClass('s6');
-            $('.card .input-field').addClass('s12');
+        if(input.classes.length === 1 && input.target_credits < input.credits) {
+            errorMessages.push('Target credits is less than current credits.');
+        } else if(input.classes.length > 1 && input.target_credits <= totalCredits(input.classes)) {
+            errorMessages.push('Your credit target is less than your current credit count with your classes.');
         }
 
-        if(gradeObject.isAchieveable()) {
-            $('#resultBox>span').html("<div class='col s6'> <h2>GPA to achieve (to avg. <span id='gpa_goal'></span>): <span id='gpa_achieve'></span></h2> </div> <div class='col s6'> <h2>Required Credits Left: <span id='credits_remaining'></span></h2> </div>");
-            $('#result').html('GPA to achieve (to avg. ' + gradeObject.goalGPA + '): <strong id="target">' + gradeObject.getTargetGPA() + '</strong></br> Required Credits Left: <strong>' + gradeObject.getCreditsRemaining() + '</strong>');
-            $('#gpa_goal').html(gradeObject.goalGPA);
-            $('#gpa_achieve').html(gradeObject.getTargetGPA());
-            $('#credits_remaining').html(gradeObject.getCreditsRemaining());
+        console.log(input.classes);
+        console.log('Length: ' + input.classes.length);
+        for(var i; i<input.classes.length; i++) {
+            var c = input.classes[i];
+            if(!/^([a-fA-f][+-]?|[0-4][.]?[0-9]?)/.test(c.grade))
+                errorMessages.push('A grade is invalid; must be a to f or numerical. Ex: B+, 3');
+        }
+
+        if(!errorMessages.length) {
+            var newGPA = input.gpa,
+                newCredits = input.credits;
+            if(!input.classes.length) {
+                newGPA = totalGPA(input.classes);
+                newCredits = totalCredits(input.classes);
+            }
+            var obj = new gradeObject(newGPA, input.goal, newCredits, input.target_credits);
+            displayModule.display(obj, sidebar);
         } else {
-            $('#resultBox>span').html('<h2>This goal is unachieveable.</h2>');
+            displayModule.showErrors(errorMessages, sidebar);
         }
-
-        if(gradeObject.getTargetGPA() > 4 && gradeObject.getTargetGPA() <= 5) {
-            $('#graphKey>div:first-child').removeClass('s7');
-            $('#graphKey>div:first-child').addClass('s3');
-            $('#graphKey>div:first-child').css('padding', '0 20px 0 0');
-            $('#conditional').css('display', 'block');
-            $('#ap').css('display', 'block');
-            $('#unach').css('display', 'none');
-        } else if(gradeObject.getTargetGPA() > 5) {
-            $('#graphKey>div:first-child').removeClass('s7');
-            $('#graphKey>div:first-child').addClass('s3');
-            $('#graphKey>div:first-child').css('padding', '0 20px 0 0');
-            $('#conditional').css('display', 'block');
-            $('#unach').css('display', 'block');
-            $('#ap').css('display', 'none');
-        } else {
-            $('#graphKey>div:first-child').addClass('s7');
-            $('#graphKey>div:first-child').removeClass('s3');
-            $('#graphKey>div:first-child').css('padding', '0');
-            $('#conditional').css('display', 'none');
-            $('#unach').css('display', 'none');
-            $('#ap').css('display', 'none');
-        }
-
-        graphModule.fill(gradeObject);
-
-        $('.ct-chart').css('height', '70vh');
-        $('.hide').removeClass('hide');
-        showStaggered('body>.row>div', sidebar);
     }
 
     return my;

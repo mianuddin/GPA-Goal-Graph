@@ -46,6 +46,5 @@
   },
   "_source": "git://github.com/julianshapiro/velocity.git",
   "_target": "^1.2.3",
-  "_originalSource": "julianshapiro/velocity",
-  "_direct": true
+  "_originalSource": "julianshapiro/velocity"
 }
