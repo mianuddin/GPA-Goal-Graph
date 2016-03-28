@@ -58,6 +58,11 @@ gulp.task('videos', function(){
   .pipe(gulp.dest('dist/videos'));
 });
 
+gulp.task('font', function(){
+  return gulp.src('font/**/*.(eot|ttf|woff|woff2)')
+  .pipe(gulp.dest('dist/font'));
+});
+
 gulp.task('useref', function(){
     var assets = useref.assets();
 
@@ -82,7 +87,7 @@ gulp.task('clean', function() {
 
 gulp.task('build', function (callback) {
     runSequence('clean', 
-        ['sass', 'useref', 'images', 'icons', 'videos'],
+        ['sass', 'useref', 'images', 'icons', 'videos', 'font'],
         callback
     );
 });
