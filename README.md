@@ -30,6 +30,9 @@ Visit the live version [here](http://mianuddin.github.io/GPA-Goal-Graph).
 
 **[Back to top](#table-of-contents)**
 
+## Trello
+View the project's trello [here](https://trello.com/b/ccAxd4tF/gpa-calculator).
+
 ## Contributing
 
 Open an issue first to discuss potential changes/additions.
