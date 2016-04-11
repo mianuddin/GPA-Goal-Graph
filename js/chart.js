@@ -131,9 +131,6 @@ var graphModule = (function () {
 
         xValues.push( gradeObject.target_credits + 20 );
 
-        console.log('== generated x bounds ==');
-        console.log(xValues);
-
         return xValues;
     }
 
@@ -143,9 +140,6 @@ var graphModule = (function () {
         for(var i=xAxisBounds[0]; i<=xAxisBounds[1]; i+=CREDIT_INCREMENT) {
             labelArray.push(i);
         }
-
-        console.log('== generated x labels ==');
-        console.log(labelArray);
 
         return labelArray;
     }
@@ -162,7 +156,6 @@ var graphModule = (function () {
         var place = 0;
         for(var i=nullTicks; i<=nullTicks+((gradeObject.target_credits-gradeObject.credits)/CREDIT_INCREMENT); i++) {
             var yPos = (((gradeObject.getTargetGPA()-gradeObject.currentGPA)/(gradeObject.target_credits-gradeObject.credits))*place) + gradeObject.currentGPA;
-            console.log(gradeObject.getTargetGPA() + ' ' + gradeObject.currentGPA + ' ' + place);
             place += 5;
             dataArray[i] = yPos;
 

@@ -106,8 +106,8 @@ var mathModule = (function () {
         if(input.goal > 5 || input.goal < 0)
             errorMessages.push('Goal GPA must be greater than 0 and less than 5.');
 
-        if(input.classes.length === 1 && input.target_credits < input.credits) {
-            errorMessages.push('Target credits is less than current credits.');
+        if(input.classes.length === 1 && input.target_credits <= input.credits) {
+            errorMessages.push('Target credits is less than or equal to current credits.');
         } else if(input.classes.length > 1 && input.target_credits <= totalCredits(input.classes)) {
             errorMessages.push('Your credit target is less than your current credit count with your classes.');
         }
@@ -121,12 +121,9 @@ var mathModule = (function () {
         }
 
         if(!errorMessages.length) {
-            var newGPA = input.gpa,
-                newCredits = input.credits;
-            if(!input.classes.length) {
-                newGPA = totalGPA(input.classes);
+            var newGPA = totalGPA(input.classes);
                 newCredits = totalCredits(input.classes);
-            }
+            console.log("Calculated GPA", newGPA, "Calculated Credits", newCredits, input.credits);
             var obj = new gradeObject(newGPA, input.goal, newCredits, input.target_credits);
             displayModule.display(obj, sidebar);
         } else {
