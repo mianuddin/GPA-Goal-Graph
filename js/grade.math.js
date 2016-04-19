@@ -121,8 +121,12 @@ var mathModule = (function () {
         }
 
         if(!errorMessages.length) {
-            var newGPA = totalGPA(input.classes);
+            var newGPA = input.gpa,
+                newCredits = input.credits;
+            if(!input.classes.length) {
+                newGPA = totalGPA(input.classes);
                 newCredits = totalCredits(input.classes);
+            }
             console.log("Calculated GPA", newGPA, "Calculated Credits", newCredits, input.credits);
             var obj = new gradeObject(newGPA, input.goal, newCredits, input.target_credits);
             displayModule.display(obj, sidebar);
