@@ -1,0 +1,12 @@
+.PaperContainer {
+  padding: 1.5rem;
+}
+
+.row {
+  margin-bottom: 1rem;
+}
+
+.row + .row {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
