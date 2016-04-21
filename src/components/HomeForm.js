@@ -2,8 +2,8 @@ import React from 'react';
 import InputGroup from './InputGroup';
 import RaisedButton from 'material-ui/lib/raised-button';
 import Paper from 'material-ui/lib/paper';
-import FloatingActionButton from 'material-ui/lib/floating-action-button';
-import ContentAdd from 'material-ui/lib/svg-icons/content/add';
+
+import ClassPaper from './ClassPaper';
 
 import '../styles/partials/_HomeForm';
 
@@ -34,15 +34,8 @@ class HomeForm extends React.Component {
         onSubmit={this.handleSubmit}
       >
         <div className="row">
-          <div className="col-xs-12 col-md-8" id="ClassSectionContainer">
-            <Paper zDepth={1} className="PaperContainer">
-              <h3>Current Semester Classes</h3>
-            </Paper>
-            <div id="FAB">
-              <FloatingActionButton>
-                <ContentAdd />
-              </FloatingActionButton>
-            </div>
+          <div className="col-xs-12 col-md-8">
+            <ClassPaper />
           </div>
           <div className="col-xs-12 col-md-4 first-md">
             <Paper zDepth={1} className="PaperContainer">
