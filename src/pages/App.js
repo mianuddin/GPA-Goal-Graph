@@ -5,6 +5,7 @@ import ThemeManager from 'material-ui/lib/styles/theme-manager';
 import MyRawTheme from '../styles/other/MUIRedTheme';
 
 import '../styles/partials/_Body';
+import '../styles/partials/_Typography';
 import '../styles/partials/_AppBar';
 
 class App extends React.Component {

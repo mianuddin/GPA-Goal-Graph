@@ -1,0 +1,21 @@
+#Form {
+  #ToggleBox {
+    width: 256px;
+    margin-top: 1rem;
+  }
+
+  #SubmitButton {
+    margin: 1rem 0;
+  }
+
+  #ClassSectionContainer {
+    position: relative;
+
+    #FAB {
+      position: absolute;
+      right: 0;
+      margin-right: 1.5rem;
+      transform: translateY(-50%);
+    }
+  }
+}

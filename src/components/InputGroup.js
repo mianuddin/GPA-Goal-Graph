@@ -2,7 +2,7 @@ import React from 'react';
 import TextField from 'material-ui/lib/text-field';
 import Toggle from 'material-ui/lib/toggle';
 
-const InputGroup = props => (
+const InputGroup = () => (
   <div>
     <TextField
       hintText="2.7"
