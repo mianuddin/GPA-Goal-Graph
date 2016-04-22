@@ -11,7 +11,7 @@ import TableBody from 'material-ui/lib/table/table-body';
 
 import '../styles/partials/_ClassPaper';
 
-const ClassPaper = () => (
+const ClassPaper = props => (
   <div id="ClassSectionContainer">
     <Paper zDepth={1} className="PaperContainer">
       <Table>
@@ -23,11 +23,13 @@ const ClassPaper = () => (
           </TableRow>
         </TableHeader>
         <TableBody>
-          <TableRow>
-            <TableRowColumn>Calculus</TableRowColumn>
-            <TableRowColumn>A</TableRowColumn>
-            <TableRowColumn>10</TableRowColumn>
-          </TableRow>
+          {props.classes.map((classObj, index) => (
+            <TableRow key={index}>
+              <TableRowColumn>{classObj.get('name')}</TableRowColumn>
+              <TableRowColumn>{classObj.get('grade')}</TableRowColumn>
+              <TableRowColumn>{classObj.get('credits')}</TableRowColumn>
+            </TableRow>
+          ))}
         </TableBody>
       </Table>
     </Paper>
@@ -38,5 +40,9 @@ const ClassPaper = () => (
     </div>
   </div>
 );
+
+ClassPaper.propTypes = {
+  classes: React.PropTypes.array,
+};
 
 export default ClassPaper;

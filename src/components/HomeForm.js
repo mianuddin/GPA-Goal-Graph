@@ -1,8 +1,8 @@
 import React from 'react';
+
 import InputGroup from './InputGroup';
 import RaisedButton from 'material-ui/lib/raised-button';
 import Paper from 'material-ui/lib/paper';
-
 import ClassPaper from './ClassPaper';
 
 import '../styles/partials/_HomeForm';
@@ -13,15 +13,6 @@ class HomeForm extends React.Component {
 
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-
-  // fetchFormData() {
-  //   return {
-  //     currentGPA: parseFloat(this.refs.currentGPAInput.getValue()),
-  //     goalGPA: parseFloat(this.refs.goalGPAInput.getValue()),
-  //     currentCredits: parseFloat(this.refs.currentCreditsInput.getValue()),
-  //     targetCredits: parseFloat(this.refs.targetCreditsInput.getValue()),
-  //   };
-  // }
 
   handleSubmit(event) {
     event.preventDefault();
@@ -35,11 +26,14 @@ class HomeForm extends React.Component {
       >
         <div className="row">
           <div className="col-xs-12 col-md-8">
-            <ClassPaper />
+            <ClassPaper
+              classes={this.props.classes}
+            />
           </div>
           <div className="col-xs-12 col-md-4 first-md">
             <Paper zDepth={1} className="PaperContainer">
-              <InputGroup />
+              <InputGroup
+              />
               <div id="SubmitButton">
                 <RaisedButton type="submit" label="Submit" primary />
               </div>
@@ -50,5 +44,9 @@ class HomeForm extends React.Component {
     );
   }
 }
+
+HomeForm.propTypes = {
+  classes: React.PropTypes.array,
+};
 
 export default HomeForm;

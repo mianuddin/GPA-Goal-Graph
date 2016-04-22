@@ -43,13 +43,16 @@
   "dependencies": {
     "flux": "^2.1.1",
     "history": "^2.0.1",
+    "immutable": "^3.8.1",
     "material-ui": "^0.14.4",
     "mustache": "^2.2.1",
     "react": "^0.14.8",
     "react-dom": "^0.14.8",
     "react-google-maps": "^4.9.1",
+    "react-redux": "^4.4.5",
     "react-router": "^2.0.1",
     "react-tap-event-plugin": "^0.2.2",
+    "redux": "^3.5.1",
     "shortid": "^2.2.6",
     "superagent": "^1.8.3"
   }

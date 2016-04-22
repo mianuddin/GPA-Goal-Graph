@@ -2,11 +2,12 @@ import React from 'react';
 import TextField from 'material-ui/lib/text-field';
 import Toggle from 'material-ui/lib/toggle';
 
-const InputGroup = () => (
+const InputGroup = props => (
   <div>
     <TextField
       hintText="2.7"
       floatingLabelText="Current GPA"
+      ref="currentGPA"
     /><br />
     <TextField
       hintText="3.0"
@@ -27,5 +28,8 @@ const InputGroup = () => (
     </div>
   </div>
 );
+
+InputGroup.propTypes = {
+};
 
 export default InputGroup;

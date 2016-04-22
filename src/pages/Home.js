@@ -1,6 +1,6 @@
 import React from 'react';
 
-import HomeForm from '../components/HomeForm';
+import HomeFormContainer from '../components/HomeFormContainer';
 
 import Paper from 'material-ui/lib/paper';
 import '../styles/partials/_Home';
@@ -22,7 +22,7 @@ class Home extends React.Component {
             </Paper>
           </div>
         </div>
-        <HomeForm />
+        <HomeFormContainer />
       </div>
     );
   }
