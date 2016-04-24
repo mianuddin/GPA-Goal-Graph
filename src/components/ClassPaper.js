@@ -8,6 +8,8 @@ import TableRow from 'material-ui/lib/table/table-row';
 import TableHeader from 'material-ui/lib/table/table-header';
 import TableRowColumn from 'material-ui/lib/table/table-row-column';
 import TableBody from 'material-ui/lib/table/table-body';
+import Dialog from 'material-ui/lib/dialog';
+import FlatButton from 'material-ui/lib/flat-button';
 
 import '../styles/partials/_ClassPaper';
 
@@ -34,15 +36,34 @@ const ClassPaper = props => (
       </Table>
     </Paper>
     <div id="FAB">
-      <FloatingActionButton>
+      <FloatingActionButton
+        onClick={props.onUserInteraction}
+      >
         <ContentAdd />
       </FloatingActionButton>
     </div>
+    <Dialog
+      title="Add a Class"
+      actions={
+        <FlatButton
+          label="Cancel"
+          secondary
+          onTouchTap={props.onUserInteraction}
+        />
+      }
+      modal={false}
+      open={props.dialogOpen}
+      onRequestClose={props.onUserInteraction}
+    >
+      Form Here
+    </Dialog>
   </div>
 );
 
 ClassPaper.propTypes = {
   classes: React.PropTypes.array,
+  dialogOpen: React.PropTypes.bool,
+  onUserInteraction: React.PropTypes.func,
 };
 
 export default ClassPaper;

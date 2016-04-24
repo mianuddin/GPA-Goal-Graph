@@ -13,6 +13,7 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
 
 const store = createStore(reducer);
+// Set initial (test) state.
 store.dispatch({
   type: 'SET_STATE',
   state: {
@@ -37,7 +38,7 @@ store.dispatch({
         credits: 10,
       },
     ],
-    dialogOpen: true,
+    dialogOpen: false,
   },
 });
 

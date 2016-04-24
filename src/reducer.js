@@ -4,21 +4,16 @@ function setState(state, newState) {
   return state.merge(newState);
 }
 
-function updateCurrentGPA(state, text) {
-  console.log(text);
-  return state.merge(fromJS({
-    controlledInputs: {
-      currentGPA: [text],
-    },
-  }));
+function toggleDialog(state) {
+  return state.set('dialogOpen', !state.get('dialogOpen'));
 }
 
 export default function (state = new Map(), action) {
   switch (action.type) {
     case 'SET_STATE':
       return setState(state, action.state);
-    case 'CHANGE_CURRENTGPA':
-      return updateCurrentGPA(state, action.text);
+    case 'TOGGLE_DIALOG':
+      return toggleDialog(state);
     default:
       return state;
   }

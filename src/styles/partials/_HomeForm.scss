@@ -1,6 +1,11 @@
 #Form {
+  #InputContainer > {
+    div {
+      width: 100% !important;
+    }
+  }
+  
   #ToggleBox {
-    width: 256px;
     margin-top: 1rem;
   }
 

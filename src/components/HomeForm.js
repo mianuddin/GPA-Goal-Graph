@@ -10,16 +10,6 @@ import ClassPaper from './ClassPaper';
 import '../styles/partials/_HomeForm';
 
 class HomeForm extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  handleSubmit(event) {
-    event.preventDefault();
-  }
-
   render() {
     return (
       <Formsy.Form
@@ -29,10 +19,12 @@ class HomeForm extends React.Component {
           <div className="col-xs-12 col-md-8">
             <ClassPaper
               classes={this.props.classes}
+              dialogOpen={this.props.dialogOpen}
+              onUserInteraction={this.props.toggleDialog}
             />
           </div>
           <div className="col-xs-12 col-md-4 first-md">
-            <Paper zDepth={1} className="PaperContainer">
+            <Paper zDepth={1} className="PaperContainer" id="InputContainer">
               <FormsyText
                 name="currentCredits"
                 required
@@ -76,6 +68,8 @@ class HomeForm extends React.Component {
 
 HomeForm.propTypes = {
   classes: React.PropTypes.array,
+  dialogOpen: React.PropTypes.bool,
+  toggleDialog: React.PropTypes.func,
 };
 
 export default HomeForm;
