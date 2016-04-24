@@ -1,6 +1,7 @@
 import React from 'react';
 
-import InputGroup from './InputGroup';
+import Formsy from 'formsy-react';
+import FormsyText from 'formsy-material-ui/lib/FormsyText';
 import RaisedButton from 'material-ui/lib/raised-button';
 import Paper from 'material-ui/lib/paper';
 import ClassPaper from './ClassPaper';
@@ -20,10 +21,7 @@ class HomeForm extends React.Component {
 
   render() {
     return (
-      <form
-        id="Form"
-        onSubmit={this.handleSubmit}
-      >
+      <Formsy.Form>
         <div className="row">
           <div className="col-xs-12 col-md-8">
             <ClassPaper
@@ -32,7 +30,11 @@ class HomeForm extends React.Component {
           </div>
           <div className="col-xs-12 col-md-4 first-md">
             <Paper zDepth={1} className="PaperContainer">
-              <InputGroup
+              <FormsyText
+                name="name"
+                required
+                hintText="What is your name?"
+                floatingLabelText="Name"
               />
               <div id="SubmitButton">
                 <RaisedButton type="submit" label="Submit" primary />
@@ -40,7 +42,7 @@ class HomeForm extends React.Component {
             </Paper>
           </div>
         </div>
-      </form>
+      </Formsy.Form>
     );
   }
 }

@@ -8,6 +8,7 @@ export default {
     'webpack/hot/only-dev-server',
     './src/index.js',
   ],
+  devtool: 'source-map',
   module: {
     loaders: [
       {

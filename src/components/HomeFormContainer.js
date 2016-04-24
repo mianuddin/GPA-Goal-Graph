@@ -1,6 +1,5 @@
 import HomeForm from './HomeForm';
 import { connect } from 'react-redux';
-import * as actionCreators from '../action_creators';
 
 function mapStateToProps(state) {
   return {
@@ -8,6 +7,8 @@ function mapStateToProps(state) {
   };
 }
 
-export const HomeFormContainer = connect(
-  mapStateToProps,
+const HomeFormContainer = connect(
+  mapStateToProps
 )(HomeForm);
+
+export default HomeFormContainer;
