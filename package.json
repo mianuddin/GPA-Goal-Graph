@@ -4,7 +4,7 @@
   "description": "This material designed webapp allows students to see how they can achieve their gpa goals. It is written mainly in JavaScript.",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server",
+    "start": "webpack-dev-server -d",
     "build": "webpack --config webpack.production.config.babel.js -p",
     "lint": "eslint src"
   },

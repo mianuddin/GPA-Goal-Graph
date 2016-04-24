@@ -43,6 +43,9 @@ export default {
     hot: true,
     inline: true,
   },
+  watchOptions: {
+    poll: true,
+  },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new ExtractTextPlugin('css/bundle.css'),
