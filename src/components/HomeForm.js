@@ -9,62 +9,58 @@ import ClassPaper from './ClassPaper';
 
 import '../styles/partials/_HomeForm';
 
-class HomeForm extends React.Component {
-  render() {
-    return (
-      <Formsy.Form
-        id="Form"
-      >
-        <div className="row">
-          <div className="col-xs-12 col-md-8">
-            <ClassPaper
-              classes={this.props.classes}
-              dialogOpen={this.props.dialogOpen}
-              onUserInteraction={this.props.toggleDialog}
+const HomeForm = props => (
+  <Formsy.Form
+    id="Form"
+  >
+    <div className="row">
+      <div className="col-xs-12 col-md-8">
+        <ClassPaper
+          classes={props.classes}
+          dialogOpen={props.dialogOpen}
+          onUserInteraction={props.toggleDialog}
+        />
+      </div>
+      <div className="col-xs-12 col-md-4 first-md">
+        <Paper zDepth={1} className="PaperContainer" id="InputContainer">
+          <FormsyText
+            name="currentCredits"
+            required
+            hintText="How many credits do you have?"
+            floatingLabelText="Current Credits"
+          />
+          <FormsyText
+            name="targetCredits"
+            required
+            hintText="What is your credit target?"
+            floatingLabelText="Target Credits"
+          />
+          <FormsyText
+            name="currentGPA"
+            required
+            hintText="What is your current GPA?"
+            floatingLabelText="Current GPA"
+          />
+          <FormsyText
+            name="goalGPA"
+            required
+            hintText="What is your GPA goal?"
+            floatingLabelText="Goal GPA"
+          />
+          <div id="ToggleBox">
+            <FormsyToggle
+              name="classesIncluded"
+              label="Include current semester classes"
             />
           </div>
-          <div className="col-xs-12 col-md-4 first-md">
-            <Paper zDepth={1} className="PaperContainer" id="InputContainer">
-              <FormsyText
-                name="currentCredits"
-                required
-                hintText="How many credits do you have?"
-                floatingLabelText="Current Credits"
-              />
-              <FormsyText
-                name="targetCredits"
-                required
-                hintText="What is your credit target?"
-                floatingLabelText="Target Credits"
-              />
-              <FormsyText
-                name="currentGPA"
-                required
-                hintText="What is your current GPA?"
-                floatingLabelText="Current GPA"
-              />
-              <FormsyText
-                name="goalGPA"
-                required
-                hintText="What is your GPA goal?"
-                floatingLabelText="Goal GPA"
-              />
-              <div id="ToggleBox">
-                <FormsyToggle
-                  name="classesIncluded"
-                  label="Include current semester classes"
-                />
-              </div>
-              <div id="SubmitButton">
-                <RaisedButton type="submit" label="Submit" primary />
-              </div>
-            </Paper>
+          <div id="SubmitButton">
+            <RaisedButton type="submit" label="Submit" primary />
           </div>
-        </div>
-      </Formsy.Form>
-    );
-  }
-}
+        </Paper>
+      </div>
+    </div>
+  </Formsy.Form>
+);
 
 HomeForm.propTypes = {
   classes: React.PropTypes.array,
