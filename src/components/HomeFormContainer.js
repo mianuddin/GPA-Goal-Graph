@@ -20,6 +20,9 @@ const mapDispatchToProps = (dispatch) => ({
   setClassSubmit: (val) => {
     dispatch(Actions.setClassSubmit(val));
   },
+  addClass: (name, grade, credits) => {
+    dispatch(Actions.addClass(name, grade, credits));
+  },
 });
 
 const HomeFormContainer = connect(

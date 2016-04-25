@@ -25,7 +25,8 @@ const errorMessages = {
 
 const ClassPaper = props => {
   function handleSubmit(data) {
-    console.log(JSON.stringify(data));
+    props.addClass(data.className, data.classGrade, data.classCredits);
+    props.onUserInteraction();
   }
 
   return (
@@ -126,6 +127,7 @@ ClassPaper.propTypes = {
   formProps: React.PropTypes.object,
   onUserInteraction: React.PropTypes.func,
   changeSubmit: React.PropTypes.func,
+  addClass: React.PropTypes.func,
 };
 
 export default ClassPaper;
