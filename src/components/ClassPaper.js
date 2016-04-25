@@ -1,4 +1,8 @@
 import React from 'react';
+
+import Formsy from 'formsy-react';
+import FormsyText from 'formsy-material-ui/lib/FormsyText';
+
 import Paper from 'material-ui/lib/paper';
 import FloatingActionButton from 'material-ui/lib/floating-action-button';
 import ContentAdd from 'material-ui/lib/svg-icons/content/add';
@@ -12,6 +16,12 @@ import Dialog from 'material-ui/lib/dialog';
 import FlatButton from 'material-ui/lib/flat-button';
 
 import '../styles/partials/_ClassPaper';
+
+const errorMessages = {
+  alphanumericError: 'Only A-Z and 0-9 allowed.',
+  numericError: 'Please provide a number.',
+  gradeError: 'Must be A+ through F or 0-5.',
+};
 
 const ClassPaper = props => (
   <div id="ClassSectionContainer">
@@ -44,18 +54,56 @@ const ClassPaper = props => (
     </div>
     <Dialog
       title="Add a Class"
-      actions={
+      actions={[
         <FlatButton
           label="Cancel"
           secondary
           onTouchTap={props.onUserInteraction}
-        />
-      }
+        />,
+        <FlatButton
+          label="Submit"
+          primary
+          disabled
+          onTouchTap={props.onUserInteraction}
+        />,
+      ]}
+      contentStyle={{
+        width: 'fit-content',
+      }}
       modal={false}
       open={props.dialogOpen}
       onRequestClose={props.onUserInteraction}
     >
-      Form Here
+      <Formsy.Form>
+        <FormsyText
+          name="className"
+          required
+          hintText="What is the name of this class?"
+          floatingLabelText="Name"
+          validations="isAlphanumeric"
+          validationError={errorMessages.alphanumericError}
+        />
+        <br />
+        <FormsyText
+          name="classCredits"
+          required
+          hintText="How many credits is this class?"
+          floatingLabelText="Credits"
+          validations="isNumeric"
+          validationError={errorMessages.numericError}
+        />
+        <br />
+        <FormsyText
+          name="classGrade"
+          required
+          hintText="What is your grade in this class?"
+          floatingLabelText="Grade"
+          validations={{
+            matchRegexp: /^([a-dA-DfF][+-]?|[0-4][.]?[0-9]?)$/,
+          }}
+          validationError={errorMessages.gradeError}
+        />
+      </Formsy.Form>
     </Dialog>
   </div>
 );
