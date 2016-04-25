@@ -5,6 +5,7 @@ import FormsyText from 'formsy-material-ui/lib/FormsyText';
 import FormsyToggle from 'formsy-material-ui/lib/FormsyToggle';
 import RaisedButton from 'material-ui/lib/raised-button';
 import Paper from 'material-ui/lib/paper';
+
 import ClassPaper from './ClassPaper';
 
 import '../styles/partials/_HomeForm';
@@ -12,6 +13,10 @@ import '../styles/partials/_HomeForm';
 Formsy.addValidationRule('isMoreThan', (values, value, otherField) => (
   Number(value) > Number(values[otherField])
 ));
+
+const errorMessages = {
+  numericError: 'Please provide a number.',
+};
 
 const HomeForm = props => (
   <Formsy.Form
@@ -35,6 +40,7 @@ const HomeForm = props => (
             hintText="How many credits do you have?"
             floatingLabelText="Current Credits"
             validations="isNumeric"
+            validationError={errorMessages.numericError}
           />
           <FormsyText
             name="targetCredits"
@@ -42,6 +48,7 @@ const HomeForm = props => (
             hintText="What is your credit target?"
             floatingLabelText="Target Credits"
             validations="isNumeric,isMoreThan:currentCredits"
+            validationError={errorMessages.numericError}
           />
           <FormsyText
             name="currentGPA"
@@ -49,6 +56,7 @@ const HomeForm = props => (
             hintText="What is your current GPA?"
             floatingLabelText="Current GPA"
             validations="isNumeric"
+            validationError={errorMessages.numericError}
           />
           <FormsyText
             name="goalGPA"
@@ -56,6 +64,7 @@ const HomeForm = props => (
             hintText="What is your GPA goal?"
             floatingLabelText="Goal GPA"
             validations="isNumeric"
+            validationError={errorMessages.numericError}
           />
           <div id="ToggleBox">
             <FormsyToggle

@@ -12,10 +12,3 @@ export function setBoolKey(key, val) {
     val,
   };
 }
-
-export function changeCurrentGPA(text) {
-  return {
-    type: 'CHANGE_CURRENTGPA',
-    text,
-  };
-}

@@ -41,6 +41,10 @@ store.dispatch({
         credits: 10,
       },
     ],
+    snackbar: {
+      open: false,
+      message: '',
+    },
     dialogOpen: false,
     canSubmit: true,
   },
