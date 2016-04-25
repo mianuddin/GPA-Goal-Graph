@@ -28,8 +28,9 @@ const HomeForm = props => (
       <div className="col-xs-12 col-md-8">
         <ClassPaper
           classes={props.classes}
-          dialogOpen={props.dialogOpen}
+          formProps={props.classFormProps}
           onUserInteraction={props.toggleDialog}
+          changeSubmit={props.setClassSubmit}
         />
       </div>
       <div className="col-xs-12 col-md-4 first-md">
@@ -88,10 +89,11 @@ const HomeForm = props => (
 
 HomeForm.propTypes = {
   classes: React.PropTypes.array,
-  dialogOpen: React.PropTypes.bool,
+  classFormProps: React.PropTypes.object,
   toggleDialog: React.PropTypes.func,
   canSubmit: React.PropTypes.bool,
   toggleSubmit: React.PropTypes.func,
+  setClassSubmit: React.PropTypes.func,
 };
 
 export default HomeForm;

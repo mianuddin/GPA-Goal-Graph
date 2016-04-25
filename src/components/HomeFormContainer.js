@@ -5,17 +5,20 @@ import * as Actions from '../actions.js';
 function mapStateToProps(state) {
   return {
     classes: state.get('classes').toArray(),
-    dialogOpen: state.get('dialogOpen'),
+    classFormProps: state.get('classForm').toObject(),
     canSubmit: state.get('canSubmit'),
   };
 }
 
 const mapDispatchToProps = (dispatch) => ({
   toggleDialog: () => {
-    dispatch(Actions.toggleBoolKey('dialogOpen'));
+    dispatch(Actions.toggleDialog());
   },
   toggleSubmit: (val) => {
     dispatch(Actions.setBoolKey('canSubmit', val));
+  },
+  setClassSubmit: (val) => {
+    dispatch(Actions.setClassSubmit(val));
   },
 });
 

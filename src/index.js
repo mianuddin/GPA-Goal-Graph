@@ -45,7 +45,10 @@ store.dispatch({
       open: false,
       message: '',
     },
-    dialogOpen: false,
+    classForm: {
+      canSubmit: true,
+      dialogOpen: false,
+    },
     canSubmit: true,
   },
 });

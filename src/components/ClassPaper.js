@@ -63,7 +63,7 @@ const ClassPaper = props => (
         <FlatButton
           label="Submit"
           primary
-          disabled
+          disabled={!props.formProps.canSubmit}
           onTouchTap={props.onUserInteraction}
         />,
       ]}
@@ -71,10 +71,13 @@ const ClassPaper = props => (
         width: 'fit-content',
       }}
       modal={false}
-      open={props.dialogOpen}
+      open={props.formProps.dialogOpen}
       onRequestClose={props.onUserInteraction}
     >
-      <Formsy.Form>
+      <Formsy.Form
+        onValid={props.changeSubmit.bind(this, true)}
+        onInvalid={props.changeSubmit.bind(this, false)}
+      >
         <FormsyText
           name="className"
           required
@@ -110,8 +113,9 @@ const ClassPaper = props => (
 
 ClassPaper.propTypes = {
   classes: React.PropTypes.array,
-  dialogOpen: React.PropTypes.bool,
+  formProps: React.PropTypes.object,
   onUserInteraction: React.PropTypes.func,
+  changeSubmit: React.PropTypes.func,
 };
 
 export default ClassPaper;
