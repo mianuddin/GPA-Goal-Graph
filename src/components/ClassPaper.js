@@ -25,14 +25,16 @@ const errorMessages = {
 
 const ClassPaper = props => {
   function handleSubmit(data) {
-    props.addClass(data.className, data.classGrade, data.classCredits);
+    props.addClass(data.className, data.classGrade.toUpperCase(), data.classCredits);
     props.onUserInteraction();
   }
 
   return (
     <div id="ClassSectionContainer">
       <Paper zDepth={1} className="PaperContainer">
-        <Table>
+        <Table
+          multiSelectable={false}
+        >
           <TableHeader>
             <TableRow>
               <TableHeaderColumn>Class</TableHeaderColumn>
