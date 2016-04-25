@@ -14,3 +14,20 @@
     transform: translateY(-50%);
   }
 }
+
+.DialogContent > div > div {
+  padding: 0 !important;
+}
+
+#ClassInputs {
+  padding: 24px;
+}
+
+#DialogActions {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  padding: 8px;
+  margin-bottom: 8px;
+  width: 100%;
+  text-align: right;
+}

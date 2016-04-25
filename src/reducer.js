@@ -16,6 +16,15 @@ function setBoolKey(state, key, val = !state.get(key)) {
   return state.set(key, val);
 }
 
+function addClass(state, name, grade, credits) {
+  return state.set('classes', state.get('classes').push(fromJS({
+    name,
+    selected: false,
+    grade,
+    credits,
+  })));
+}
+
 export default function (state = new Map(), action) {
   switch (action.type) {
     case 'SET_STATE':
@@ -26,6 +35,9 @@ export default function (state = new Map(), action) {
       return setBoolKey(state, action.key, action.val);
     case 'SET_CLASS_SUBMIT': {
       return setClassSubmit(state, action.val);
+    }
+    case 'ADD_CLASS': {
+      return addClass(state, action.name, action.grade, action.credits);
     }
     default:
       return state;

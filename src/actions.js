@@ -18,3 +18,12 @@ export function setClassSubmit(val) {
     val,
   };
 }
+
+export function addClass(name, grade, credits) {
+  return {
+    type: 'ADD_CLASS',
+    name,
+    grade,
+    credits,
+  };
+}
