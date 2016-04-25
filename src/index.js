@@ -12,7 +12,10 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 // http://stackoverflow.com/a/34015469/988941
 injectTapEventPlugin();
 
-const store = createStore(reducer);
+const store = createStore(reducer,
+  window.devToolsExtension ? window.devToolsExtension() : undefined
+);
+
 // Set initial (test) state.
 store.dispatch({
   type: 'SET_STATE',
