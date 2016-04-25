@@ -15,8 +15,12 @@
   }
 }
 
-.DialogContent > div > div {
-  padding: 0 !important;
+.DialogContent {
+  width: fit-content !important;
+
+  > div > div {
+    padding: 0 !important;
+  }
 }
 
 #ClassInputs {

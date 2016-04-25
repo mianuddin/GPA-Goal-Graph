@@ -27,3 +27,10 @@ export function addClass(name, grade, credits) {
     credits,
   };
 }
+
+export function selectClass(index) {
+  return {
+    type: 'SELECT_CLASS',
+    index,
+  };
+}

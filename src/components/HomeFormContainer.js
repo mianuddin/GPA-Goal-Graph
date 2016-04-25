@@ -23,6 +23,9 @@ const mapDispatchToProps = (dispatch) => ({
   addClass: (name, grade, credits) => {
     dispatch(Actions.addClass(name, grade, credits));
   },
+  selectClass: (index) => {
+    dispatch(Actions.selectClass(index));
+  },
 });
 
 const HomeFormContainer = connect(

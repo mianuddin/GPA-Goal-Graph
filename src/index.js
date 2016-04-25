@@ -29,14 +29,14 @@ store.dispatch({
     },
     classes: [
       {
+        index: 1,
         name: 'AP Calculus AB',
-        selected: false,
         grade: 'A',
         credits: 10,
       },
       {
+        index: 2,
         name: 'AP Physics 1',
-        selected: false,
         grade: 'C',
         credits: 10,
       },
@@ -46,6 +46,8 @@ store.dispatch({
       message: '',
     },
     classForm: {
+      // TODO: Selected class features.
+      selectedClass: 0,
       canSubmit: true,
       dialogOpen: false,
     },

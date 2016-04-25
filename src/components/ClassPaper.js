@@ -29,11 +29,17 @@ const ClassPaper = props => {
     props.onUserInteraction();
   }
 
+  function handleSelect(selectedRows) {
+    const row = selectedRows.length ? selectedRows[0] + 1 : 0;
+    props.selectClass(row);
+  }
+
   return (
     <div id="ClassSectionContainer">
       <Paper zDepth={1} className="PaperContainer">
         <Table
           multiSelectable={false}
+          onRowSelection={handleSelect}
         >
           <TableHeader>
             <TableRow>
@@ -44,7 +50,10 @@ const ClassPaper = props => {
           </TableHeader>
           <TableBody>
             {props.classes.map((classObj, index) => (
-              <TableRow key={index}>
+              <TableRow
+                key={index}
+                selected={(index + 1) === props.formProps.selectedClass}
+              >
                 <TableRowColumn>{classObj.get('name')}</TableRowColumn>
                 <TableRowColumn>{classObj.get('grade')}</TableRowColumn>
                 <TableRowColumn>{classObj.get('credits')}</TableRowColumn>
@@ -62,13 +71,10 @@ const ClassPaper = props => {
       </div>
       <Dialog
         title="Add a Class"
-        contentStyle={{
-          width: 'fit-content',
-        }}
+        contentClassName="DialogContent"
         modal={false}
         open={props.formProps.dialogOpen}
         onRequestClose={props.onUserInteraction}
-        contentClassName="DialogContent"
       >
         <Formsy.Form
           onValid={props.changeSubmit.bind(this, true)}
@@ -81,7 +87,7 @@ const ClassPaper = props => {
               required
               hintText="What is the name of this class?"
               floatingLabelText="Name"
-              validations="isAlphanumeric"
+              validations="isExisty"
               validationError={errorMessages.alphanumericError}
             />
             <br />
@@ -130,6 +136,7 @@ ClassPaper.propTypes = {
   onUserInteraction: React.PropTypes.func,
   changeSubmit: React.PropTypes.func,
   addClass: React.PropTypes.func,
+  selectClass: React.PropTypes.func,
 };
 
 export default ClassPaper;

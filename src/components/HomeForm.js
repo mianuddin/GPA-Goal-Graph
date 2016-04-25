@@ -32,6 +32,7 @@ const HomeForm = props => (
           onUserInteraction={props.toggleDialog}
           changeSubmit={props.setClassSubmit}
           addClass={props.addClass}
+          selectClass={props.selectClass}
         />
       </div>
       <div className="col-xs-12 col-md-4 first-md">
@@ -96,6 +97,7 @@ HomeForm.propTypes = {
   toggleSubmit: React.PropTypes.func,
   setClassSubmit: React.PropTypes.func,
   addClass: React.PropTypes.func,
+  selectClass: React.PropTypes.func,
 };
 
 export default HomeForm;
