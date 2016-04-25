@@ -9,9 +9,15 @@ import ClassPaper from './ClassPaper';
 
 import '../styles/partials/_HomeForm';
 
+Formsy.addValidationRule('isMoreThan', (values, value, otherField) => (
+  Number(value) > Number(values[otherField])
+));
+
 const HomeForm = props => (
   <Formsy.Form
     id="Form"
+    onValid={props.toggleSubmit.bind(this, true)}
+    onInvalid={props.toggleSubmit.bind(this, false)}
   >
     <div className="row">
       <div className="col-xs-12 col-md-8">
@@ -28,24 +34,28 @@ const HomeForm = props => (
             required
             hintText="How many credits do you have?"
             floatingLabelText="Current Credits"
+            validations="isNumeric"
           />
           <FormsyText
             name="targetCredits"
             required
             hintText="What is your credit target?"
             floatingLabelText="Target Credits"
+            validations="isNumeric,isMoreThan:currentCredits"
           />
           <FormsyText
             name="currentGPA"
             required
             hintText="What is your current GPA?"
             floatingLabelText="Current GPA"
+            validations="isNumeric"
           />
           <FormsyText
             name="goalGPA"
             required
             hintText="What is your GPA goal?"
             floatingLabelText="Goal GPA"
+            validations="isNumeric"
           />
           <div id="ToggleBox">
             <FormsyToggle
@@ -54,7 +64,12 @@ const HomeForm = props => (
             />
           </div>
           <div id="SubmitButton">
-            <RaisedButton type="submit" label="Submit" primary />
+            <RaisedButton
+              type="submit"
+              label="Submit"
+              primary
+              disabled={!props.canSubmit}
+            />
           </div>
         </Paper>
       </div>
@@ -66,6 +81,8 @@ HomeForm.propTypes = {
   classes: React.PropTypes.array,
   dialogOpen: React.PropTypes.bool,
   toggleDialog: React.PropTypes.func,
+  canSubmit: React.PropTypes.bool,
+  toggleSubmit: React.PropTypes.func,
 };
 
 export default HomeForm;

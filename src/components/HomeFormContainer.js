@@ -6,12 +6,16 @@ function mapStateToProps(state) {
   return {
     classes: state.get('classes').toArray(),
     dialogOpen: state.get('dialogOpen'),
+    canSubmit: state.get('canSubmit'),
   };
 }
 
 const mapDispatchToProps = (dispatch) => ({
   toggleDialog: () => {
-    dispatch(Actions.toggleDialog());
+    dispatch(Actions.toggleBoolKey('dialogOpen'));
+  },
+  toggleSubmit: (val) => {
+    dispatch(Actions.setBoolKey('canSubmit', val));
   },
 });
 

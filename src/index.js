@@ -20,7 +20,7 @@ const store = createStore(reducer,
 store.dispatch({
   type: 'SET_STATE',
   state: {
-    controlledInputs: {
+    inputs: {
       currentGPA: '',
       goalGPA: '',
       currentCredits: '',
@@ -42,6 +42,7 @@ store.dispatch({
       },
     ],
     dialogOpen: false,
+    canSubmit: true,
   },
 });
 
