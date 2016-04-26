@@ -41,6 +41,9 @@ const ClassPaper = props => {
   }
 
   function removeSelectedClass() {
+    if (!(props.classes.length - 1)) {
+      props.selectClass(0);
+    }
     props.removeClass(props.formProps.selectedClass - 1);
   }
 
