@@ -34,6 +34,7 @@ const HomeForm = props => (
           addClass={props.addClass}
           selectClass={props.selectClass}
           removeClass={props.removeClass}
+          includeClasses={props.includeClasses}
         />
       </div>
       <div className="col-xs-12 col-md-4 first-md">
@@ -74,6 +75,8 @@ const HomeForm = props => (
             <FormsyToggle
               name="classesIncluded"
               label="Include current semester classes"
+              toggled={props.includeClasses}
+              onClick={props.toggleClasses}
             />
           </div>
           <div id="SubmitButton">
@@ -100,6 +103,8 @@ HomeForm.propTypes = {
   addClass: React.PropTypes.func,
   selectClass: React.PropTypes.func,
   removeClass: React.PropTypes.func,
+  toggleClasses: React.PropTypes.func,
+  includeClasses: React.PropTypes.bool,
 };
 
 export default HomeForm;

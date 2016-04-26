@@ -5,7 +5,7 @@ function setState(state, newState) {
 }
 
 function toggleDialog(state) {
-  return state.setIn(['classForm', 'dialogOpen'], !state.get('classForm').get('dialogOpen'));
+  return state.setIn(['classForm', 'dialogOpen'], !state.getIn(['classForm', 'dialogOpen']));
 }
 
 function setClassSubmit(state, val) {
@@ -32,6 +32,10 @@ function removeClass(state, index) {
   return state.set('classes', state.get('classes').delete(index));
 }
 
+function toggleClasses(state) {
+  return state.setIn(['inputs', 'includeClasses'], !state.getIn(['inputs', 'includeClasses']));
+}
+
 export default function (state = new Map(), action) {
   switch (action.type) {
     case 'SET_STATE':
@@ -51,6 +55,9 @@ export default function (state = new Map(), action) {
     }
     case 'REMOVE_CLASS': {
       return removeClass(state, action.index);
+    }
+    case 'TOGGLE_CLASSES': {
+      return toggleClasses(state);
     }
     default:
       return state;

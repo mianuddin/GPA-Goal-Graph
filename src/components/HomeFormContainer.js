@@ -5,6 +5,7 @@ import * as Actions from '../actions.js';
 function mapStateToProps(state) {
   return {
     classes: state.get('classes').toArray(),
+    includeClasses: state.getIn(['inputs', 'includeClasses']),
     classFormProps: state.get('classForm').toObject(),
     canSubmit: state.get('canSubmit'),
   };
@@ -16,6 +17,9 @@ const mapDispatchToProps = (dispatch) => ({
   },
   toggleSubmit: (val) => {
     dispatch(Actions.setBoolKey('canSubmit', val));
+  },
+  toggleClasses: () => {
+    dispatch(Actions.toggleClasses());
   },
   setClassSubmit: (val) => {
     dispatch(Actions.setClassSubmit(val));

@@ -94,6 +94,7 @@ const ClassPaper = props => {
       <div id="FAB">
         <FloatingActionButton
           onClick={props.onUserInteraction}
+          disabled={!props.includeClasses}
         >
           <ContentAdd />
         </FloatingActionButton>
@@ -167,6 +168,7 @@ ClassPaper.propTypes = {
   addClass: React.PropTypes.func,
   selectClass: React.PropTypes.func,
   removeClass: React.PropTypes.func,
+  includeClasses: React.PropTypes.bool,
 };
 
 export default ClassPaper;

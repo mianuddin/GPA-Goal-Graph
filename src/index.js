@@ -25,7 +25,11 @@ store.dispatch({
       goalGPA: '',
       currentCredits: '',
       targetGPA: '',
-      classes: false,
+      includeClasses: false,
+      classTotal: {
+        grade: null,
+        credits: null,
+      },
     },
     classes: [
       {

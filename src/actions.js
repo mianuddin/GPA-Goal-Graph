@@ -41,3 +41,9 @@ export function removeClass(index) {
     index,
   };
 }
+
+export function toggleClasses() {
+  return {
+    type: 'TOGGLE_CLASSES',
+  };
+}
