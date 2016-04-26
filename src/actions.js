@@ -34,3 +34,10 @@ export function selectClass(index) {
     index,
   };
 }
+
+export function removeClass(index) {
+  return {
+    type: 'REMOVE_CLASS',
+    index,
+  };
+}

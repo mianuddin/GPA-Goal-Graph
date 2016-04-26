@@ -33,6 +33,7 @@ const HomeForm = props => (
           changeSubmit={props.setClassSubmit}
           addClass={props.addClass}
           selectClass={props.selectClass}
+          removeClass={props.removeClass}
         />
       </div>
       <div className="col-xs-12 col-md-4 first-md">
@@ -98,6 +99,7 @@ HomeForm.propTypes = {
   setClassSubmit: React.PropTypes.func,
   addClass: React.PropTypes.func,
   selectClass: React.PropTypes.func,
+  removeClass: React.PropTypes.func,
 };
 
 export default HomeForm;

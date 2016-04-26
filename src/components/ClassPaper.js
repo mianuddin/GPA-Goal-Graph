@@ -14,6 +14,7 @@ import TableRowColumn from 'material-ui/lib/table/table-row-column';
 import TableBody from 'material-ui/lib/table/table-body';
 import Dialog from 'material-ui/lib/dialog';
 import FlatButton from 'material-ui/lib/flat-button';
+import CardActions from 'material-ui/lib/card/card-actions';
 
 import '../styles/partials/_ClassPaper';
 
@@ -34,33 +35,58 @@ const ClassPaper = props => {
     props.selectClass(row);
   }
 
+  function duplicateSelectedClass() {
+    const selectedClass = props.classes[props.formProps.selectedClass - 1].toObject();
+    props.addClass(selectedClass.name, selectedClass.grade, selectedClass.credits);
+  }
+
+  function removeSelectedClass() {
+    props.removeClass(props.formProps.selectedClass - 1);
+  }
+
   return (
     <div id="ClassSectionContainer">
-      <Paper zDepth={1} className="PaperContainer">
-        <Table
-          multiSelectable={false}
-          onRowSelection={handleSelect}
-        >
-          <TableHeader>
-            <TableRow>
-              <TableHeaderColumn>Class</TableHeaderColumn>
-              <TableHeaderColumn>Grade</TableHeaderColumn>
-              <TableHeaderColumn>Credits</TableHeaderColumn>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {props.classes.map((classObj, index) => (
-              <TableRow
-                key={index}
-                selected={(index + 1) === props.formProps.selectedClass}
-              >
-                <TableRowColumn>{classObj.get('name')}</TableRowColumn>
-                <TableRowColumn>{classObj.get('grade')}</TableRowColumn>
-                <TableRowColumn>{classObj.get('credits')}</TableRowColumn>
+      <Paper zDepth={1}>
+        <div id="TableWrapper">
+          <Table
+            multiSelectable={false}
+            onRowSelection={handleSelect}
+          >
+            <TableHeader>
+              <TableRow>
+                <TableHeaderColumn>Class</TableHeaderColumn>
+                <TableHeaderColumn>Grade</TableHeaderColumn>
+                <TableHeaderColumn>Credits</TableHeaderColumn>
               </TableRow>
-            ))}
-          </TableBody>
-        </Table>
+            </TableHeader>
+            <TableBody
+              deselectOnClickaway={false}
+            >
+              {props.classes.map((classObj, index) => (
+                <TableRow
+                  key={index}
+                  selected={(index + 1) === props.formProps.selectedClass}
+                >
+                  <TableRowColumn>{classObj.get('name')}</TableRowColumn>
+                  <TableRowColumn>{classObj.get('grade')}</TableRowColumn>
+                  <TableRowColumn>{classObj.get('credits')}</TableRowColumn>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </div>
+        <CardActions>
+          <FlatButton
+            label="Duplicate"
+            disabled={!props.formProps.selectedClass}
+            onClick={duplicateSelectedClass}
+          />
+          <FlatButton
+            label="Remove"
+            disabled={!props.formProps.selectedClass}
+            onClick={removeSelectedClass}
+          />
+        </CardActions>
       </Paper>
       <div id="FAB">
         <FloatingActionButton
@@ -137,6 +163,7 @@ ClassPaper.propTypes = {
   changeSubmit: React.PropTypes.func,
   addClass: React.PropTypes.func,
   selectClass: React.PropTypes.func,
+  removeClass: React.PropTypes.func,
 };
 
 export default ClassPaper;

@@ -29,13 +29,11 @@ store.dispatch({
     },
     classes: [
       {
-        index: 1,
         name: 'AP Calculus AB',
         grade: 'A',
         credits: 10,
       },
       {
-        index: 2,
         name: 'AP Physics 1',
         grade: 'C',
         credits: 10,

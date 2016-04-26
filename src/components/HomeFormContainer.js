@@ -26,6 +26,9 @@ const mapDispatchToProps = (dispatch) => ({
   selectClass: (index) => {
     dispatch(Actions.selectClass(index));
   },
+  removeClass: (index) => {
+    dispatch(Actions.removeClass(index));
+  },
 });
 
 const HomeFormContainer = connect(

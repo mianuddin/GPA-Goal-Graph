@@ -18,7 +18,6 @@ function setBoolKey(state, key, val = !state.get(key)) {
 
 function addClass(state, name, grade, credits) {
   return state.set('classes', state.get('classes').push(fromJS({
-    index: state.get('classes').size + 1,
     name,
     grade,
     credits,
@@ -27,6 +26,10 @@ function addClass(state, name, grade, credits) {
 
 function selectClass(state, index) {
   return state.setIn(['classForm', 'selectedClass'], index);
+}
+
+function removeClass(state, index) {
+  return state.set('classes', state.get('classes').delete(index));
 }
 
 export default function (state = new Map(), action) {
@@ -45,6 +48,9 @@ export default function (state = new Map(), action) {
     }
     case 'SELECT_CLASS': {
       return selectClass(state, action.index);
+    }
+    case 'REMOVE_CLASS': {
+      return removeClass(state, action.index);
     }
     default:
       return state;
