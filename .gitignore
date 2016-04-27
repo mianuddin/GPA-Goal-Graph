@@ -39,3 +39,6 @@ jspm_packages
 
 # sftp configuration file
 sftp-config.json
+
+# legacy project files
+legacy
