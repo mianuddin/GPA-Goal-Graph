@@ -123,11 +123,11 @@ var mathModule = (function () {
         if(!errorMessages.length) {
             var newGPA = input.gpa,
                 newCredits = input.credits;
-            if(!input.classes.length) {
+            if(input.classes.length-1) {
                 newGPA = totalGPA(input.classes);
                 newCredits = totalCredits(input.classes);
             }
-            console.log("Calculated GPA", newGPA, "Calculated Credits", newCredits, input.credits);
+            console.log(!input.classes.length, "Calculated GPA", newGPA, "Calculated Credits", newCredits, input.credits);
             var obj = new gradeObject(newGPA, input.goal, newCredits, input.target_credits);
             displayModule.display(obj, sidebar);
         } else {
