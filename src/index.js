@@ -6,6 +6,7 @@ import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import reducer from './reducer';
 import routes from './routes';
+import ClassObject from './controller/ClassObject';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 
 // Needed for onTouchTap
@@ -32,16 +33,11 @@ store.dispatch({
       },
     },
     classes: [
-      {
-        name: 'AP Calculus AB',
-        grade: 'A',
-        credits: 10,
-      },
-      {
-        name: 'AP Physics 1',
-        grade: 'C',
-        credits: 10,
-      },
+      new ClassObject(
+        'AP Physics 1',
+        'B+',
+        5
+      ),
     ],
     snackbar: {
       open: false,

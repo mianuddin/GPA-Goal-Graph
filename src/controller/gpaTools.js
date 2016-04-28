@@ -2,11 +2,11 @@ function roundToTwo(num) {
   return +(Math.round(num + 'e+2') + 'e-2');
 }
 
-export default function getCreditsRemaining(targetCredits, maxCredits = 220) {
+export function getCreditsRemaining(targetCredits, maxCredits = 220) {
   return maxCredits - targetCredits;
 }
 
-export default function calculateTargetGPA(currentGPA, goalGPA, currentCredits, targetCredits) {
+export function calculateTargetGPA(currentGPA, goalGPA, currentCredits, targetCredits) {
   const targetGradePoints = goalGPA * targetCredits;
   const currentGradePoints = currentGPA * currentCredits;
   const creditDifference = targetCredits - currentCredits;
@@ -14,7 +14,7 @@ export default function calculateTargetGPA(currentGPA, goalGPA, currentCredits, 
   return roundToTwo(targetGPA);
 }
 
-export default function calculateGradeNumber(input) {
+export function calculateGradeNumber(input) {
   let gradenum = 0;
   const thegrade = input;
   if (/^([a-fA-f][+-]?|[0-4][.]?[0-9]?)/.test(thegrade)) {
@@ -35,18 +35,18 @@ export default function calculateGradeNumber(input) {
   return gradenum;
 }
 
-export default function getTotalCreditsFromClasses(classes) {
+export function getTotalCreditsFromClasses(classes) {
   return classes.reduce((previousValue, currentValue) => (
     previousValue + currentValue.credits
   ));
 }
 
-export default function getTotalGradePointsFromClasses(classes) {
+export function getTotalGradePointsFromClasses(classes) {
   return classes.reduce((previousValue, currentValue) => (
     previousValue + currentValue.gradePoints
   ));
 }
 
-export default function getTotalGPAFromClasses(classes) {
+export function getTotalGPAFromClasses(classes) {
   return getTotalGradePointsFromClasses(classes) / getTotalCreditsFromClasses(classes);
 }

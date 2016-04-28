@@ -1,4 +1,5 @@
-import { Map, fromJS } from 'immutable';
+import { Map } from 'immutable';
+import ClassObject from './controller/ClassObject';
 
 function setState(state, newState) {
   return state.merge(newState);
@@ -17,11 +18,11 @@ function setBoolKey(state, key, val = !state.get(key)) {
 }
 
 function addClass(state, name, grade, credits) {
-  return state.set('classes', state.get('classes').push(fromJS({
+  return state.set('classes', state.get('classes').push(new ClassObject(
     name,
     grade,
-    credits,
-  })));
+    credits
+  )));
 }
 
 function selectClass(state, index) {

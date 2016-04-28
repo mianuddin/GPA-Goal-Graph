@@ -1,7 +1,11 @@
+import * as gpaTools from './gpaTools';
+
 export default class ClassObject {
-  constructor(currentGPA, currentCredits) {
-    this.grade = currentGPA;
-    this.credits = currentCredits;
-    this.gradePoints = currentCredits * currentGPA;
+  constructor(name, grade, credits) {
+    this.name = name;
+    this.gradeInput = grade;
+    this.grade = gpaTools.calculateGradeNumber(grade);
+    this.credits = credits;
+    this.gradePoints = credits * this.grade;
   }
 }

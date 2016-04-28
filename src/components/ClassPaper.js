@@ -70,9 +70,9 @@ const ClassPaper = props => {
                   key={index}
                   selected={(index + 1) === props.formProps.selectedClass}
                 >
-                  <TableRowColumn>{classObj.get('name')}</TableRowColumn>
-                  <TableRowColumn>{classObj.get('grade')}</TableRowColumn>
-                  <TableRowColumn>{classObj.get('credits')}</TableRowColumn>
+                  <TableRowColumn>{classObj.name}</TableRowColumn>
+                  <TableRowColumn>{classObj.gradeInput}</TableRowColumn>
+                  <TableRowColumn>{classObj.credits}</TableRowColumn>
                 </TableRow>
               ))}
             </TableBody>
