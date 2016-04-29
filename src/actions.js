@@ -4,11 +4,9 @@ export function toggleDialog() {
   };
 }
 
-export function setBoolKey(key, val) {
+export function toggleSubmit() {
   return {
-    type: 'SET_BOOL_KEY',
-    key,
-    val,
+    type: 'TOGGLE_SUBMIT',
   };
 }
 

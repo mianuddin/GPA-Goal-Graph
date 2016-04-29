@@ -21,7 +21,7 @@ const store = createStore(reducer,
 store.dispatch({
   type: 'SET_STATE',
   state: {
-    inputs: {
+    mainForm: {
       currentGPA: '',
       goalGPA: '',
       currentCredits: '',
@@ -31,6 +31,7 @@ store.dispatch({
         grade: null,
         credits: null,
       },
+      canSubmit: true,
     },
     classes: [
       new ClassObject(
@@ -44,12 +45,10 @@ store.dispatch({
       message: '',
     },
     classForm: {
-      // TODO: Selected class features.
       selectedClass: 0,
       canSubmit: true,
       dialogOpen: false,
     },
-    canSubmit: true,
   },
 });
 

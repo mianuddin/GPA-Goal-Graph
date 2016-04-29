@@ -36,8 +36,8 @@ const ClassPaper = props => {
   }
 
   function duplicateSelectedClass() {
-    const selectedClass = props.classes[props.formProps.selectedClass - 1].toObject();
-    props.addClass(selectedClass.name, selectedClass.grade, selectedClass.credits);
+    const selectedClass = props.classes[props.formProps.selectedClass - 1];
+    props.addClass(selectedClass.name, selectedClass.gradeInput, selectedClass.credits);
   }
 
   function removeSelectedClass() {

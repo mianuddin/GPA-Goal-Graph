@@ -17,7 +17,7 @@ export function calculateTargetGPA(currentGPA, goalGPA, currentCredits, targetCr
 export function calculateGradeNumber(input) {
   let gradenum = 0;
   const thegrade = input;
-  if (/^([a-fA-f][+-]?|[0-4][.]?[0-9]?)/.test(thegrade)) {
+  if (/^([a-fA-f][+-]?|[0-4][.]?[0-9]?)$/.test(thegrade)) {
     if (thegrade === 'A' || thegrade === 'a') gradenum = 4.0000000;
     else if (thegrade === 'A-' || thegrade === 'a-') gradenum = 3.6666666;
     else if (thegrade === 'B+' || thegrade === 'b+') gradenum = 3.3333333;
