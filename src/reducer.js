@@ -1,5 +1,4 @@
 import { Map, fromJS } from 'immutable';
-import { combineReducers } from 'redux';
 import mainForm from './reducers/mainForm';
 import classForm from './reducers/classForm';
 import classes from './reducers/classes';
