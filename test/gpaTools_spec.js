@@ -2,7 +2,23 @@
 import { expect } from 'chai';
 import * as gpaTools from '../src/controller/gpaTools';
 
+function getRandomInt(min, max) {
+  return Math.floor(Math.random() * (max - min)) + min;
+}
+
 describe('gpa tools', () => {
+  describe('getCreditsRemaining', () => {
+    it('returns the correct difference', () => {
+      const randomNumber = getRandomInt(0, 300);
+      const defaultMaxCredits = gpaTools.getCreditsRemaining(0);
+      const subtractFromDefault = gpaTools.getCreditsRemaining(randomNumber);
+      const subtractFromCustom = gpaTools.getCreditsRemaining(randomNumber, 500);
+
+      expect(subtractFromDefault).to.equal(defaultMaxCredits - randomNumber);
+      expect(subtractFromCustom).to.equal(500 - randomNumber);
+    });
+  });
+
   describe('calculateGradeNumber', () => {
     it('parses letter grade inputs correctly', () => {
       const valueOfUppercaseA = gpaTools.calculateGradeNumber('A');
@@ -17,15 +33,18 @@ describe('gpa tools', () => {
     });
   });
 
-  describe('getCreditsRemaining', () => {
-    it('returns the correct difference', () => {
-      const randomNumber = Math.floor(Math.random() * (300 - 0));
-      const defaultMaxCredits = gpaTools.getCreditsRemaining(0);
-      const subtractFromDefault = gpaTools.getCreditsRemaining(randomNumber);
-      const subtractFromCustom = gpaTools.getCreditsRemaining(randomNumber, 500);
+  describe('calculateTargetGPA', () => {
+    it('calculates the correct GPA for an incoming freshman', () => {
+      const randomGPAGoal = getRandomInt(-5, 5);
+      const calculatedTargetGPA = gpaTools.calculateTargetGPA(0, randomGPAGoal, 0, 30);
 
-      expect(subtractFromDefault).to.equal(defaultMaxCredits - randomNumber);
-      expect(subtractFromCustom).to.equal(500 - randomNumber);
+      expect(calculatedTargetGPA).to.equal(randomGPAGoal);
+    });
+
+    it('calculates the correct target GPA', () => {
+      const fixedCalculatedTargetGPA = gpaTools.calculateTargetGPA(1, 2, 120, 150);
+
+      expect(fixedCalculatedTargetGPA).to.equal(6);
     });
   });
 });
