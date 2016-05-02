@@ -19,9 +19,8 @@ import CardActions from 'material-ui/lib/card/card-actions';
 import '../styles/partials/_ClassPaper';
 
 const errorMessages = {
-  alphanumericError: 'Only A-Z and 0-9 allowed.',
-  numericError: 'Please provide a number.',
-  gradeError: 'Must be A+ through F or 0-4.',
+  matchRegexp: 'Must be A through F or 0-4.',
+  isNumeric: 'Must be numbers only (i.e. 0-9).',
 };
 
 const ClassPaper = props => {
@@ -118,7 +117,6 @@ const ClassPaper = props => {
               hintText="What is the name of this class?"
               floatingLabelText="Name"
               validations="isExisty"
-              validationError={errorMessages.alphanumericError}
             />
             <br />
             <FormsyText
@@ -129,7 +127,7 @@ const ClassPaper = props => {
               validations={{
                 matchRegexp: /^([a-dA-DfF][+-]?|[0-4][.]?[0-9]?)$/,
               }}
-              validationError={errorMessages.gradeError}
+              validationErrors={errorMessages}
             />
             <br />
             <FormsyText
@@ -138,7 +136,7 @@ const ClassPaper = props => {
               hintText="How many credits is this class?"
               floatingLabelText="Credits"
               validations="isNumeric"
-              validationError={errorMessages.numericError}
+              validationErrors={errorMessages}
             />
           </div>
           <div id="DialogActions">
