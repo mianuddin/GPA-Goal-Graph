@@ -44,8 +44,8 @@ describe('gpa tools', () => {
 
       expect(valueOfUppercaseA).to.equal(4);
       expect(valueOfLowercaseA).to.equal(4);
-      expect(valueOfUppercaseAMinus).to.equal(3.6666666);
-      expect(valueOfLowercaseAMinus).to.equal(3.6666666);
+      expect(valueOfUppercaseAMinus).to.equal(3.66);
+      expect(valueOfLowercaseAMinus).to.equal(3.66);
     });
   });
 
@@ -81,6 +81,31 @@ describe('gpa tools', () => {
       const calculatedTotal = gpaTools.getTotalGradePointsFromClasses(classes);
 
       expect(calculatedTotal).to.equal(totalGradePoints);
+    });
+  });
+
+  describe('getTotalGPAFromClasses', () => {
+    it('calculates the correct total gpa', () => {
+      const classes = [];
+      classes.push(new ClassObj('', 3, 5));
+      classes.push(new ClassObj('', 2, 5));
+      classes.push(new ClassObj('', 0, 5));
+      classes.push(new ClassObj('', 2, 10));
+      const calculatedTotalGPA = gpaTools.getTotalGPAFromClasses(classes);
+
+      expect(calculatedTotalGPA).to.equal(1.80);
+    });
+
+    it('behaves like original gpa calculator', () => {
+      const classes = [];
+      classes.push(new ClassObj('', 3, 5));
+      classes.push(new ClassObj('', 'a+', 10));
+      classes.push(new ClassObj('', 'F-', 5));
+      classes.push(new ClassObj('', 8, 20));
+      classes.push(new ClassObj('', 'b+', 6));
+      const calculatedTotalGPA = gpaTools.getTotalGPAFromClasses(classes);
+
+      expect(calculatedTotalGPA).to.equal(0.76);
     });
   });
 });

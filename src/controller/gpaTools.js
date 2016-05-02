@@ -18,21 +18,21 @@ export function calculateGradeNumber(input) {
   let gradenum = 0;
   const thegrade = input;
   if (/^([a-fA-f][+-]?|[0-4][.]?[0-9]?)$/.test(thegrade)) {
-    if (thegrade === 'A+' || thegrade === 'a+') gradenum = 4.3333333;
-    else if (thegrade === 'A' || thegrade === 'a') gradenum = 4.0000000;
-    else if (thegrade === 'A-' || thegrade === 'a-') gradenum = 3.6666666;
-    else if (thegrade === 'B+' || thegrade === 'b+') gradenum = 3.3333333;
-    else if (thegrade === 'B' || thegrade === 'b') gradenum = 3.0000000;
-    else if (thegrade === 'B-' || thegrade === 'b-') gradenum = 2.6666666;
-    else if (thegrade === 'C+' || thegrade === 'c+') gradenum = 2.3333333;
-    else if (thegrade === 'C' || thegrade === 'c') gradenum = 2.0000000;
-    else if (thegrade === 'C-' || thegrade === 'c-') gradenum = 1.6666666;
-    else if (thegrade === 'D+' || thegrade === 'd+') gradenum = 1.3333333;
-    else if (thegrade === 'D' || thegrade === 'd') gradenum = 1.0000000;
-    else if (thegrade === 'D-' || thegrade === 'd-') gradenum = 0.6666666;
-    else if (thegrade === 'F+' || thegrade === 'f+') gradenum = 0.0000000;
-    else if (thegrade === 'F' || thegrade === 'f') gradenum = 0.0000000;
-    else if (thegrade === 'F-' || thegrade === 'f-') gradenum = 0.0000000;
+    if (thegrade === 'A+' || thegrade === 'a+') gradenum = 0.00;
+    else if (thegrade === 'A' || thegrade === 'a') gradenum = 4.00;
+    else if (thegrade === 'A-' || thegrade === 'a-') gradenum = 3.66;
+    else if (thegrade === 'B+' || thegrade === 'b+') gradenum = 3.33;
+    else if (thegrade === 'B' || thegrade === 'b') gradenum = 3.00;
+    else if (thegrade === 'B-' || thegrade === 'b-') gradenum = 2.66;
+    else if (thegrade === 'C+' || thegrade === 'c+') gradenum = 2.33;
+    else if (thegrade === 'C' || thegrade === 'c') gradenum = 2.00;
+    else if (thegrade === 'C-' || thegrade === 'c-') gradenum = 1.66;
+    else if (thegrade === 'D+' || thegrade === 'd+') gradenum = 1.33;
+    else if (thegrade === 'D' || thegrade === 'd') gradenum = 1.00;
+    else if (thegrade === 'D-' || thegrade === 'd-') gradenum = 0.66;
+    else if (thegrade === 'F+' || thegrade === 'f+') gradenum = 0.00;
+    else if (thegrade === 'F' || thegrade === 'f') gradenum = 0.00;
+    else if (thegrade === 'F-' || thegrade === 'f-') gradenum = 0.00;
     else gradenum = parseFloat(thegrade);
   }
   return gradenum;
@@ -51,5 +51,5 @@ export function getTotalGradePointsFromClasses(classes) {
 }
 
 export function getTotalGPAFromClasses(classes) {
-  return getTotalGradePointsFromClasses(classes) / getTotalCreditsFromClasses(classes);
+  return roundToTwo(getTotalGradePointsFromClasses(classes) / getTotalCreditsFromClasses(classes));
 }
