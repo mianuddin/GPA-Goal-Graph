@@ -2,7 +2,7 @@ function roundToTwo(num) {
   return +(Math.round(num + 'e+2') + 'e-2');
 }
 
-export function getCreditsRemaining(targetCredits, maxCredits = 220) {
+export function getCreditsRemaining(targetCredits, maxCredits) {
   return maxCredits - targetCredits;
 }
 

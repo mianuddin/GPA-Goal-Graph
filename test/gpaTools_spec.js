@@ -11,11 +11,8 @@ describe('gpa tools', () => {
   describe('getCreditsRemaining', () => {
     it('returns the correct difference', () => {
       const randomNumber = getRandomInt(0, 300);
-      const defaultMaxCredits = gpaTools.getCreditsRemaining(0);
-      const subtractFromDefault = gpaTools.getCreditsRemaining(randomNumber);
       const subtractFromCustom = gpaTools.getCreditsRemaining(randomNumber, 500);
 
-      expect(subtractFromDefault).to.equal(defaultMaxCredits - randomNumber);
       expect(subtractFromCustom).to.equal(500 - randomNumber);
     });
   });

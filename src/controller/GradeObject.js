@@ -7,7 +7,7 @@ export default class GradeObject {
     this.goalGPA = goalGPA;
     this.currentCredits = currentCredits;
     this.targetCredits = targetCredits;
-    this.getCreditsRemaining = gpaTools.getCreditsRemaining(targetCredits);
+    this.getCreditsRemaining = gpaTools.getCreditsRemaining(targetCredits, this.maxCredits);
     this.getTargetGPA = gpaTools.calculateTargetGPA(
       this.currentGPA,
       this.goalGPA,
