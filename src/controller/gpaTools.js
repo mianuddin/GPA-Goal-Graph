@@ -41,13 +41,13 @@ export function calculateGradeNumber(input) {
 export function getTotalCreditsFromClasses(classes) {
   return classes.reduce((previousValue, currentValue) => (
     previousValue + currentValue.credits
-  ));
+  ), 0);
 }
 
 export function getTotalGradePointsFromClasses(classes) {
   return classes.reduce((previousValue, currentValue) => (
     previousValue + currentValue.gradePoints
-  ));
+  ), 0);
 }
 
 export function getTotalGPAFromClasses(classes) {
