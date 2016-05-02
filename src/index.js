@@ -6,7 +6,6 @@ import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import reducer from './reducer';
 import routes from './routes';
-import ClassObject from './controller/ClassObject';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 
 // Needed for onTouchTap
@@ -22,10 +21,6 @@ store.dispatch({
   type: 'SET_STATE',
   state: {
     mainForm: {
-      currentGPA: '',
-      goalGPA: '',
-      currentCredits: '',
-      targetGPA: '',
       includeClasses: false,
       classTotal: {
         grade: null,
@@ -33,13 +28,7 @@ store.dispatch({
       },
       canSubmit: true,
     },
-    classes: [
-      new ClassObject(
-        'AP Physics 1',
-        'B+',
-        5
-      ),
-    ],
+    classes: [],
     snackbar: {
       open: false,
       message: '',
