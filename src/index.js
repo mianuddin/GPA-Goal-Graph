@@ -5,7 +5,8 @@ import { createHashHistory } from 'history';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import { fromJS } from 'immutable';
-import reducer from './reducer';
+import { combineReducers } from 'redux-immutable';
+import * as reducers from './reducers';
 import routes from './routes';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 
@@ -23,10 +24,6 @@ const initialState = fromJS({
     canSubmit: true,
   },
   classes: [],
-  snackbar: {
-    open: false,
-    message: '',
-  },
   classForm: {
     selectedClass: 0,
     canSubmit: true,
@@ -35,7 +32,7 @@ const initialState = fromJS({
 });
 
 const store = createStore(
-  reducer,
+  combineReducers(reducers),
   initialState,
   window.devToolsExtension ? window.devToolsExtension() : undefined
 );
