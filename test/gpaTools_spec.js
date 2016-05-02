@@ -1,6 +1,7 @@
 /* eslint-env mocha */
 import { expect } from 'chai';
 import * as gpaTools from '../src/controller/gpaTools';
+import ClassObj from '../src/controller/ClassObject';
 
 function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
@@ -19,6 +20,21 @@ describe('gpa tools', () => {
     });
   });
 
+  describe('calculateTargetGPA', () => {
+    it('calculates the correct GPA for an incoming freshman', () => {
+      const randomGPAGoal = getRandomInt(-5, 5);
+      const calculatedTargetGPA = gpaTools.calculateTargetGPA(0, randomGPAGoal, 0, 30);
+
+      expect(calculatedTargetGPA).to.equal(randomGPAGoal);
+    });
+
+    it('calculates the correct target GPA', () => {
+      const fixedCalculatedTargetGPA = gpaTools.calculateTargetGPA(1, 2, 120, 150);
+
+      expect(fixedCalculatedTargetGPA).to.equal(6);
+    });
+  });
+
   describe('calculateGradeNumber', () => {
     it('parses letter grade inputs correctly', () => {
       const valueOfUppercaseA = gpaTools.calculateGradeNumber('A');
@@ -33,18 +49,38 @@ describe('gpa tools', () => {
     });
   });
 
-  describe('calculateTargetGPA', () => {
-    it('calculates the correct GPA for an incoming freshman', () => {
-      const randomGPAGoal = getRandomInt(-5, 5);
-      const calculatedTargetGPA = gpaTools.calculateTargetGPA(0, randomGPAGoal, 0, 30);
+  describe('getTotalCreditsFromClasses', () => {
+    it('calculates the correct total number of credits', () => {
+      const classes = [];
+      let totalCredits = 0;
 
-      expect(calculatedTargetGPA).to.equal(randomGPAGoal);
+      for (let i = 0; i <= getRandomInt(1, 7); i++) {
+        const randomCredits = getRandomInt(0, 20);
+        totalCredits += randomCredits;
+        classes.push(new ClassObj('', 4, randomCredits));
+      }
+
+      const calculatedTotal = gpaTools.getTotalCreditsFromClasses(classes);
+
+      expect(calculatedTotal).to.equal(totalCredits);
     });
+  });
 
-    it('calculates the correct target GPA', () => {
-      const fixedCalculatedTargetGPA = gpaTools.calculateTargetGPA(1, 2, 120, 150);
+  describe('getTotalGradePointsFromClasses', () => {
+    it('calculates the correct total number of grade points', () => {
+      const classes = [];
+      let totalGradePoints = 0;
 
-      expect(fixedCalculatedTargetGPA).to.equal(6);
+      for (let i = 0; i <= getRandomInt(1, 7); i++) {
+        const randomCredits = getRandomInt(0, 20);
+        const randomGrade = getRandomInt(0, 4);
+        totalGradePoints += (randomCredits * randomGrade);
+        classes.push(new ClassObj('', randomGrade, randomCredits));
+      }
+
+      const calculatedTotal = gpaTools.getTotalGradePointsFromClasses(classes);
+
+      expect(calculatedTotal).to.equal(totalGradePoints);
     });
   });
 });
