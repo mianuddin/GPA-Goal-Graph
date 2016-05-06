@@ -40,10 +40,10 @@ const store = createStore(
 const appHistory = useRouterHistory(createHashHistory)({ queryKey: false });
 
 ReactDOM.render(
-    <Provider store={store}>
-      <Router history={appHistory} onUpdate={() => window.scrollTo(0, 0)}>
-          {routes}
-      </Router>
-    </Provider>,
-    document.getElementById('app')
+  <Provider store={store}>
+    <Router history={appHistory} onUpdate={() => window.scrollTo(0, 0)}>
+      {routes}
+    </Router>
+  </Provider>,
+  document.getElementById('app')
 );
