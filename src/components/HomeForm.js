@@ -17,7 +17,8 @@ Formsy.addValidationRule('isMoreThanWith', (values, value, array) => {
 });
 
 const errorMessages = {
-  numericError: 'Please provide a number.',
+  isMoreThanWith: 'Must be greater than current and class credits.',
+  isNumeric: 'Must be a number.',
 };
 
 const HomeForm = props => (
@@ -47,7 +48,7 @@ const HomeForm = props => (
             hintText="How many credits do you have?"
             floatingLabelText="Current Credits"
             validations="isNumeric"
-            validationError={errorMessages.numericError}
+            validationErrors={errorMessages}
           />
           <FormsyText
             name="targetCredits"
@@ -56,7 +57,7 @@ const HomeForm = props => (
             floatingLabelText="Target Credits"
             validations=
             {`isNumeric,isMoreThanWith:[currentCredits,${getTotalCreditsFromClasses(props.classes)}]`} // eslint-disable-line max-len
-            validationError={errorMessages.numericError}
+            validationErrors={errorMessages}
           />
           <FormsyText
             name="currentGPA"
@@ -64,7 +65,7 @@ const HomeForm = props => (
             hintText="What is your current GPA?"
             floatingLabelText="Current GPA"
             validations="isNumeric"
-            validationError={errorMessages.numericError}
+            validationErrors={errorMessages}
           />
           <FormsyText
             name="goalGPA"
@@ -72,7 +73,7 @@ const HomeForm = props => (
             hintText="What is your GPA goal?"
             floatingLabelText="Goal GPA"
             validations="isNumeric"
-            validationError={errorMessages.numericError}
+            validationErrors={errorMessages}
           />
           <div id="ToggleBox">
             <FormsyToggle
