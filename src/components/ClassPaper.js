@@ -106,8 +106,8 @@ const ClassPaper = props => {
         onRequestClose={props.onUserInteraction}
       >
         <Formsy.Form
-          onValid={props.changeSubmit.bind(this, true)}
-          onInvalid={props.changeSubmit.bind(this, false)}
+          onValid={props.changeSubmit.bind(this, true)} // eslint-disable-line react/jsx-no-bind
+          onInvalid={props.changeSubmit.bind(this, false)} // eslint-disable-line react/jsx-no-bind
           onValidSubmit={handleSubmit}
         >
           <div id="ClassInputs">
