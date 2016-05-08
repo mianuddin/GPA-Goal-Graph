@@ -6,13 +6,15 @@ import FormsyToggle from 'formsy-material-ui/lib/FormsyToggle';
 import RaisedButton from 'material-ui/lib/raised-button';
 import Paper from 'material-ui/lib/paper';
 
+import { getTotalCreditsFromClasses } from '../controller/gpaTools.js';
 import ClassPaper from './ClassPaper';
 
 import '../styles/partials/_HomeForm';
 
-Formsy.addValidationRule('isMoreThan', (values, value, otherField) => (
-  Number(value) > Number(values[otherField])
-));
+Formsy.addValidationRule('isMoreThanWith', (values, value, array) => {
+  const inputs = array.substring(1, array.length - 1).split(',');
+  return Number(value) > (Number(values[inputs[0]]) + Number(inputs[1]));
+});
 
 const errorMessages = {
   numericError: 'Please provide a number.',
@@ -21,8 +23,8 @@ const errorMessages = {
 const HomeForm = props => (
   <Formsy.Form
     id="Form"
-    onValid={props.toggleSubmit.bind(this, true)}
-    onInvalid={props.toggleSubmit.bind(this, false)}
+    onValid={props.toggleSubmit.bind(this, true)} // eslint-disable-line react/jsx-no-bind
+    onInvalid={props.toggleSubmit.bind(this, false)} // eslint-disable-line react/jsx-no-bind
   >
     <div className="row">
       <div className="col-xs-12 col-md-8">
@@ -52,7 +54,8 @@ const HomeForm = props => (
             required
             hintText="What is your credit target?"
             floatingLabelText="Target Credits"
-            validations="isNumeric,isMoreThan:currentCredits"
+            validations=
+            {`isNumeric,isMoreThanWith:[currentCredits,${getTotalCreditsFromClasses(props.classes)}]`} // eslint-disable-line max-len
             validationError={errorMessages.numericError}
           />
           <FormsyText
