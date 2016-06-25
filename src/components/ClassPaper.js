@@ -48,11 +48,31 @@ const ClassPaper = props => {
 
   const classTableJSX = (
     <div>
-      <Paper zDepth={1}>
-        <div className="ClassSectionContainer_inner">
+      <Paper
+        className={!props.classes.length ? 'center-contents' : ''}
+        zDepth={1}
+      >
+        <div
+          className={`ClassSectionContainer_inner ${!props.classes.length ? 'row' : ''}`}
+        >
+          <div
+            className={`col-xs-2 center-contents ${!props.classes.length ? '' : 'hidden'}`}
+          >
+            <i className="material-icons">note_add</i>
+          </div>
+          <div
+            className={`col-xs-10 center-contents ${!props.classes.length ? '' : 'hidden'}`}
+          >
+            <p>Press the button below to add your first class!</p>
+          </div>
           <Table
             multiSelectable={false}
             onRowSelection={handleSelect}
+            className={
+              ! props.classes.length
+              ? 'hidden'
+              : ''
+            }
           >
             <TableHeader>
               <TableRow>
@@ -77,7 +97,13 @@ const ClassPaper = props => {
             </TableBody>
           </Table>
         </div>
-        <CardActions>
+        <CardActions
+          className={
+            ! props.classes.length
+            ? 'hidden'
+            : ''
+          }
+        >
           <FlatButton
             label="Duplicate"
             disabled={!props.formProps.selectedClass}
@@ -108,7 +134,7 @@ const ClassPaper = props => {
           <i className="material-icons">class</i>
         </div>
         <div className="col-xs-10 center-contents">
-          <p>Select "<em>Include current semester classes</em>" <br/>to include your classes!</p>
+          <p>Select "<em>Include current semester classes</em>" <br />to include your classes!</p>
         </div>
       </div>
     </Paper>

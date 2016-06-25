@@ -4,6 +4,10 @@
   justify-content: center;
 }
 
+.hidden {
+  display: none;
+}
+
 .ClassSectionContainer {
   position: relative;
   // TODO: Remove when mobile specific layout is created.
@@ -15,11 +19,11 @@
 
   &--not-included {
     color: #9E9E9E;
+  }
 
-    .material-icons {
-      font-size: 64px;
-      display: inline-block;
-    }
+  .material-icons {
+    font-size: 64px;
+    display: inline-block;
   }
 
   .FloatingActionButton {
