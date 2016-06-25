@@ -23,7 +23,7 @@ const errorMessages = {
 
 const HomeForm = props => (
   <Formsy.Form
-    id="Form"
+    className="ClassForm"
     onValid={props.toggleSubmit.bind(this, true)} // eslint-disable-line react/jsx-no-bind
     onInvalid={props.toggleSubmit.bind(this, false)} // eslint-disable-line react/jsx-no-bind
   >
@@ -41,7 +41,8 @@ const HomeForm = props => (
         />
       </div>
       <div className="col-xs-12 col-md-4 first-md">
-        <Paper zDepth={1} className="PaperContainer" id="InputContainer">
+        <Paper zDepth={1} className="PaperContainer InputContainer">
+          <h2>Calculator</h2>
           <FormsyText
             name="currentCredits"
             required
@@ -75,7 +76,7 @@ const HomeForm = props => (
             validations="isNumeric"
             validationErrors={errorMessages}
           />
-          <div id="ToggleBox">
+          <div className="ToggleBox">
             <FormsyToggle
               name="classesIncluded"
               label="Include current semester classes"
@@ -83,7 +84,7 @@ const HomeForm = props => (
               onClick={props.toggleClasses}
             />
           </div>
-          <div id="SubmitButton">
+          <div className="SubmitButton">
             <RaisedButton
               type="submit"
               label="Submit"

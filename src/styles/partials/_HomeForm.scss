@@ -1,15 +1,19 @@
-#Form {
-  #InputContainer > {
+.ClassForm {
+  h2 {
+    margin: 0 0 0.5rem 0;
+  }
+
+  .InputContainer > {
     div {
       width: 100% !important;
     }
   }
   
-  #ToggleBox {
+  .ToggleBox {
     margin-top: 1rem;
   }
 
-  #SubmitButton {
+  .SubmitButton {
     margin: 1rem 0;
   }
 }
