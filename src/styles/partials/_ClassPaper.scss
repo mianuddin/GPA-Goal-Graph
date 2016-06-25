@@ -1,13 +1,29 @@
-#ClassSectionContainer {
+.center-contents {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ClassSectionContainer {
   position: relative;
   // TODO: Remove when mobile specific layout is created.
   margin-bottom: 3rem;
 
-  #TableWrapper {
+  &_inner {
     padding: 1.5rem;
   }
 
-  #FAB {
+  &--not-included {
+    font-size: 24px;
+    color: #9E9E9E;
+
+    .material-icons {
+      font-size: 64px;
+      display: inline-block;
+    }
+  }
+
+  .FloatingActionButton {
     position: absolute;
     right: 0;
     margin-right: 1.5rem;
@@ -23,11 +39,11 @@
   }
 }
 
-#ClassInputs {
+.DialogContent_Inputs {
   padding: 24px;
 }
 
-#DialogActions {
+.DialogContent_Actions {
   box-sizing: border-box;
   -webkit-tap-highlight-color: rgba(0,0,0,0);
   padding: 8px;

@@ -46,10 +46,10 @@ const ClassPaper = props => {
     props.removeClass(props.formProps.selectedClass - 1);
   }
 
-  return (
-    <div id="ClassSectionContainer">
+  const classTableJSX = (
+    <div>
       <Paper zDepth={1}>
-        <div id="TableWrapper">
+        <div className="ClassSectionContainer_inner">
           <Table
             multiSelectable={false}
             onRowSelection={handleSelect}
@@ -90,7 +90,7 @@ const ClassPaper = props => {
           />
         </CardActions>
       </Paper>
-      <div id="FAB">
+      <div className="FloatingActionButton">
         <FloatingActionButton
           onClick={props.onUserInteraction}
           disabled={!props.includeClasses}
@@ -98,6 +98,29 @@ const ClassPaper = props => {
           <ContentAdd />
         </FloatingActionButton>
       </div>
+    </div>
+  );
+
+  const classesNotIncludedJSX = (
+    <Paper zDepth={1} className="ClassSectionContainer--not-included center-contents">
+      <div className="ClassSectionContainer_inner row">
+        <div className="col-xs-2 center-contents">
+          <i className="material-icons">class</i>
+        </div>
+        <div className="col-xs-10">
+          <p>Select "<em>Include current semester classes</em>" to include your current classes!</p>
+        </div>
+      </div>
+    </Paper>
+  );
+
+  return (
+    <div className="ClassSectionContainer">
+      {
+        props.includeClasses
+        ? classTableJSX
+        : classesNotIncludedJSX
+      }
       <Dialog
         title="Add a Class"
         contentClassName="DialogContent"
@@ -110,7 +133,7 @@ const ClassPaper = props => {
           onInvalid={props.changeSubmit.bind(this, false)} // eslint-disable-line react/jsx-no-bind
           onValidSubmit={handleSubmit}
         >
-          <div id="ClassInputs">
+          <div className="DialogContent_Inputs">
             <FormsyText
               name="className"
               required
@@ -139,7 +162,7 @@ const ClassPaper = props => {
               validationErrors={errorMessages}
             />
           </div>
-          <div id="DialogActions">
+          <div className="DialogContent_Actions">
             <FlatButton
               label="Cancel"
               secondary
