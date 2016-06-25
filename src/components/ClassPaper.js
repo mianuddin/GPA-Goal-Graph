@@ -107,8 +107,8 @@ const ClassPaper = props => {
         <div className="col-xs-2 center-contents">
           <i className="material-icons">class</i>
         </div>
-        <div className="col-xs-10">
-          <p>Select "<em>Include current semester classes</em>" to include your current classes!</p>
+        <div className="col-xs-10 center-contents">
+          <p>Select "<em>Include current semester classes</em>" <br/>to include your classes!</p>
         </div>
       </div>
     </Paper>
